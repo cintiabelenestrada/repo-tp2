@@ -1,2 +1,2 @@
-# repo-tp2
-practico 2 
+# Proyecto repo-tp2
+Esto proyecto es de tipo Spring Starter Project.
