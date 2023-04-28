@@ -1,0 +1,136 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+body{
+    background: darkgreen;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/*div container*/
+
+#container{
+    width: 1000px;
+    height: 100;
+    margin: 0px auto;
+    border: 1px solid black;
+    background: lightblue;
+    
+}
+/*estilo header*/
+header{
+    background-color: brown;
+    height: 200px;
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+    line-height: 100px;
+    color: white;
+    border-bottom: 3px blue;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+/*fondo menu*/
+nav{ 
+    background-color: lightgreen;
+    height: 70px;
+    color: white;
+    border: 1px solid black;
+   
+}
+/*ítems menu*/
+nav ul li{
+    
+    float: left;
+    background-color: orange;
+    list-style: none;
+    margin: 15px;
+
+}
+/*link defecto y link visitado*/
+a:link, a:visited{
+    color: darkblue;
+    text-decoration: none;
+    background-color: orange;
+    border: 1px solid black;
+    display: block;
+    width: 100px;
+    text-align: center;
+    margin-bottom: 1px;
+}
+/*mouse sobre boton del menu */
+a:hover, a:active{
+    background-color: lightblue;
+    color: red;
+} 
+
+
+
+.clearfix{
+    clear: both;
+
+}
+
+/*Inicio estilo productos*/
+
+h2 strong{
+    background-color: lightblue;
+    color: black;
+    margin: 400px;
+    font-size: 50px;
+    
+    
+   
+}
+
+#content{
+    width: calc(80% - 80px);
+    background: lightgreen;
+    padding: 40px;
+    text-align: center;
+    list-style: none;
+    
+}
+
+
+.article{
+	color: #0A2A5A;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+    align-content: center;
+    list-style: none;
+}
+
+
+/*Fin estilo productos*/
+
+
+/*barra lateral*/
+aside{
+	background: orange;
+    float: right;
+    height: 100%;
+    width: calc(20% - 20px);
+    padding-left: 10px;
+    padding-right: 10px;
+    border:1px solid black;
+}
+
+/*pie de pagina*/
+
+footer {
+    background-color: brown;
+    color: beige;
+    text-align: center;
+    height: 200px;
+    line-height: 50px;
+}
+
+
+
+
+
