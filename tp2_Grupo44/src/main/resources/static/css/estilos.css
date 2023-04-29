@@ -1,26 +1,25 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
 
-
-body{
+body {
     background: darkgreen;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /*div container*/
 
-#container{
+#container {
     width: 1000px;
     height: 100;
     margin: 0px auto;
     border: 1px solid black;
     background: lightblue;
-    
 }
+
 /*estilo header*/
-header{
+header {
     background-color: brown;
     height: 200px;
     width: 100%;
@@ -30,27 +29,27 @@ header{
     color: white;
     border-bottom: 3px blue;
     font-family: 'Courier New', Courier, monospace;
-
 }
+
 /*fondo menu*/
-nav{ 
+nav {
     background-color: lightgreen;
     height: 70px;
     color: white;
     border: 1px solid black;
-   
 }
+
 /*ítems menu*/
-nav ul li{
-    
+nav ul li {
     float: left;
     background-color: orange;
     list-style: none;
     margin: 15px;
-
 }
+
 /*link defecto y link visitado*/
-a:link, a:visited{
+a:link,
+a:visited {
     color: darkblue;
     text-decoration: none;
     background-color: orange;
@@ -60,21 +59,20 @@ a:link, a:visited{
     text-align: center;
     margin-bottom: 1px;
 }
+
 /*mouse sobre boton del menu */
-a:hover, a:active{
+a:hover,
+a:active {
     background-color: lightblue;
     color: red;
-} 
+}
 
-
-
-.clearfix{
+.clearfix {
     clear: both;
-
 }
 
 /*inicio estilo index*/
-#content{
+#content {
     width: calc(80% - 80px);
     background: lightblue;
     padding: 40px;
@@ -85,57 +83,54 @@ a:hover, a:active{
     font-style: italic;
     height: 100%;
 }
-ul{
-	list-style: none;
+
+ul {
+    list-style: none;
 }
-    /*fin estilo index*/
+
+/*fin estilo index*/
 
 
 /*Inicio estilo productos*/
 
-h2 strong{
+h2 strong {
     background-color: lightblue;
     color: black;
     margin: 300px;
     font-size: 50px;
     font-style: italic;
-    
-    
-   
 }
 
-    
+
 /*elementos clase article*/
-.article{
-	color: navy;
+.article {
+    color: navy;
     margin-top: 15px;
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid;
     list-style: none;
     background: lightblue;
-    width:80;
-	text-align: center;
- 
-}
-ol{
-	list-style: none;
+    width: 80;
+    text-align: center;
 }
 
+ol {
+    list-style: none;
+}
 
 /*Fin estilo productos*/
 
 
 /*barra lateral*/
-aside{
-	background: orange;
+aside {
+    background: orange;
     float: right;
     width: calc(20% - 20px);
     height: 100%;
- 	padding: 10px;
-    border:1px solid black;
+    padding: 10px;
+    border: 1px solid black;
     list-style: none;
- 
 }
 
 /*pie de pagina*/
@@ -147,8 +142,3 @@ footer {
     height: 200px;
     line-height: 50px;
 }
-
-
-
-
-
