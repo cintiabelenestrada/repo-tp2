@@ -73,36 +73,53 @@ a:hover, a:active{
 
 }
 
+/*inicio estilo index*/
+#content{
+    width: calc(80% - 80px);
+    background: lightblue;
+    padding: 40px;
+    text-align: center;
+    list-style: none;
+    float: center;
+    color: navy;
+    font-style: italic;
+    height: 100%;
+}
+ul{
+	list-style: none;
+}
+    /*fin estilo index*/
+
+
 /*Inicio estilo productos*/
 
 h2 strong{
     background-color: lightblue;
     color: black;
-    margin: 400px;
+    margin: 300px;
     font-size: 50px;
+    font-style: italic;
     
     
    
 }
 
-#content{
-    width: calc(80% - 80px);
-    background: lightgreen;
-    padding: 40px;
-    text-align: center;
-    list-style: none;
     
-}
-
-
+/*elementos clase article*/
 .article{
-	color: #0A2A5A;
+	color: navy;
     margin-top: 15px;
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid;
-    align-content: center;
     list-style: none;
+    background: lightblue;
+    width:80;
+	text-align: center;
+ 
+}
+ol{
+	list-style: none;
 }
 
 
@@ -113,11 +130,12 @@ h2 strong{
 aside{
 	background: orange;
     float: right;
-    height: 100%;
     width: calc(20% - 20px);
-    padding-left: 10px;
-    padding-right: 10px;
+    height: 100%;
+ 	padding: 10px;
     border:1px solid black;
+    list-style: none;
+ 
 }
 
 /*pie de pagina*/

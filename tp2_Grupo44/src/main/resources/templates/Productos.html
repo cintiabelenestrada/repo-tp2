@@ -9,7 +9,7 @@
 	
 	<div id="container">
 		<!-- header -->
-		<header>
+		<header id="inicio">
      	<h1>Bienvenidos a la Página Web del Grupo 44</h1>
         <img src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png" alt="Logo de presentacion" title="Imagen de presentación" width="100">
 	 	</header>
@@ -38,9 +38,17 @@
                         
 		 </ul>
 	</nav>
-	
+	<div class="clearfix"></div>
+		<!-- barra lateral -->
+	<aside>
+		<h2>Barra Lateral</h2>
+            <form>
+            <input type="text">
+            <input type="submit" value="buscar">
+            </form>
+	</aside>
 	<!-- Productos -->
-	<section>
+	<section id="content">
 		<article class="article">
 				<h2><strong>Productos</strong></h2>
             	<h3>Alimento balanceado</h3>
@@ -142,6 +150,8 @@
                    <label><input id="M" type="radio" name="sml">M</label>
                    <label><input id="L" type="radio" name="sml">L</label>
                    <button>COMPRAR</button>
+                   </fieldset>
+                   <fieldset>
                    <h3>NEGRO</h3>
                    <label><input id="S" type="radio" name="P-M-G">S</label>
                    <label><input id="M" type="radio" name="P-M-G">M</label>
@@ -156,6 +166,8 @@
                    <label><input id="M" type="radio" name="PMG">M</label>
                    <label><input id="L" type="radio" name="PMG">L</label>
                    <button>COMPRAR</button>
+                   </fieldset>
+                   <fieldset>
                    <h3>GRIS</h3>
                    <label><input id="S" type="radio" name="p-m-g">S</label>
                    <label><input id="M" type="radio" name="p-m-g">M</label>
@@ -167,23 +179,16 @@
 	</section>
 	<!-- fin productos -->
 	
-	<!-- barra lateral -->
-	<aside>
-		<h2>Barra Lateral</h2>
-            <form>
-            <input type="text">
-            <input type="submit" value="buscar">
-            </form>
-	</aside>
+
 	
 	
-	<div class="clearfix"></div>
+	
            
     <!-- pie de pagina -->    
 	<footer>
                  
 	<p>Copyright © 2023 - Tienda Grupo 44 - Diseñado por Grupo 44 - Jujuy - República Argentina</p>
-    <a href="index.html"><img alt="volver" src="../static/images/volver.png" width="70"></a>
+    <a href="#inicio"><img alt="volver al menu" src="../static/images/arriba.png" width="70"></a>
     <img src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png" alt="Logo de presentacion" title="Imagen de presentación" width="100">
 
 	</footer>
