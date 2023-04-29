@@ -122,6 +122,45 @@ ol {
 /*Fin estilo productos*/
 
 
+/* inicio estilo sucursales */
+.sucursales h1 {
+    line-height: 100px;
+    color: black;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.sucursales h2 {
+    color: #8B4513;
+    text-align: center;
+    padding-bottom: 10px;
+    /* Agrega un espacio de 10px debajo de los títulos */
+}
+
+.sucursales h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: black;
+    background-color: #7bdcb5;
+    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+}
+
+.sucursales img {
+    display: block;
+    margin: auto;
+    height: 600px;
+    margin-bottom: 20px;
+    /* Agrega un margen inferior de 20px */
+    margin-top: 20px;
+    /* Agrega un margen superior de 20px */
+}
+
+.sucursales ul {
+    margin-top: 20px;
+}
+
+/* fin estilo sucursales */
+
 /*barra lateral*/
 aside {
     background: orange;
@@ -141,4 +180,5 @@ footer {
     text-align: center;
     height: 200px;
     line-height: 50px;
+    margin-top: 20px;
 }
