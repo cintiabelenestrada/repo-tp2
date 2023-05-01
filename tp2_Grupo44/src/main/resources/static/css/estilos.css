@@ -90,6 +90,14 @@ ul {
 
 /*fin estilo index*/
 
+/*inicio estilo tabla*/
+#tabla {
+	margin: 0 auto;
+	
+}
+.titulo{
+	text-align:center;
+}
 
 /*Inicio estilo productos*/
 

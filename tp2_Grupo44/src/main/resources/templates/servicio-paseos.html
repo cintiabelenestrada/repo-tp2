@@ -3,53 +3,100 @@
     <head>
         <meta charset="utf-8" />
         <title>Servicio de paseos</title>
+        <link rel="stylesheet" href="../static/css/estilos.css">
     </head>
     <body>
-        <h1>Servicio de paseos</h1>
-        <table border="1">
-            <tr>
-                <td>Días</td>
-                <td>Horarios</td>
-                <td>Paseador</td>
-            </tr>
-            <tr>
-                <td>Lunes</td>
-                <td>9:00 a 11:00</td>
-                <td>Roberto Bautista</td>
-            </tr>
-            <tr>
-                <td>Martes</td>
-                <td>9:00 a 11:00</td>
-                <td>Florencia Torres</td>
-            </tr>
-            <tr>
-                <td>Miercoles</td>
-                <td>16:00 a 18:00</td>
-                <td>Pedro Dominguez</td>
-            </tr>
-            <tr>
-                <td>Jueves</td>
-                <td>16:00 a 18:00</td>
-                <td>Micaela Chumacero</td>
-            </tr>
-            <tr>
-                <td>Viernes</td>
-                <td>9:00 a 11:00</td>
-                <td>Camilo Mamani</td>
-            </tr>
-            <tr>
-                <td>Sabados</td>
-                <td>8:00 a 10:00</td>
-                <td>Ignacio Tarifa</td>
-            </tr>
-        </table>
-        <br />
-        <a href="index.html">Volver</a>
-        <footer>
-            <p>
-                Copyright 2023 - Tienda Grupo N°44 - Diseñado por Grupo 44 -
-                Jujuy - República Argentina
-            </p>
-        </footer>
+    	<div id="container">
+    		<!-- header -->
+            <header id="inicio">
+                <h1>Bienvenidos a la Página Web del Grupo 44</h1>
+                <img
+                    src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
+                    alt="Logo de presentacion"
+                    title="Imagen de presentación"
+                    width="100"
+                />
+            </header>
+
+            <!-- menu -->
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="Productos.html">Productos</a>
+                    </li>
+                    <li>
+                        <a href="consejos-salud.html">Consejos de Salud</a>
+                    </li>
+                    <li>
+                        <a href="servicio-paseos.html">Servicio de Paseos</a>
+                    </li>
+                    <li>
+                        <a href="sucursales.html">Sucursales</a>
+                    </li>
+                    <li>
+                        <a href="contactanos.html">Contáctenos</a>
+                    </li>
+                </ul>
+            </nav>
+	        <h1 class="titulo">Servicio de paseos</h1>
+	        <table border="1" id="tabla">
+	            <tr>
+	                <td>Días</td>
+	                <td>Horarios</td>
+	                <td>Paseador</td>
+	            </tr>
+	            <tr>
+	                <td>Lunes</td>
+	                <td>9:00 a 11:00</td>
+	                <td>Roberto Bautista</td>
+	            </tr>
+	            <tr>
+	                <td>Martes</td>
+	                <td>9:00 a 11:00</td>
+	                <td>Florencia Torres</td>
+	            </tr>
+	            <tr>
+	                <td>Miercoles</td>
+	                <td>16:00 a 18:00</td>
+	                <td>Pedro Dominguez</td>
+	            </tr>
+	            <tr>
+	                <td>Jueves</td>
+	                <td>16:00 a 18:00</td>
+	                <td>Micaela Chumacero</td>
+	            </tr>
+	            <tr>
+	                <td>Viernes</td>
+	                <td>9:00 a 11:00</td>
+	                <td>Camilo Mamani</td>
+	            </tr>
+	            <tr>
+	                <td>Sabados</td>
+	                <td>8:00 a 10:00</td>
+	                <td>Ignacio Tarifa</td>
+	            </tr>
+	        </table>
+	        <footer>
+                <p>
+                    Copyright © 2023 - Tienda Grupo 44 - Diseñado por Grupo 44 -
+                    Jujuy - República Argentina
+                </p>
+                <a href="#inicio"
+                    ><img
+                        alt="volver al menu"
+                        src="../static/images/arriba.png"
+                        width="70"
+                /></a>
+                <img
+                    src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
+                    alt="Logo de presentacion"
+                    title="Imagen de presentación"
+                    width="100"
+                />
+            </footer>
+		</div>
     </body>
 </html>
