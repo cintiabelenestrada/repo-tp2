@@ -190,3 +190,14 @@ footer {
     line-height: 50px;
     margin-top: 20px;
 }
+
+/*Inicio estilo consejos-salud*/
+
+.consejos h2, h3, p{
+	
+	font-style:italic;
+	color: navy;
+	
+}
+
+/*Fin estilo consejos-salud*/
