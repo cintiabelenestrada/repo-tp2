@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Header</title>
+    </head>
+    <body>
+        <!-- header -->
+        <header id="inicio">
+            <h1>Bienvenidos a la Página Web del Grupo 44</h1>
+            <img
+                src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
+                alt="Logo de presentacion"
+                title="Imagen de presentación"
+                width="100"
+            />
+            <!-- Para mostrar una lista de productos en la página de "Productos", utilizar la etiqueta <ul> y dentro de ella, varias etiquetas <li>, cada una con la imagen y descripción de un producto. -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="consejos-salud.html">Consejos de Salud</a></li>
+                    <li>
+                        <a href="servicio-paseos.html">Servicio de Paseos</a>
+                    </li>
+                    <li><a th:href="@{/sucursales}">Sucursales</a></li>
+                    <li>
+                        <a href="contactanos.html" target="_blank"
+                            >Contáctanos</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </body>
+</html>
