@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Consejos-Salud</title>
+        <link rel="stylesheet" href="../static/css/estilos.css" />
+    </head>
+    <body>
+        <div id="container">
+            <!--  header -->
+            <header th:replace="~{layouts/header :: header}"></header>
+            <!-- inicio codigo consejos -->
+            <div class="consejos">
+                <section>
+                    <h2>Cómo cuidar a nuestras mascotas</h2>
+                    <p>
+                        Tener una mascota en casa requiere de compromiso y
+                        responsabilidad por parte de toda la familia.
+                    </p>
+
+                    <article>
+                        <h3>Tenencia Responsable</h3>
+                        <img
+                            src="../static/images/tenencia-responsable.jpg"
+                            alt="tenencia-responable"
+                            title="tenencia-responsable"
+                            width="750"
+                        />
+                        <p>
+                            Para nuestras mascotas ya sea un perro, un gato, un
+                            ave,etc, es importante saber que cuentan con nuestro
+                            apoyo y sobre todo que se sientan amadas.
+                        </p>
+                    </article>
+
+                    <article>
+                        <h3>Cuidado del ambiente y su higiene</h3>
+                        <img
+                            src="../static/images/limpieza.jpg"
+                            alt="aseo"
+                            title="aseo"
+                            width="750"
+                        />
+                        <p>
+                            Al momento de tener una mascota es necesario que
+                            cuenten con un lugar seguro donde puedan estar
+                            comodos y poder resguardarse de los diferentes
+                            cambios climáticos como ser el frio, el calor, entre
+                            otros.
+                        </p>
+                        <p>
+                            Hay que saber cuidarlos, educarlos, mimarlos y
+                            brindarles tiempo de convivencia con nosotros o con
+                            otros animales ya sean de su misma especie u otras
+                            especies.
+                        </p>
+                        <p>
+                            Mantener el cuadro de vacunación y desparasitación
+                            de perros o gatos, mantenerlos limpios y libres de
+                            pulgas y/o garrapatas.
+                        </p>
+                        <p>
+                            Mantener limpia el área donde se encuentre la
+                            mascota.
+                        </p>
+                    </article>
+
+                    <article>
+                        <h3>Alimentación</h3>
+                        <img
+                            src="../static/images/alimentacion.jpg"
+                            alt="alimentacion"
+                            title="alimentacion"
+                            width="750"
+                        />
+                        <p>
+                            Darles una alimentación diaria, que sea sano y
+                            balanceado.
+                        </p>
+                        <p>
+                            Es fundamental que siempre tengan agua fresca y
+                            limpia ya que esto les ayuda a mantenerse hidratados
+                            y a afrontar las épocas de calor; mantener su plato
+                            limpio.
+                        </p>
+                        <p>
+                            Evitar que ingieran alimentos en mal estado; en caso
+                            de que no se sientan bien llevarlos con un
+                            veterinario y evitar darles remedios caseros o de
+                            humanos.
+                        </p>
+                    </article>
+
+                    <article>
+                        <h3>Ejercicios</h3>
+                        <img
+                            src="../static/images/perroCorriendo.jpg"
+                            alt="ejercicio"
+                            title="ejercicio"
+                            width="750"
+                        />
+                        <p>
+                            Los perros y gatos necesitas necesitan ejercicio ya
+                            que esto les ayuda a desestresaese y gastar su
+                            energía.
+                        </p>
+                        <p>Necesitan socializar con otros animales.</p>
+                    </article>
+                </section>
+            </div>
+            <br />
+            <!-- pie de página -->
+            <footer th:replace="~{layouts/footer :: footer}"></footer>
+        </div>
+    </body>
+</html>
