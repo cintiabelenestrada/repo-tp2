@@ -7,39 +7,8 @@
     </head>
     <body>
         <div id="container">
-            <!-- header -->
-            <header id="inicio">
-                <h1>Bienvenidos a la Página Web del Grupo 44</h1>
-                <img
-                    src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
-                    alt="Logo de presentacion"
-                    title="Imagen de presentación"
-                    width="100"
-                />
-            </header>
-            <!-- menu -->
-            <nav>
-                <ul>
-                    <li>
-                        <a href="index.html">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="Productos.html">Productos</a>
-                    </li>
-                    <li>
-                        <a href="consejos-salud.html">Consejos de Salud</a>
-                    </li>
-                    <li>
-                        <a href="servicio-paseos.html">Servicio de Paseos</a>
-                    </li>
-                    <li>
-                        <a href="sucursales.html">Sucursales</a>
-                    </li>
-                    <li>
-                        <a href="contactanos.html">Contáctenos</a>
-                    </li>
-                </ul>
-            </nav>
+            <header th:replace="~{layouts/header :: header}"></header>
+            <!-- inicio codigo contactanos -->
             <div class="clearfix"></div>
             <h2>Contáctenos</h2>
             <p>
@@ -96,26 +65,9 @@
                 <br /><br />
             </form>
             <br />
-            <!-- <a href="index.html">Volver</a>-->
+
             <!-- pie de pagina -->
-            <footer>
-                <p>
-                    Copyright © 2023 - Tienda Grupo 44 - Diseñado por Grupo 44 -
-                    Jujuy - República Argentina
-                </p>
-                <a href="#inicio"
-                    ><img
-                        alt="volver al menu"
-                        src="../static/images/arriba.png"
-                        width="70"
-                /></a>
-                <img
-                    src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
-                    alt="Logo de presentacion"
-                    title="Imagen de presentación"
-                    width="100"
-                />
-            </footer>
+            <footer th:replace="~{layouts/footer :: footer}"></footer>
         </div>
     </body>
 </html>
