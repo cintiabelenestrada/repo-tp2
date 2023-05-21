@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,8 +19,10 @@
             <!-- Para mostrar una lista de productos en la página de "Productos", utilizar la etiqueta <ul> y dentro de ella, varias etiquetas <li>, cada una con la imagen y descripción de un producto. -->
             <nav>
                 <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="productos.html">Productos</a></li>
+                    <li><a th:href="@{/index}" target="_blank">Inicio</a></li>
+                    <li>
+                        <a th:href="@{/productos}" target="_blank">Productos</a>
+                    </li>
                     <li><a href="consejos-salud.html">Consejos de Salud</a></li>
                     <li>
                         <a href="servicio-paseos.html">Servicio de Paseos</a>
