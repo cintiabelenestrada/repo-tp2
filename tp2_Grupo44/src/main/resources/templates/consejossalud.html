@@ -5,11 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Consejos-Salud</title>
-        <link rel="stylesheet" href="../static/css/estilos.css" />
+        <!-- Importar CSS -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}" />
     </head>
     <body>
         <div id="container">
-            <!--  header -->
+            <!-- header -->
             <header th:replace="~{layouts/header :: header}"></header>
             <!-- inicio codigo consejos -->
             <div class="consejos">

@@ -3,11 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <title>Contáctanos</title>
-        <link rel="stylesheet" href="../static/css/estilos.css" />
+        <!-- Importar CSS -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}" />
     </head>
     <body>
         <div id="container">
+            <!-- header -->
             <header th:replace="~{layouts/header :: header}"></header>
+
             <!-- inicio codigo contactanos -->
             <div class="clearfix"></div>
             <h2>Contáctenos</h2>
