@@ -4,5 +4,6 @@
         "editor.defaultFormatter": "redhat.java"
     },
     "editor.formatOnSave": true,
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "editor.rulers": [100]
 }
