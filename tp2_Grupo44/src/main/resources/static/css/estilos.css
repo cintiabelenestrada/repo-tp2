@@ -94,7 +94,8 @@ ul {
 /*inicio estilo tabla*/
 #tabla {
     margin: 0 auto;
-
+	text-align: center;
+	border: 2px solid black;
 }
 
 .titulo {
