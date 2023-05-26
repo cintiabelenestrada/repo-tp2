@@ -7,21 +7,27 @@
         <title>Productos</title>
         <!-- Importar CSS -->
         <link rel="stylesheet" th:href="@{/css/estilos.css}" />
+        <!-- Enlazar los archivos CSS de Bootstrap -->
+        <link
+            rel="stylesheet"
+            href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css"
+        />
     </head>
     <body>
-        <div id="container">
-            <!-- header -->
-            <header th:replace="~{layouts/header :: header}"></header>
+        <!-- header -->
+        <header th:replace="~{layouts/header :: header}"></header>
 
+        <container>
             <!-- Catalog -->
-            <div class="catalog-container">
-                <h2>Productos</h2>
-                <div class="new-product">
-                    <a th:href="@{/productos/nuevo}">Nuevo producto</a>
-                </div>
 
-                <div class="navigation-section" id="seccion">
+            <h1 class="bg-success p-2 text-white display-4">Productos</h1>
+
+            <section>
+                <div id="seccion">
                     <ul>
+                        <li>
+                            <a th:href="@{/productos/nuevo}">Nuevo producto</a>
+                        </li>
                         <li>
                             <a href="#Collares y correas">Collares y correas</a>
                         </li>
@@ -32,33 +38,37 @@
                         <li><a href="#Prendas">Prendas</a></li>
                     </ul>
                 </div>
+            </section>
 
-                <!-- Section -->
-                <section class="catalog-product-list-container">
-                    <!-- Category Items -->
-                    <div
-                        class="product-list-categories"
-                        th:each="categoria: ${listaCategorias}"
-                    >
-                        <h2
-                            th:text="${categoria}"
-                            th:id="${categoria}"
-                            href="#seccion"
-                        ></h2>
-                        <p><a href="#seccion">Lista de categorias</a></p>
+            <!-- Section Items -->
+            <section>
+                <!-- Category Items -->
+                <div th:each="categoria: ${listaCategorias}">
+                    <h2
+                        class="text-center fs-1"
+                        th:text="${categoria}"
+                        th:id="${categoria}"
+                        href="#seccion"
+                    ></h2>
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                        <!-- <div class="card-group"> -->
 
-                        <!-- Product Items -->
-                        <div class="product-list-items">
-                            <div
-                                class="product-list-items-information"
-                                th:each="producto: ${listaProductos}"
-                                th:if="${producto.categoria} == ${categoria}"
-                            >
-                                <!-- prueba -->
-                                <h3 th:text="${producto.nombre}"></h3>
-                                <img th:src="${producto.imagen}" />
-
-                                <div class="product-information-container">
+                        <div
+                            class="card"
+                            th:each="producto: ${listaProductos}"
+                            th:if="${producto.categoria} == ${categoria}"
+                        >
+                            <img
+                                th:src="${producto.imagen}"
+                                class="card-img-top"
+                                alt="..."
+                            />
+                            <div class="card-body">
+                                <h3
+                                    class="card-title"
+                                    th:text="${producto.nombre}"
+                                ></h3>
+                                <div>
                                     <p>
                                         Precio:
                                         <span
@@ -78,30 +88,30 @@
                                         ></span>
                                     </p>
                                 </div>
-
                                 <a
-                                    class="edit-product"
                                     th:href="@{/productos/modificar/} + ${producto.codigo}"
                                     >Modificar</a
                                 >
+                                <!-- class="delete-product" -->
                                 <a
-                                    class="delete-product"
                                     th:href="@{/productos/eliminar/} + ${producto.codigo}"
                                     >Eliminar</a
                                 >
                             </div>
                         </div>
-                        <!-- End of Product Items -->
                     </div>
-                    <!-- End of Category Items -->
-                </section>
-                <!-- End of Section -->
-                <p id="back-to-top"><a href="#seccion"> Volver al índice</a></p>
-            </div>
+                </div>
+                <!-- End of Category Items -->
+            </section>
+            <!-- End of Section -->
+            <p id="back-to-top"><a href="#seccion"> Volver al índice</a></p>
             <!-- End of Catalog -->
 
             <!-- pie de pagina -->
             <footer th:replace="~{layouts/footer :: footer}"></footer>
-        </div>
+        </container>
+
+        <!-- Enlazar los archivos JS de Bootstrap -->
+        <script src="/webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script>
     </body>
 </html>
