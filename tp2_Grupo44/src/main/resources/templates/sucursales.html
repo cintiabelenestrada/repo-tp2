@@ -12,7 +12,6 @@
         <div id="container">
             <!-- header -->
             <header th:replace="~{layouts/header :: header}"></header>
-
             <!-- inicio codigo sucursales -->
             <div class="sucursales">
                 <h1>¡Encontrá la sucursal más cercana!</h1>
@@ -21,7 +20,6 @@
                     seguiremos creciendo con nuevas aperturas en el Norte
                     Argentino.
                 </h2>
-
                 <img
                     src="https://img.freepik.com/vector-gratis/marco-perros-sobre-fondo-blanco_53876-99295.jpg?w=740&t=st=1682266630~exp=1682267230~hmac=cc2f9246ace86745cc1098ee56e0db85dcf6bb0849c2089131c2c6e991cd1181
         "
@@ -32,14 +30,14 @@
                 />
                 <hr />
                 <!-- seccion sucursales de Jujuy -->
-                <div>
+              <!--  <div>
                     <img
                         src="../static/images/sucursales-jujuy.png"
                         alt="Sucursales Jujuy"
                         title="Imagen sucursales Jujuy"
                         style="height: 100%; width: auto"
                     />
-                    <div>
+                      <div>
                         <h3>CASA CENTRAL</h3>
                         <ul>
                             <li>Necochea N°65</li>
@@ -64,7 +62,7 @@
                         </ul>
                     </div>
                 </div>
-                <!-- secciòn sucursales de Salta -->
+                <!-- secciòn sucursales de Salta
                 <div>
                     <img
                         src="../static/images/sucursales-salta.png"
@@ -78,12 +76,42 @@
                             <li>Cordoba 24</li>
                             <li>3885224466</li>
                             <li>Lunes a sábados de 9 a 19hs</li>
-                        </ul>
+                        </ul> -->
+                <!-- Iteramos Provincias -->
+                <div th:each="provincia: ${listaProvincias}">
+                    <h2
+                        th:text="${provincia}"
+                        th:id="${provincia}"
+                        href="#seccion"
+                    ></h2>
+
+                    <!-- Iteramos Sucursales -->
+                    <div
+                        class="row"
+                        th:each="sucursal: ${listaSucursales}"
+                        th:if="${sucursal.provincia} == ${provincia}"
+                    >
+                        <div>
+                            <h3 th:text="${sucursal.nombre}"></h3>
+                            <h4 th:text="${sucursal.direccion}"></h4>
+                            <h4 th:text="${sucursal.telefono}"></h4>
+                            <h4 th:text="${sucursal.horario}"></h4>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <footer th:replace="~{layouts/footer :: footer}"></footer>
         </div>
+       </div>
+      </div>
     </body>
 </html>
+                
+                
+                
+                
+                
+                
+                
+                
+                
