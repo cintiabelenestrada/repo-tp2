@@ -113,7 +113,7 @@ public class Product {
 	 * 
 	 * @return Valor del producto
 	 */
-	public float calcularDescuento() {
+	public String calcularDescuento() {
 
 		float resultado = 0f;
 
@@ -125,8 +125,7 @@ public class Product {
 			resultado = precio - (precio * this.descuento / 100);
 		}
 
-		return Float.parseFloat(String.format("%.2f", resultado));
-
+		return String.format("%.2f", resultado);
 	}
 
 	public static float randomPrecio() {
