@@ -5,243 +5,113 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Productos</title>
-        <link rel="stylesheet" href="../static/css/estilos.css" />
+        <!-- Importar CSS -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}" />
+        <!-- Enlazar los archivos CSS de Bootstrap -->
+        <link
+            rel="stylesheet"
+            href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css"
+        />
     </head>
     <body>
-        <div id="container">
-            <!-- header -->
-            <header th:replace="~{layouts/header :: header}"></header>
-            <!-- inicio codigo productos -->
-            <div class="clearfix"></div>
-            <!-- barra lateral -->
-            <aside>
-                <h2>Barra Lateral</h2>
-                <form>
-                    <input type="text" />
-                    <input type="submit" value="buscar" />
-                </form>
-            </aside>
-            <!-- Productos -->
-            <section id="content">
-                <article class="article">
-                    <h2><strong>Productos</strong></h2>
-                    <h3>Alimento balanceado</h3>
-                    <p>
-                        Alimento balanceado para perros y gatos, adultos y
-                        cachorros
-                    </p>
-                    <img
-                        alt="food animal"
-                        src="../static/images/food_animal.png"
-                    />
+        <!-- header -->
+        <header th:replace="~{layouts/header :: header}"></header>
 
-                    <fieldset>
-                        <legend>Alimento para perros $2500</legend>
-                        <input id="Adulto" type="checkbox" />Adulto
-                        <input id="Cachorro" type="checkbox" />Cachorro
-                        <button>COMPRAR</button>
-                        <img
-                            alt="croquetas para perros"
-                            src="../static/images/alimento_perro.jpg"
-                            width="500"
-                        />
-                    </fieldset>
-                    <fieldset>
-                        <legend>Alimento para gatos $3000:</legend>
-                        <input id="Adulto" type="checkbox" />Adulto
-                        <input id="Cachorro" type="checkbox" />Cachorro
-                        <button>COMPRAR</button>
-                        <img
-                            alt="croquetas de gatos"
-                            src="../static/images/alimento_gato.jpg"
-                            width="500"
-                        />
-                    </fieldset>
-                </article>
-                <article class="article">
-                    <h3>Juguetes para tus mascotas</h3>
-                    <p>
-                        Los más divertidos juguetes para tu amigo peludo de la
-                        casa
-                    </p>
-                    <ol>
-                        <li>Cuerdas</li>
-                        <li>Pelotas</li>
-                        <li>Frisbee's</li>
-                        <li>Mordedores</li>
-                        <li>Juguetes que estimulan la mente de tu can</li>
-                        <li>Catnip</li>
-                        <li>Rascadores</li>
-                        <li>Peluches</li>
-                        <li>Casitas</li>
-                    </ol>
-                    <h3>1-Cuerdas $500</h3>
-                    <img
-                        alt="cuerdas"
-                        src="../static/images/perros_juguetes.jpg"
-                        width="500"
-                    />
-                    <button type="submit">COMPRAR</button>
-                    <h3>2-Pelotas $300</h3>
-                    <img alt="pelotas" src="../static/images/juguetes4.jpg" />
-                    <button type="submit">COMPRAR</button>
-                    <h3>3-Frisbee's $500</h3>
-                    <img alt="frisbee" src="../static/images/frisbee.jpg" />
-                    <button type="submit">COMPRAR</button>
-                    <h3>4-Mordedores $200</h3>
-                    <img
-                        alt="juguetes de mascotas"
-                        src="../static/images/perro_jugueton.jpg"
-                        width="500"
-                    />
-                    <button type="submit">COMPRAR</button>
-                    <h3>5-Juguete interactivo $1000</h3>
-                    <img
-                        alt="juguetes de mascotas"
-                        src="../static/images/interactivo.jpg"
-                    />
-                    <button type="submit">COMPRAR</button>
-                    <h3>6-Catnip $300</h3>
-                    <img
-                        alt="hierba gatuna"
-                        src="../static/images/catnip.jpg"
-                        width="500"
-                    />
-                    <button type="submit">COMPRAR</button>
-                    <h3>7-Rascadores $400</h3>
-                    <img
-                        alt="rascador"
-                        src="../static/images/rascador.jpg"
-                        width="500"
-                    />
-                    <button type="submit">COMPRAR</button>
-                    <h3>8-Peluches $500</h3>
-                    <img
-                        alt="peluche"
-                        src="../static/images/peluches.jpg"
-                        width="500"
-                    />
-                    <button>COMPRAR</button>
-                    <h3>9-Casitas $5000</h3>
-                    <img
-                        alt="casitas"
-                        src="../static/images/casitas.jpg"
-                        width="500"
-                    />
-                    <button>COMPRAR</button>
-                    <h3>10-Disparador de pelota $2000</h3>
-                    <img
-                        alt="juguetes de mascotas"
-                        src="../static/images/juguetes3.jpeg"
-                        width="300"
-                    />
-                    <button type="submit">COMPRAR</button>
-                </article>
-                <article class="article">
-                    <h3>Prendas para Mascotas</h3>
-                    <p>
-                        Aveces por las bajas temperaturas a tu mascota le puede
-                        llegar a hacer frío independientemente de su pelaje, no
-                        importa por qué tenemos las más bonitas prendas para tu
-                        amigo.
-                    </p>
-                    <img
-                        alt="animales con ropa"
-                        src="../static/images/mascotas_ropa.jpg"
-                        width="750"
-                    />
-                    <fieldset>
-                        <legend>Buzos con capucha</legend>
-                        <h3>Perro Animal print Tiger</h3>
-                        <label
-                            ><input id="S" type="radio" name="S-M-L" />S</label
-                        >
-                        <label
-                            ><input id="M" type="radio" name="S-M-L" />M</label
-                        >
-                        <label
-                            ><input id="L" type="radio" name="S-M-L" />L</label
-                        >
-                        <button>COMPRAR</button>
-                    </fieldset>
-                    <fieldset>
-                        <h3>Gato celeste</h3>
-                        <label><input id="S" type="radio" name="SML" />S</label>
-                        <label><input id="M" type="radio" name="SML" />M</label>
-                        <label><input id="L" type="radio" name="SML" />L</label>
-                        <button>COMPRAR</button>
-                    </fieldset>
-                    <fieldset>
-                        <h3>Perro Animal printe Cheetah</h3>
-                        <label
-                            ><input id="S" type="radio" name="s-m-l" />S</label
-                        >
-                        <label
-                            ><input id="M" type="radio" name="s-m-l" />M</label
-                        >
-                        <label
-                            ><input id="L" type="radio" name="s-m-l" />L</label
-                        >
-                        <button>COMPRAR</button>
-                    </fieldset>
-                    <img
-                        alt="gatitos con campera"
-                        src="../static/images/gatos_con_campera.jpg"
-                        width="750"
-                    />
-                    <fieldset>
-                        <legend>Campera con capucha gatos</legend>
-                        <h3>ROJO</h3>
-                        <label><input id="S" type="radio" name="sml" />S</label>
-                        <label><input id="M" type="radio" name="sml" />M</label>
-                        <label><input id="L" type="radio" name="sml" />L</label>
-                        <button>COMPRAR</button>
-                    </fieldset>
-                    <fieldset>
-                        <h3>NEGRO</h3>
-                        <label
-                            ><input id="S" type="radio" name="P-M-G" />S</label
-                        >
-                        <label
-                            ><input id="M" type="radio" name="P-M-G" />M</label
-                        >
-                        <label
-                            ><input id="L" type="radio" name="P-M-G" />L</label
-                        >
-                        <button>COMPRAR</button>
-                    </fieldset>
-                    <img
-                        alt="gatitos cancheros"
-                        src="../static/images/gatos_cancheros.jpg"
-                        width="750"
-                    />
-                    <fieldset>
-                        <legend>Buzo hueso pescado</legend>
-                        <h3>AZUL</h3>
-                        <label><input id="S" type="radio" name="PMG" />S</label>
-                        <label><input id="M" type="radio" name="PMG" />M</label>
-                        <label><input id="L" type="radio" name="PMG" />L</label>
-                        <button>COMPRAR</button>
-                    </fieldset>
-                    <fieldset>
-                        <h3>GRIS</h3>
-                        <label
-                            ><input id="S" type="radio" name="p-m-g" />S</label
-                        >
-                        <label
-                            ><input id="M" type="radio" name="p-m-g" />M</label
-                        >
-                        <label
-                            ><input id="L" type="radio" name="p-m-g" />L</label
-                        >
-                        <button>COMPRAR</button>
-                    </fieldset>
-                </article>
+        <container>
+            <!-- Catalog -->
+
+            <h1 class="bg-success p-2 text-white display-4">Productos</h1>
+
+            <section>
+                <div id="seccion">
+                    <ul>
+                        <li>
+                            <a th:href="@{/productos/nuevo}">Nuevo producto</a>
+                        </li>
+                        <li>
+                            <a href="#Collares y correas">Collares y correas</a>
+                        </li>
+                        <li><a href="#Alimentos">Alimentos</a></li>
+                        <li><a href="#Higiene">Productos de Higiene</a></li>
+                        <li><a href="#Juguetes">Juguetes</a></li>
+                        <li><a href="#Camas">Camas</a></li>
+                        <li><a href="#Prendas">Prendas</a></li>
+                    </ul>
+                </div>
             </section>
-            <!-- fin productos -->
+
+            <!-- Section Items -->
+            <section>
+                <!-- Category Items -->
+                <div th:each="categoria: ${listaCategorias}">
+                    <h2
+                        class="text-center fs-1"
+                        th:text="${categoria}"
+                        th:id="${categoria}"
+                        href="#seccion"
+                    ></h2>
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                        <!-- <div class="card-group"> -->
+
+                        <div
+                            class="card"
+                            th:each="producto: ${listaProductos}"
+                            th:if="${producto.categoria} == ${categoria}"
+                        >
+                            <img
+                                th:src="${producto.imagen}"
+                                class="card-img-top"
+                                alt="..."
+                            />
+                            <div class="card-body">
+                                <h3
+                                    class="card-title"
+                                    th:text="${producto.nombre}"
+                                ></h3>
+                                <div>
+                                    <p>
+                                        Precio:
+                                        <span
+                                            th:text="'$' + ${producto.precio}"
+                                        ></span>
+                                    </p>
+                                    <p>
+                                        Descuento:
+                                        <span
+                                            th:text="${producto.descuento}+'%'"
+                                        ></span>
+                                    </p>
+                                    <p>
+                                        Precio con descuento:
+                                        <span
+                                            th:text="'$' + ${producto.calcularDescuento}"
+                                        ></span>
+                                    </p>
+                                </div>
+                                <a
+                                    th:href="@{/productos/modificar/} + ${producto.codigo}"
+                                    >Modificar</a
+                                >
+                                <!-- class="delete-product" -->
+                                <a
+                                    th:href="@{/productos/eliminar/} + ${producto.codigo}"
+                                    >Eliminar</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Category Items -->
+            </section>
+            <!-- End of Section -->
+            <p id="back-to-top"><a href="#seccion"> Volver al índice</a></p>
+            <!-- End of Catalog -->
 
             <!-- pie de pagina -->
             <footer th:replace="~{layouts/footer :: footer}"></footer>
-        </div>
+        </container>
+
+        <!-- Enlazar los archivos JS de Bootstrap -->
+        <script src="/webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script>
     </body>
 </html>

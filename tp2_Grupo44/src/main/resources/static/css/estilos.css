@@ -1,4 +1,5 @@
 * {
+    box-sizing: border-box;
     margin: 0px;
     padding: 0px;
 }
@@ -19,7 +20,7 @@ body {
 }
 
 /*estilo header*/
-header {
+#header {
     background-color: brown;
     height: 200px;
     width: 100%;
@@ -92,11 +93,13 @@ ul {
 
 /*inicio estilo tabla*/
 #tabla {
-	margin: 0 auto;
-	
+    margin: 0 auto;
+	text-align: center;
+	border: 2px solid black;
 }
-.titulo{
-	text-align:center;
+
+.titulo {
+    text-align: center;
 }
 
 /*Inicio estilo productos*/
@@ -193,11 +196,13 @@ footer {
 
 /*Inicio estilo consejos-salud*/
 
-.consejos h2, h3, p{
-	
-	font-style:italic;
-	color: navy;
-	
+.consejos h2,
+h3,
+p {
+
+    font-style: italic;
+    color: navy;
+
 }
 
 /*Fin estilo consejos-salud*/

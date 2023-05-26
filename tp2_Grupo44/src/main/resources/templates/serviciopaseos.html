@@ -5,51 +5,36 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Servicio de paseos</title>
-        <link rel="stylesheet" href="../static/css/estilos.css" />
+        <!-- Importar CSS -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}" />
     </head>
     <body>
         <div id="container">
             <!-- header -->
             <header th:replace="~{layouts/header :: header}"></header>
+
             <!-- inicio codigo Servicio de paseos -->
 
             <h1 class="titulo">Servicio de paseos</h1>
             <table border="1" id="tabla">
+                <thead>
                 <tr>
-                    <td>Días</td>
-                    <td>Horarios</td>
-                    <td>Paseador</td>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Dia</th>
+                    <th>Horario Paseo</th>
                 </tr>
-                <tr>
-                    <td>Lunes</td>
-                    <td>9:00 a 11:00</td>
-                    <td>Roberto Bautista</td>
-                </tr>
-                <tr>
-                    <td>Martes</td>
-                    <td>9:00 a 11:00</td>
-                    <td>Florencia Torres</td>
-                </tr>
-                <tr>
-                    <td>Miercoles</td>
-                    <td>16:00 a 18:00</td>
-                    <td>Pedro Dominguez</td>
-                </tr>
-                <tr>
-                    <td>Jueves</td>
-                    <td>16:00 a 18:00</td>
-                    <td>Micaela Chumacero</td>
-                </tr>
-                <tr>
-                    <td>Viernes</td>
-                    <td>9:00 a 11:00</td>
-                    <td>Camilo Mamani</td>
-                </tr>
-                <tr>
-                    <td>Sabados</td>
-                    <td>8:00 a 10:00</td>
-                    <td>Ignacio Tarifa</td>
-                </tr>
+              </thead>
+            <tbody>
+				
+              <tr th:each="servicios: ${servicios}">
+                 <td th:text="${servicios.nombre}"></td>
+                 <td th:text="${servicios.apellido}"></td>
+                 <td th:text="${servicios.dia}"></td> 
+                 <td th:text="${servicios.horario}"></td>  
+                                            
+              </tr >
+            </tbody>
             </table>
             <footer th:replace="~{layouts/footer :: footer}"></footer>
         </div>

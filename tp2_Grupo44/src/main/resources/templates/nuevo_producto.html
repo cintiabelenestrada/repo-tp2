@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="UTF-8" />
+        <!-- Importar CSS -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}" />
+        <!-- Webpage Icon & Title -->
+        <link
+            rel="shortcut icon"
+            type="image/svg"
+            th:href="@{/images/pet_shop_favicon.svg}"
+        />
+        <title>Nuevo Producto</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <header th:replace="~{layouts/header :: header}"></header>
+        <!-- End of Header -->
+
+        <!-- Add new Product -->
+        <section class="product-form-container">
+            <p><a th:href="@{/productos/listado}">Regresar</a></p>
+            <h3
+                th:text="${editar} ? 'Modificar Producto' : 'Nuevo Producto'"
+            ></h3>
+
+            <form
+                th:action="${editar} ? @{/productos/modificar} : @{/productos/guardar}"
+                th:object="${producto}"
+                method="post"
+            >
+                <p><label for="codigo">Codigo</label></p>
+                <input
+                    type="number"
+                    id="codigo"
+                    name="producto_codigo"
+                    th:field="*{codigo}"
+                    th:value="${producto.codigo}"
+                    readonly
+                />
+
+                <p><label for="nombre">Nombre: </label></p>
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre_producto"
+                    placeholder="Ingrese nombre del producto"
+                    th:field="*{nombre}"
+                    th:required="${not editar}"
+                    autofocus
+                />
+
+                <p><label for="precio">Precio</label></p>
+                <input
+                    type="number"
+                    id="precio"
+                    name="producto_precio"
+                    th:field="*{precio}"
+                />
+
+                <p><label for="categoria">Categoria: </label></p>
+                <select
+                    id="categoria"
+                    name="categoria_producto"
+                    th:field="*{categoria}"
+                    th:required="${not editar}"
+                >
+                    <option value="">Selecciona una categoria</option>
+                    <option value="Alimentos">Alimentos</option>
+                    <option value="Camas">Camas</option>
+                    <option value="Collares y correas">
+                        Collares y correas
+                    </option>
+                    <option value="Higiene">Higiene</option>
+                    <option value="Juguetes">Juguetes</option>
+                    <option value="Prendas">Prendas</option>
+                </select>
+
+                <p>
+                    <label for="descuento">Descuento: </label>
+                    <input
+                        type="number"
+                        id="descuento"
+                        name="descuento_producto"
+                        th:field="*{descuento}"
+                        min="0"
+                        max="50"
+                        th:required="${not editar}"
+                    />
+                </p>
+
+                <p>
+                    <input
+                        type="submit"
+                        class="button"
+                        th:value="${editar} ? 'Modificar' : 'Guardar'"
+                    />
+                </p>
+            </form>
+        </section>
+        <!-- End of Add new Product -->
+
+        <!-- Separator -->
+        <hr />
+        <!-- End of Separator -->
+
+        <!-- Footer -->
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        <!-- End of Footer -->
+    </body>
+</html>
