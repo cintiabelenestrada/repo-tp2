@@ -20,7 +20,7 @@ public class Product {
 	private String imagen;
 	// endregion
 
-	// region Constructor
+	// region Constructors
 	public Product() {
 	}
 
