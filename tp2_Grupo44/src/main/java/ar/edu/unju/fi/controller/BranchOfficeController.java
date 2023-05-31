@@ -2,16 +2,19 @@ package ar.edu.unju.fi.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
-import ar.edu.unju.fi.lists.SucursalList;
+import ar.edu.unju.fi.lists.BranchList;
 
 @Controller
-public class sucursalesController {
-    SucursalList listaSucursales = new SucursalList();
+@RequestMapping("/sucursales")
+public class BranchOfficeController {
+    BranchList listaSucursales = new BranchList();
 
-    @GetMapping("/sucursales")
-    public String getSucursalesPage(Model model) {
+    @GetMapping("/listado")
+    public String getBranchOfficePage(Model model) {
+
         model.addAttribute(
                 "listaSucursales",
                 listaSucursales.getSucursales());
@@ -19,6 +22,8 @@ public class sucursalesController {
         model.addAttribute(
                 "listaProvincias",
                 listaSucursales.getProvincias());
+
         return "sucursales";
+
     }
 }

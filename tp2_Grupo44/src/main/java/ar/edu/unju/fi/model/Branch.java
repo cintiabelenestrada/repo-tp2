@@ -1,19 +1,20 @@
 package ar.edu.unju.fi.model;
 
-public class Sucursal {
+public class Branch {
 
-	// Attributes
+	// region Attributes
 	private String nombre;
 	private String direccion;
 	private String telefono;
 	private String horario;
 	private String provincia;
+	// endregion
 
-	// Constructores
-	public Sucursal() {
+	// region Constructors
+	public Branch() {
 	}
 
-	public Sucursal(
+	public Branch(
 			String nombre,
 			String direccion,
 			String telefono,
@@ -25,8 +26,9 @@ public class Sucursal {
 		this.horario = horario;
 		this.provincia = provincia;
 	}
+	// endregion
 
-	// Getters and Setters
+	// region Getters and Setters
 	public String getNombre() {
 		return nombre;
 	}
@@ -66,5 +68,6 @@ public class Sucursal {
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
+	// endregion
 
 }

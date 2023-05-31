@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
+
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Footer</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- #region Bootstrap (import) -->
+        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+        <!-- #endregion -->
     </head>
+
     <body>
-        <!-- pie de pagina -->
-        <footer th:fragment="footer">
-            <p>
-                Copyright © 2023 - Tienda Grupo 44 - Diseñado por Grupo 44 -
-                Jujuy - República Argentina
-            </p>
-            <img
-                src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
-                alt="Logo de presentacion"
-                title="Imagen de presentación"
-                width="100"
-            />
-        </footer>
+        <!-- #region Footer -->
+        <div th:fragment="footer">
+            <footer>
+                <section>
+                    <a th:href="@{/index}">
+                        <img src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
+                             alt="Logo de la página"
+                             title="Logo"
+                             width="100px"
+                             height="100px">
+                    </a>
+                    <p>Copyright © 2023 - Tienda Grupo 44 - Diseñado por Grupo 44 - Jujuy - República Argentina</p>
+                </section>
+            </footer>
+        </div>
+        <!-- #endregion -->
     </body>
+
 </html>

@@ -14,7 +14,7 @@ import ar.edu.unju.fi.model.Product;
 
 @Controller
 @RequestMapping("/productos")
-public class productListController {
+public class ProductListController {
 
 	ProductList listaProductos = new ProductList();
 
@@ -30,6 +30,7 @@ public class productListController {
 				listaProductos.getCategorias());
 
 		return "productos";
+
 	}
 
 	@GetMapping("/nuevo")
@@ -45,6 +46,7 @@ public class productListController {
 				allowEditing);
 
 		return "nuevo_producto";
+
 	}
 
 	@PostMapping("/guardar")
@@ -52,8 +54,7 @@ public class productListController {
 
 		ModelAndView modelAndView = new ModelAndView("productos");
 
-		short codigoContador = listaProductos.getProductos().get(listaProductos.getProductos().size() -
-				1).getCodigo();
+		short codigoContador = listaProductos.getProductos().get(listaProductos.getProductos().size() - 1).getCodigo();
 		codigoContador++;
 
 		productoAgregar.setCodigo(codigoContador);
@@ -68,6 +69,7 @@ public class productListController {
 				listaProductos.getCategorias());
 
 		return modelAndView;
+
 	}
 
 	@GetMapping("/modificar/{codigo}")
@@ -89,6 +91,7 @@ public class productListController {
 		model.addAttribute("editar", allowEditing);
 
 		return "nuevo_producto";
+
 	}
 
 	@PostMapping("/modificar")
@@ -96,7 +99,6 @@ public class productListController {
 
 		for (Product producto : listaProductos.getProductos()) {
 			if (producto.getCodigo() == productoModificar.getCodigo()) {
-
 				producto.setNombre(productoModificar.getNombre());
 				producto.setPrecio(productoModificar.getPrecio());
 				producto.setCategoria(productoModificar.getCategoria());
@@ -106,16 +108,20 @@ public class productListController {
 		}
 
 		return ("redirect:/productos/listado");
+
 	}
 
 	@GetMapping("/eliminar/{codigo}")
 	public String deleteProduct(@PathVariable(value = "codigo") short codigoProducto) {
+
 		for (Product producto : listaProductos.getProductos()) {
 			if (producto.getCodigo() == codigoProducto) {
 				listaProductos.getProductos().remove(producto);
 				break;
 			}
 		}
+
 		return ("redirect:/productos/listado");
+
 	}
 }

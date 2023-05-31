@@ -1,96 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Sucursales</title>
-        <!-- Importar CSS -->
-        <link rel="stylesheet" th:href="@{/css/estilos.css}" />
-    </head>
-    <body>
-        <div id="container">
-            <!-- header -->
-            <header th:replace="~{layouts/header :: header}"></header>
-            <!-- inicio codigo sucursales -->
-            <div class="sucursales">
-                <h1>¡Encontrá la sucursal más cercana!</h1>
-                <h2>
-                    Actualmente contamos con 4 locales en Jujuy y Salta,
-                    seguiremos creciendo con nuevas aperturas en el Norte
-                    Argentino.
-                </h2>
-                <img
-                    src="https://img.freepik.com/vector-gratis/marco-perros-sobre-fondo-blanco_53876-99295.jpg?w=740&t=st=1682266630~exp=1682267230~hmac=cc2f9246ace86745cc1098ee56e0db85dcf6bb0849c2089131c2c6e991cd1181
-        "
-                    alt="Fondo mascotas"
-                    title="fondo mascotas"
-                    width="400"
-                    height="400"
-                />
-                <hr />
-                <!-- seccion sucursales de Jujuy -->
-              <!--  <div>
-                    <img
-                        src="../static/images/sucursales-jujuy.png"
-                        alt="Sucursales Jujuy"
-                        title="Imagen sucursales Jujuy"
-                        style="height: 100%; width: auto"
-                    />
-                      <div>
-                        <h3>CASA CENTRAL</h3>
-                        <ul>
-                            <li>Necochea N°65</li>
-                            <li>3885557773</li>
-                            <li>Lunes a sábados de 9 a 20hs</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3>SUCURSAL ALTO COMEDERO</h3>
-                        <ul>
-                            <li>Patricias Argentinas 500</li>
-                            <li>3886669988</li>
-                            <li>Lunes a sábados de 9 a 20hs</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3>SUCURSAL CHIJRA</h3>
-                        <ul>
-                            <li>Avenida Vicuña 78</li>
-                            <li>3885557773</li>
-                            <li>Lunes a sábados de 9 a 20hs</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- secciòn sucursales de Salta
-                <div>
-                    <img
-                        src="../static/images/sucursales-salta.png"
-                        alt="Sucursales Salta"
-                        title="Imagen sucursales Salta"
-                        style="height: 100%; width: auto"
-                    />
-                    <div>
-                        <h3>SUCURSAL INDEPENDENCIA</h3>
-                        <ul>
-                            <li>Cordoba 24</li>
-                            <li>3885224466</li>
-                            <li>Lunes a sábados de 9 a 19hs</li>
-                        </ul> -->
-                <!-- Iteramos Provincias -->
-                <div th:each="provincia: ${listaProvincias}">
-                    <h2
-                        th:text="${provincia}"
-                        th:id="${provincia}"
-                        href="#seccion"
-                    ></h2>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 
-                    <!-- Iteramos Sucursales -->
-                    <div
-                        class="row"
-                        th:each="sucursal: ${listaSucursales}"
-                        th:if="${sucursal.provincia} == ${provincia}"
-                    >
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- #region Bootstrap (import) -->
+        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+        <!-- #endregion -->
+        <!-- #region Webpage Icon & Title -->
+        <link rel="shortcut icon" type="image/svg" th:href="@{/images/pet_shop_favicon.svg}">
+        <title>Sucursales</title>
+        <!-- #endregion -->
+    </head>
+
+    <body>
+        <!-- #region Header -->
+        <header th:replace="~{layouts/header :: header}"></header>
+        <!-- #endregion -->
+        <!-- #region Sucursales -->
+        <div>
+            <h1>¡Encontrá la sucursal más cercana!</h1>
+            <h2> Actualmente contamos con 4 locales en Jujuy y Salta, seguiremos creciendo con nuevas aperturas en el
+                Norte Argentino. </h2>
+            <img src="https://img.freepik.com/vector-gratis/marco-perros-sobre-fondo-blanco_53876-99295.jpg?w=740&t=st=1682266630~exp=1682267230~hmac=cc2f9246ace86745cc1098ee56e0db85dcf6bb0849c2089131c2c6e991cd1181"
+                 alt="Fondo mascotas"
+                 title="fondo mascotas"
+                 width="400"
+                 height="400">
+            <hr>
+            <img src="../static/images/sucursales-jujuy.png"
+                 alt="Sucursales Jujuy"
+                 title="Imagen sucursales Jujuy"
+                 style="height: 100%; width: auto">
+            <div>
+                <h3>CASA CENTRAL</h3>
+                <ul>
+                    <li>Necochea N°65</li>
+                    <li>3885557773</li>
+                    <li>Lunes a sábados de 9 a 20hs</li>
+                </ul>
+            </div>
+            <div>
+                <h3>SUCURSAL ALTO COMEDERO</h3>
+                <ul>
+                    <li>Patricias Argentinas 500</li>
+                    <li>3886669988</li>
+                    <li>Lunes a sábados de 9 a 20hs</li>
+                </ul>
+            </div>
+            <div>
+                <h3>SUCURSAL CHIJRA</h3>
+                <ul>
+                    <li>Avenida Vicuña 78</li>
+                    <li>3885557773</li>
+                    <li>Lunes a sábados de 9 a 20hs</li>
+                </ul>
+            </div>
+        </div>
+        <!-- #endregion -->
+        <div>
+            <img src="../static/images/sucursales-salta.png"
+                 alt="Sucursales Salta"
+                 title="Imagen sucursales Salta"
+                 style="height: 100%; width: auto">
+            <div>
+                <h3>SUCURSAL INDEPENDENCIA</h3>
+                <ul>
+                    <li>Cordoba 24</li>
+                    <li>3885224466</li>
+                    <li>Lunes a sábados de 9 a 19hs</li>
+                </ul>
+                <div th:each="provincia: ${listaProvincias}">
+                    <h2 th:text="${provincia}" th:id="${provincia}" href="#seccion"></h2>
+                    <div th:each="sucursal: ${listaSucursales}" th:if="${sucursal.provincia} == ${provincia}">
                         <div>
                             <h3 th:text="${sucursal.nombre}"></h3>
                             <h4 th:text="${sucursal.direccion}"></h4>
@@ -100,18 +83,11 @@
                     </div>
                 </div>
             </div>
-            <footer th:replace="~{layouts/footer :: footer}"></footer>
         </div>
-       </div>
-      </div>
+        <!-- #region Footer -->
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        <!-- #endregion -->
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </body>
+
 </html>
-                
-                
-                
-                
-                
-                
-                
-                
-                
