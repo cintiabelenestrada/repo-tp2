@@ -19,8 +19,8 @@
         <header th:replace="~{layouts/header :: header}"></header>
         <!-- #endregion -->
         <!-- #region Sucursales -->
-        <div>
-            <h1>¡Encontrá la sucursal más cercana!</h1>
+        <div class="container">
+            <!-- <h1>¡Encontrá la sucursal más cercana!</h1>
             <h2> Actualmente contamos con 4 locales en Jujuy y Salta, seguiremos creciendo con nuevas aperturas en el
                 Norte Argentino. </h2>
             <img src="https://img.freepik.com/vector-gratis/marco-perros-sobre-fondo-blanco_53876-99295.jpg?w=740&t=st=1682266630~exp=1682267230~hmac=cc2f9246ace86745cc1098ee56e0db85dcf6bb0849c2089131c2c6e991cd1181"
@@ -33,57 +33,41 @@
                  alt="Sucursales Jujuy"
                  title="Imagen sucursales Jujuy"
                  style="height: 100%; width: auto">
-            <div>
-                <h3>CASA CENTRAL</h3>
-                <ul>
-                    <li>Necochea N°65</li>
-                    <li>3885557773</li>
-                    <li>Lunes a sábados de 9 a 20hs</li>
-                </ul>
-            </div>
-            <div>
-                <h3>SUCURSAL ALTO COMEDERO</h3>
-                <ul>
-                    <li>Patricias Argentinas 500</li>
-                    <li>3886669988</li>
-                    <li>Lunes a sábados de 9 a 20hs</li>
-                </ul>
-            </div>
-            <div>
-                <h3>SUCURSAL CHIJRA</h3>
-                <ul>
-                    <li>Avenida Vicuña 78</li>
-                    <li>3885557773</li>
-                    <li>Lunes a sábados de 9 a 20hs</li>
-                </ul>
-            </div>
-        </div>
-        <!-- #endregion -->
-        <div>
+
+
             <img src="../static/images/sucursales-salta.png"
                  alt="Sucursales Salta"
                  title="Imagen sucursales Salta"
-                 style="height: 100%; width: auto">
-            <div>
-                <h3>SUCURSAL INDEPENDENCIA</h3>
-                <ul>
-                    <li>Cordoba 24</li>
-                    <li>3885224466</li>
-                    <li>Lunes a sábados de 9 a 19hs</li>
-                </ul>
-                <div th:each="provincia: ${listaProvincias}">
-                    <h2 th:text="${provincia}" th:id="${provincia}" href="#seccion"></h2>
-                    <div th:each="sucursal: ${listaSucursales}" th:if="${sucursal.provincia} == ${provincia}">
-                        <div>
-                            <h3 th:text="${sucursal.nombre}"></h3>
-                            <h4 th:text="${sucursal.direccion}"></h4>
-                            <h4 th:text="${sucursal.telefono}"></h4>
-                            <h4 th:text="${sucursal.horario}"></h4>
+                 style="height: 100%; width: auto"> -->
+            <!-- #endregion -->
+
+
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item" th:each="${sucursal: listaSucursales}">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Accordion Item #1
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the
+                            collapse plugin adds the appropriate classes that we use to style each element. These
+                            classes
+                            control the overall appearance, as well as the showing and hiding via CSS transitions. You
+                            can
+                            modify any of this with custom CSS or overriding our default variables. It's also worth
+                            noting
+                            that just about any HTML can go within the <code>.accordion-body</code>, though the
+                            transition
+                            does limit overflow.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- #region Footer -->
         <footer th:replace="~{layouts/footer :: footer}"></footer>
         <!-- #endregion -->

@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,8 @@ import ar.edu.unju.fi.lists.DogWalkerList;
 @RequestMapping("/servicio_de_paseos")
 public class DogWalkingServiceController {
 
-    DogWalkerList listaServicios = new DogWalkerList();
+    @Autowired
+    DogWalkerList listaServicios;
 
     @GetMapping("/listado")
     public String getDogWalkingServicePage(Model model) {

@@ -3,12 +3,15 @@ package ar.edu.unju.fi.lists;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ar.edu.unju.fi.model.Product;
 
+@Component
 public class ProductList {
 
 	// region Attributes
-	private List<Product> productos; // Container
+	private List<Product> productos;
 	private List<String> categorias = List.of(
 			"Alimentos",
 			"Camas",

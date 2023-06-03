@@ -1,13 +1,42 @@
 package ar.edu.unju.fi.model;
 
+import java.time.LocalTime;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
+@Component
 public class Branch {
 
 	// region Attributes
+	@NotEmpty(message = "Debes introducir un nombre")
+	@Size(min = 5, max = 20, message = "El nombre solo puede contener entre 5 y 20 caracteres")
 	private String nombre;
+
+	@NotEmpty(message = "Debes introducir una dirección")
+	@Size(min = 5, max = 20, message = "La dirección solo puede contener entre 5 y 20 caracteres")
 	private String direccion;
+
+	@NotEmpty(message = "Debes ingresar el número de la dirección")
+	private int numeroDireccion;
+
+	@NotEmpty(message = "Debes introducir un telefono")
 	private String telefono;
-	private String horario;
+
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime horarioApertura;
+
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime horarioCierre;
+
+	@NotBlank(message = "Debe seleccionar una provincia")
 	private String provincia;
+
+	private short identificador;
 	// endregion
 
 	// region Constructors
@@ -17,14 +46,22 @@ public class Branch {
 	public Branch(
 			String nombre,
 			String direccion,
+			int numeroDireccion,
 			String telefono,
-			String horario,
-			String provincia) {
+			LocalTime horarioApertura,
+			LocalTime horarioCierre,
+			String provincia,
+			short identificador) {
+
 		this.nombre = nombre;
 		this.direccion = direccion;
+		this.numeroDireccion = numeroDireccion;
 		this.telefono = telefono;
-		this.horario = horario;
+		this.horarioApertura = horarioApertura;
+		this.horarioCierre = horarioCierre;
 		this.provincia = provincia;
+		this.identificador = identificador;
+
 	}
 	// endregion
 
@@ -45,6 +82,14 @@ public class Branch {
 		this.direccion = direccion;
 	}
 
+	public int getNumeroDireccion() {
+		return numeroDireccion;
+	}
+
+	public void setNumeroDireccion(int numeroDireccion) {
+		this.numeroDireccion = numeroDireccion;
+	}
+
 	public String getTelefono() {
 		return telefono;
 	}
@@ -53,12 +98,20 @@ public class Branch {
 		this.telefono = telefono;
 	}
 
-	public String getHorario() {
-		return horario;
+	public LocalTime getHorarioApertura() {
+		return horarioApertura;
 	}
 
-	public void setHorario(String horario) {
-		this.horario = horario;
+	public void setHorarioApertura(LocalTime horarioApertura) {
+		this.horarioApertura = horarioApertura;
+	}
+
+	public LocalTime getHorarioCierre() {
+		return horarioCierre;
+	}
+
+	public void setHorarioCierre(LocalTime horarioCierre) {
+		this.horarioCierre = horarioCierre;
 	}
 
 	public String getProvincia() {
@@ -67,6 +120,14 @@ public class Branch {
 
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
+	}
+
+	public short getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(short identificador) {
+		this.identificador = identificador;
 	}
 	// endregion
 
