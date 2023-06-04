@@ -47,6 +47,7 @@ public class ProductListController {
 		model.addAttribute(
 				"producto",
 				producto);
+
 		model.addAttribute(
 				"editar",
 				allowEditing);
@@ -92,17 +93,17 @@ public class ProductListController {
 			Model model,
 			@PathVariable(value = "codigo") short codigoProducto) {
 
-		Product productFound = new Product();
+		Product ProductFound = new Product();
 		boolean allowEditing = true;
 
 		for (Product producto : listaProductos.getProductos()) {
 			if (producto.getCodigo() == codigoProducto) {
-				productFound = producto;
+				ProductFound = producto;
 				break;
 			}
 		}
 
-		model.addAttribute("producto", productFound);
+		model.addAttribute("producto", ProductFound);
 		model.addAttribute("editar", allowEditing);
 
 		return "nuevo_producto";
@@ -117,6 +118,11 @@ public class ProductListController {
 				"redirect:/productos/listado");
 
 		boolean allowEditing = true;
+
+		// System.out.println(productoModificar.getNombre());
+		// System.out.println(productoModificar.getPrecio());
+		// System.out.println(productoModificar.getCategoria());
+		// System.out.println(productoModificar.getDescuento());
 
 		if (resultadoValidacion.hasErrors()) {
 

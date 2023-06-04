@@ -2,35 +2,43 @@ package ar.edu.unju.fi.model;
 
 import java.time.LocalTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 @Component
 public class Branch {
 
 	// region Attributes
-	// @NotEmpty(message = "Debes introducir un nombre")
-	// @Size(min = 5, max = 20, message = "El nombre solo puede contener entre 5 y
-	// 20 caracteres")
+	@NotEmpty(message = "Debes introducir un nombre")
+	@Size(min = 5, max = 20, message = "El nombre solo puede contener entre 5 y 20 caracteres")
 	private String nombre;
 
-	// @NotEmpty(message = "Debes introducir una dirección")
-	// @Size(min = 5, max = 20, message = "La dirección solo puede contener entre 5
-	// y 20 caracteres")
+	@NotEmpty(message = "Debes introducir una dirección")
+	@Size(min = 5, max = 20, message = "La dirección solo puede contener entre 5 y 20 caracteres")
 	private String direccion;
 
-	// @PositiveOrZero(message = "Debes introducir un número positivo")
+	@NotNull(message = "Debes ingresar el número")
+	@PositiveOrZero(message = "Debes ingresar un número positivo")
 	private Integer numeroDireccion;
 
-	// @NotEmpty(message = "Debes introducir un telefono")
+	@NotEmpty(message = "Debes introducir un telefono")
 	private String telefono;
 
-	// @DateTimeFormat(pattern = "HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
+	@NotNull(message = "Ingrese un horario de apertura")
 	private LocalTime horarioApertura;
 
-	// @DateTimeFormat(pattern = "HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
+	@NotNull(message = "Ingrese un horario de cierre")
 	private LocalTime horarioCierre;
 
-	// @NotBlank(message = "Debe seleccionar una provincia")
+	@NotBlank(message = "Debe seleccionar una provincia")
 	private String provincia;
 
 	private short identificador;

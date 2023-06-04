@@ -74,7 +74,7 @@ public class BranchOfficeController {
 
         short identificadorContador = listaSucursales.getSucursales().get(listaSucursales.getSucursales().size() - 1)
                 .getIdentificador();
-        ++identificadorContador;
+        identificadorContador++;
 
         if (resultadoValidacion.hasErrors()) {
 
@@ -97,7 +97,6 @@ public class BranchOfficeController {
                 listaSucursales.getSucursales());
 
         return modelAndView;
-
     }
 
     @GetMapping("/modificar/{identificador}")
@@ -108,9 +107,9 @@ public class BranchOfficeController {
         Branch BranchFound = new Branch();
         boolean allowEditing = true;
 
-        for (Branch paseador : listaSucursales.getSucursales()) {
-            if (paseador.getIdentificador() == identificadorSucursal) {
-                BranchFound = paseador;
+        for (Branch sucursal : listaSucursales.getSucursales()) {
+            if (sucursal.getIdentificador() == identificadorSucursal) {
+                BranchFound = sucursal;
                 break;
             }
         }
@@ -131,6 +130,15 @@ public class BranchOfficeController {
 
         boolean allowEditing = true;
 
+        System.out.println(sucursalModificar.getNombre());
+        System.out.println(sucursalModificar.getDireccion());
+        System.out.println(sucursalModificar.getNumeroDireccion());
+        System.out.println(sucursalModificar.getTelefono());
+        System.out.println(sucursalModificar.getHorarioApertura());
+        System.out.println(sucursalModificar.getHorarioCierre());
+        System.out.println(sucursalModificar.getProvincia());
+        // System.out.println(sucursalModificar.isHorarioCorrecto());
+
         if (resultadoValidacion.hasErrors()) {
 
             modelAndView.setViewName("nueva_sucursal");
@@ -144,7 +152,6 @@ public class BranchOfficeController {
                     allowEditing);
 
             return modelAndView;
-
         }
 
         for (Branch sucursal : listaSucursales.getSucursales()) {
@@ -154,7 +161,6 @@ public class BranchOfficeController {
                 sucursal.setNumeroDireccion(sucursalModificar.getNumeroDireccion());
                 sucursal.setTelefono(sucursalModificar.getTelefono());
                 sucursal.setProvincia(sucursalModificar.getProvincia());
-                sucursal.setIdentificador(sucursalModificar.getIdentificador());
                 break;
             }
         }

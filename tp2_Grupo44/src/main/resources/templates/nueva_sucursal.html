@@ -19,113 +19,169 @@
         <header th:replace="~{layouts/header :: header}"></header>
         <!-- #endregion -->
 
-        <!-- #region AddProduct -->
+        <!-- #region nueva_sucursal.html -->
         <div class="container">
 
-            <!-- #region Form -->
+            <!-- #region Formulario -->
             <div class="card">
+
+                <!-- #region Titulo -->
                 <div class="card-header text-center">
                     <h3 class="mb-0" th:text="${editar} ? 'Modificar Sucursal' : 'Nuevo Sucursal'"></h3>
                     <h6 class="badge bg-secondary"
                         th:text="${editar} ? 'Identificador ' + ${sucursal.identificador} : 'Identificador no asignado todavia'">
                     </h6>
                 </div>
+                <!-- #endregion -->
 
-                <form th:action="${editar} ? @{/sucursales/modificar} : @{/sucursales/guardar}"
-                      th:object="${sucursal}"
+                <!-- #region Contenido -->
+                <form th:action="${editar} ? @{/sucursales/modificar} : @{/sucursales/guardar}" th:object="${sucursal}"
                       method="post">
 
+                    <!-- #region Entrada de datos -->
                     <div class="card-body">
 
                         <!-- #region Identificador -->
                         <div>
-                            <input type="hidden"
-                                   id="identificador"
-                                   th:field="*{identificador}"
-                                   class="form-control">
+                            <input type="hidden" id="identificador" th:field="*{identificador}" class="form-control">
                         </div>
                         <!-- #endregion -->
 
                         <!-- #region Nombre -->
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
+                        <div class="input-group mb-3">
+                            <label for="nombre" class="input-group-text">Nombre</label>
                             <input type="text"
                                    id="nombre"
                                    th:field="*{nombre}"
                                    placeholder="Ingrese nombre de la sucursal"
+                                   aria-label="Nombre"
+                                   aria-describedby="Nombre"
                                    class="form-control">
-                            <div class="text-danger mb-3"
-                                 th:if="${#fields.hasErrors('nombre')}"
-                                 th:errors="*{nombre}">
-                            </div>
+                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('nombre')}"
+                             th:errors="*{nombre}">
                         </div>
                         <!-- #endregion -->
 
                         <!-- #region Dirección -->
-                        <div class="mb-3">
-                            <label for="direccion" class="form-label">Direccion</label>
+                        <div class="input-group mb-3">
+                            <label for="direccion" class="input-group-text">Direccion</label>
                             <input type="text"
                                    id="direccion"
                                    th:field="*{direccion}"
+                                   aria-label="Direccion"
+                                   aria-describedby="Direccion"
                                    class="form-control">
-                            <div class="text-danger mb-3"
-                                 th:if="${#fields.hasErrors('direccion')}"
-                                 th:errors="*{direccion}">
-                            </div>
+                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('direccion')}"
+                             th:errors="*{direccion}">
                         </div>
                         <!-- #endregion -->
 
                         <!-- #region numeroDirección -->
-                        <!-- <div class="mb-3">
-                            <label for="numeroDireccion" class="form-label">Número</label>
-                            <input type="number"
+                        <div class="input-group mb-3">
+                            <label for="numeroDireccion" class="input-group-text">Número</label>
+                            <input type="text"
                                    id="numeroDireccion"
                                    th:field="*{numeroDireccion}"
+                                   aria-label="Numero"
+                                   aria-describedby="Numero"
                                    class="form-control">
-                            <div class="text-danger mb-3"
-                                 th:if="${#fields.hasErrors('numeroDireccion')}"
-                                 th:errors="*{numeroDireccion}">
-                            </div>
-                        </div> -->
+                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('numeroDireccion')}"
+                             th:errors="*{numeroDireccion}">
+                        </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Telefono -->
+                        <div class="input-group mb-3">
+                            <label for="telefono" class="input-group-text">Telefono</label>
+                            <input type="text"
+                                   id="telefono"
+                                   th:field="*{telefono}"
+                                   aria-label="Telefono"
+                                   aria-describedby="Telefono"
+                                   class="form-control">
+                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('telefono')}"
+                             th:errors="*{telefono}">
+                        </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Horario -->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Horario</span>
+                            <label for="horarioApertura" class="input-group-text">Apertura</label>
+                            <input type="time"
+                                   id="horarioApertura"
+                                   th:field="*{horarioApertura}"
+                                   aria-label="Apertura"
+                                   aria-labelledby="Apertura"
+                                   class="form-control">
+
+                            <label for="horarioCierre" class="input-group-text">Cierre</label>
+                            <input type="time"
+                                   id="horarioCierre"
+                                   th:field="*{horarioCierre}"
+                                   aria-label="Cierre"
+                                   aria-labelledby="Cierre"
+                                   class="form-control">
+                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('horarioApertura')}"
+                             th:errors="*{horarioApertura}">
+                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('horarioCierre')}"
+                             th:errors="*{horarioCierre}">
+                        </div>
                         <!-- #endregion -->
 
                         <!-- #region Provincia -->
-                        <div class="mb-3">
-                            <label for="provincia" class="form-label">Provincia</label>
-                            <select id="provincia"
-                                    th:field="*{provincia}"
-                                    class="form-select">
+                        <div class="input-group mb-3">
+                            <label for="provincia" class="input-group-text">Provincia</label>
+                            <select id="provincia" th:field="*{provincia}" class="form-select">
                                 <option value="">Selecciona una provincia</option>
                                 <option value="Jujuy">Jujuy</option>
                                 <option value="Salta">Salta</option>
                                 <option value="Tucumán">Tucumán</option>
-
                             </select>
-                            <div class="text-danger"
-                                 th:if="${#fields.hasErrors('provincia')}"
-                                 th:errors="*{provincia}">
-                            </div>
+                        </div>
+                        <div class="text-danger" th:if="${#fields.hasErrors('provincia')}"
+                             th:errors="*{provincia}">
                         </div>
                         <!-- #endregion -->
 
                     </div>
+                    <!-- #endregion -->
+
+                    <!-- #region Opciones -->
                     <div class="card-footer d-flex gap-3 justify-content-center">
                         <button class="btn btn-warning">
                             <a class="text-decoration-none" th:href="@{/sucursales/listado}">Cancelar</a>
                         </button>
-                        <button type="submit"
-                                class="btn btn-success"
-                                th:text="${editar} ? 'Modificar' : 'Guardar'">
+                        <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'">
                         </button>
                     </div>
+                    <!-- #endregion -->
+
                 </form>
+                <!-- #endregion -->
+
             </div>
             <!-- #endregion -->
+
         </div>
         <!-- #endregion -->
+
         <!-- #region Separator -->
         <hr>
         <!-- #endregion -->
+
         <!-- #region Footer -->
         <footer th:replace="~{layouts/footer :: footer}"></footer>
         <!-- #endregion -->
