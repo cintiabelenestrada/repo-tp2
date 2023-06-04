@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.lists.BranchList;
+import ar.edu.unju.fi.lists.ImageList;
 import ar.edu.unju.fi.model.Branch;
 import jakarta.validation.Valid;
 
@@ -21,6 +22,9 @@ public class BranchOfficeController {
 
     @Autowired
     BranchList listaSucursales;
+
+    @Autowired
+    ImageList listaImagenes;
 
     @Autowired
     Branch sucursal;
@@ -35,6 +39,10 @@ public class BranchOfficeController {
         model.addAttribute(
                 "listaProvincias",
                 listaSucursales.getProvincias());
+
+        model.addAttribute(
+                "listaImagenes",
+                listaImagenes.getImagenes());
 
         return "sucursales";
 

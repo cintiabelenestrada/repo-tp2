@@ -16,7 +16,10 @@ public class BranchList {
 	private List<String> provincias = List.of(
 			"Jujuy",
 			"Salta",
-			"Tucumán");
+			"Tucuman");
+	// private List<String> provinciasImagenes = List.of(
+	// "/images/sucursales-jujuy.png",
+	// "/images/sucursales-salta.png");
 	// endregion
 
 	// region Constructors
@@ -58,10 +61,10 @@ public class BranchList {
 						(short) 3));
 		this.sucursales.add(
 				new Branch(
-						"CASA CENTRAL 2",
+						"CASA CENTRAL",
 						"Cordoba",
 						24,
-						"38854567773",
+						"38854567223",
 						LocalTime.of(13, 0),
 						LocalTime.of(20, 0),
 						provincias.get(2),
@@ -85,6 +88,14 @@ public class BranchList {
 	public void setProvincias(List<String> provincias) {
 		this.provincias = provincias;
 	}
+
+	// public List<String> getProvinciasImagenes() {
+	// return provinciasImagenes;
+	// }
+
+	// public void setProvinciasImagenes(List<String> provinciasImagenes) {
+	// this.provinciasImagenes = provinciasImagenes;
+	// }
 	// endregion
 
 	// region Methods
