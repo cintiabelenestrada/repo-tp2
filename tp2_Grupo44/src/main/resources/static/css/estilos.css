@@ -1,208 +1,31 @@
-* {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-}
-
-body {
-    background: darkgreen;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-/*div container*/
-
-#container {
-    width: 1000px;
-    height: 100;
-    margin: 0px auto;
-    border: 1px solid black;
-    background: lightblue;
-}
 
 /*estilo header*/
-#header {
-    background-color: brown;
-    height: 200px;
-    width: 100%;
-    margin: 0px;
-    text-align: center;
-    line-height: 100px;
-    color: white;
-    border-bottom: 3px blue;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-/*fondo menu*/
+/* .logo {
+    border-radius: 50%;
+} */
+/* .me-2 {
+    margin-right: 0,5rem !important;
+} */
+/* body {
+    display: block;
+    margin: 8px;
+} */
 nav {
-    background-color: lightgreen;
-    height: 70px;
-    color: white;
-    border: 1px solid black;
+    background-color: #b7a1e2;
+    border: 1px solid #712cf9;;
 }
-
-/*ítems menu*/
-nav ul li {
-    float: left;
-    background-color: orange;
-    list-style: none;
-    margin: 15px;
+.enlace-1 {
+    color:#333333;
 }
-
-/*link defecto y link visitado*/
-a:link,
-a:visited {
-    color: darkblue;
-    text-decoration: none;
-    background-color: orange;
-    border: 1px solid black;
-    display: block;
-    width: 100px;
-    text-align: center;
-    margin-bottom: 1px;
-}
-
-/*mouse sobre boton del menu */
-a:hover,
-a:active {
-    background-color: lightblue;
-    color: red;
-}
-
-.clearfix {
-    clear: both;
-}
-
-/*inicio estilo index*/
-#content {
-    width: calc(80% - 80px);
-    background: lightblue;
-    padding: 40px;
-    text-align: center;
-    list-style: none;
-    float: center;
-    color: navy;
-    font-style: italic;
-    height: 100%;
-}
-
-ul {
-    list-style: none;
-}
-
-/*fin estilo index*/
-
-/*inicio estilo tabla*/
-#tabla {
-    margin: 0 auto;
-	text-align: center;
-	border: 2px solid black;
-}
-
-.titulo {
-    text-align: center;
-}
-
-/*Inicio estilo productos*/
-
-h2 strong {
-    background-color: lightblue;
-    color: black;
-    margin: 300px;
-    font-size: 50px;
-    font-style: italic;
-}
-
-
-/*elementos clase article*/
-.article {
-    color: navy;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid;
-    list-style: none;
-    background: lightblue;
-    width: 80;
-    text-align: center;
-}
-
-ol {
-    list-style: none;
-}
-
-/*Fin estilo productos*/
-
-
-/* inicio estilo sucursales */
-.sucursales h1 {
-    line-height: 100px;
-    color: black;
-    text-align: center;
-    padding-bottom: 10px;
-}
-
-.sucursales h2 {
-    color: #8B4513;
-    text-align: center;
-    padding-bottom: 10px;
-    /* Agrega un espacio de 10px debajo de los títulos */
-}
-
-.sucursales h3 {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    color: black;
-    background-color: #7bdcb5;
-    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
-}
-
-.sucursales img {
-    display: block;
-    margin: auto;
-    height: 600px;
-    margin-bottom: 20px;
-    /* Agrega un margen inferior de 20px */
-    margin-top: 20px;
-    /* Agrega un margen superior de 20px */
-}
-
-.sucursales ul {
-    margin-top: 20px;
-}
-
-/* fin estilo sucursales */
-
-/*barra lateral*/
-aside {
-    background: orange;
-    float: right;
-    width: calc(20% - 20px);
-    height: 100%;
-    padding: 10px;
-    border: 1px solid black;
-    list-style: none;
-}
-
-/*pie de pagina*/
-
-footer {
-    background-color: brown;
-    color: beige;
-    text-align: center;
-    height: 200px;
-    line-height: 50px;
-    margin-top: 20px;
-}
-
-/*Inicio estilo consejos-salud*/
-
-.consejos h2,
-h3,
-p {
-
-    font-style: italic;
-    color: navy;
-
-}
-
-/*Fin estilo consejos-salud*/
+/* body {
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+} */
