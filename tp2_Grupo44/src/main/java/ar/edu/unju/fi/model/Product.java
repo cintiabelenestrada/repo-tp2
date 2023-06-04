@@ -20,15 +20,14 @@ public class Product {
 	// endregion
 
 	// region Attributes
-
 	@NotEmpty(message = "Debes introducir un nombre")
-	@Size(min = 5, max = 20, message = "El nombre solo puede contener entre 5 y 20 caracteres")
+	@Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 20 caracteres")
 	private String nombre;
 
 	private short codigo;
 
-	@PositiveOrZero(message = "Debes ingresar un número positivo")
 	@NotNull(message = "Debes ingresar el precio")
+	@PositiveOrZero(message = "Debes ingresar un número positivo")
 	private Float precio;
 
 	@NotBlank(message = "Debe seleccionar una categoria")
@@ -54,12 +53,14 @@ public class Product {
 			String categoria,
 			Byte descuento,
 			String imagen) {
+
 		this.nombre = nombre;
 		this.codigo = codigo;
 		this.precio = precio;
 		this.categoria = categoria;
 		this.descuento = descuento;
 		this.imagen = imagen;
+
 	}
 
 	public Product(
@@ -67,12 +68,14 @@ public class Product {
 			short codigo,
 			String categoria,
 			String imagen) {
+
 		this.nombre = nombre;
 		this.codigo = codigo;
 		this.precio = randomPrecio();
 		this.categoria = categoria;
 		this.descuento = randomDescuento();
 		this.imagen = imagen;
+
 	}
 	// endregion
 
