@@ -17,7 +17,7 @@
 
     <body>
         <!-- #region Header -->
-        <div th:fragment="header">
+        <div class="elemento-superpuesto" th:fragment="header">
             <header class="fixed-top">
                 <!-- #region Navbar -->
                 <nav class="navbar navbar-expand-lg px-3 py-2 text-dark">
@@ -41,22 +41,22 @@
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                             <ul class="navbar-nav text-center navbar-list">
                                 <li class="nav-item nav-link">
-                                    <a th:href="@{/index}" class="enlace-1" >Inicio</a>
+                                    <a th:href="@{/index}" class="link-nav" >Inicio</a>
                                 </li>
                                 <li class="nav-item nav-link">
-                                    <a th:href="@{/productos/listado}" class="enlace-1">Productos</a>
+                                    <a th:href="@{/productos/listado}" class="link-nav">Productos</a>
                                 </li>
                                 <li class="nav-item nav-link">
-                                    <a th:href="@{/consejos_de_salud}" class="enlace-1">Consejos de Salud</a>
+                                    <a th:href="@{/consejos_de_salud}" class="link-nav">Consejos de Salud</a>
                                 </li>
                                 <li class="nav-item nav-link">
-                                    <a th:href="@{/servicio_de_paseos/listado}" class="enlace-1">Servicio de Paseos</a>
+                                    <a th:href="@{/servicio_de_paseos/listado}" class="link-nav">Servicio de Paseos</a>
                                 </li>
                                 <li class="nav-item nav-link">
-                                    <a th:href="@{/sucursales/listado}" class="enlace-1">Sucursales</a>
+                                    <a th:href="@{/sucursales/listado}" class="link-nav">Sucursales</a>
                                 </li>
                                 <li class="nav-item nav-link">
-                                    <a th:href="@{/contactanos}" class="enlace-1">Contáctanos</a>
+                                    <a th:href="@{/contactanos}" class="link-nav">Contáctanos</a>
                                 </li>
                             </ul>
                         </div>
