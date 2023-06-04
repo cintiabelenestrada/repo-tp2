@@ -130,15 +130,6 @@ public class BranchOfficeController {
 
         boolean allowEditing = true;
 
-        System.out.println(sucursalModificar.getNombre());
-        System.out.println(sucursalModificar.getDireccion());
-        System.out.println(sucursalModificar.getNumeroDireccion());
-        System.out.println(sucursalModificar.getTelefono());
-        System.out.println(sucursalModificar.getHorarioApertura());
-        System.out.println(sucursalModificar.getHorarioCierre());
-        System.out.println(sucursalModificar.getProvincia());
-        // System.out.println(sucursalModificar.isHorarioCorrecto());
-
         if (resultadoValidacion.hasErrors()) {
 
             modelAndView.setViewName("nueva_sucursal");

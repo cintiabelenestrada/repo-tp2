@@ -8,8 +8,11 @@
         <!-- #region Bootstrap (import) -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
         <!-- #endregion -->
+        <!-- #region Custom CSS -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}">
+        <!-- #endregion -->
         <!-- #region Webpage Icon & Title -->
-        <link rel="shortcut icon" type="image/svg" th:href="@{/images/pet_shop_favicon.svg}">
+        <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
         <!-- region Import CSS -->
         <link rel="stylesheet"  type="text/css" th:href="@{/css/estilos.css}" />
         <title>Productos</title>
@@ -61,9 +64,8 @@
                     <a class="text-decoration-none" href="#seccion" th:text="${categoria}" th:id="${categoria}"></a>
                 </h2>
 
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3"
-                     th:each="producto: ${listaProductos}"
-                     th:if="${producto.categoria} == ${categoria}">
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3" th:each="producto: ${listaProductos}"
+                    th:if="${producto.categoria} == ${categoria}">
 
                     <!-- #region Product Card -->
                     <div class="card h-100 text-bg-light">
@@ -83,8 +85,7 @@
 
                             <p class="card-text">Precio: <span th:text="'$' + ${producto.precio}"></span>
                             </p>
-                            <p class="card-text">Descuento: <span
-                                      th:text="${producto.descuento}+'%'"></span>
+                            <p class="card-text">Descuento: <span th:text="${producto.descuento}+'%'"></span>
                             </p>
                             <p class="card-text">Precio con descuento:
                                 <span th:text="'$' + ${producto.calcularDescuento}"></span>
@@ -98,16 +99,13 @@
                                     align-items-center">
                             <div class="btn-group" role="group">
 
-                                <a class="btn btn-sm btn-outline-primary text-decoration-none"
-                                   role="button"
-                                   th:href="@{/productos/modificar/} + ${producto.codigo}">Modificar</a>
+                                <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
+                                    th:href="@{/productos/modificar/} + ${producto.codigo}">Modificar</a>
 
-                                <a class="btn btn-sm btn-outline-danger text-decoration-none"
-                                   role="button"
-                                   th:href="@{/productos/eliminar/} + ${producto.codigo}">Eliminar</a>
+                                <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
+                                    th:href="@{/productos/eliminar/} + ${producto.codigo}">Eliminar</a>
                             </div>
-                            <small class="text-black text-body-secondary"
-                                   th:text="${producto.codigo}"></small>
+                            <small class="text-black text-body-secondary" th:text="${producto.codigo}"></small>
                         </div>
                     </div>
                     <!-- #endregion -->

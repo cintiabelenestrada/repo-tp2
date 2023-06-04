@@ -42,4 +42,7 @@ public class Image {
     };
     // endregion
 
+    // region Methods
+    // endregion
+
 }
