@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
@@ -21,37 +22,39 @@ public class Product {
 
 	// region Attributes
 	@NotEmpty(message = "Debes introducir un nombre")
-	@Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 20 caracteres")
+	@Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 30 caracteres")
 	private String nombre;
 
 	private short codigo;
 
 	@NotNull(message = "Debes ingresar el precio")
 	@PositiveOrZero(message = "Debes ingresar un número positivo")
-	private Float precio;
+	@Pattern(regexp = "[0-9]+.[0-9]+", message = "Debe ingresar un número valido")
+	private String precio;
 
 	@NotBlank(message = "Debe seleccionar una categoria")
 	private String categoria;
 
-	@Min(value = 0, message = "El valor mínimo permitido es 0")
 	@Max(value = 50, message = "El valor máximo permitido es 50")
+	@Min(value = 0, message = "El valor mínimo permitido es 0")
 	@NotNull(message = "Debes ingresar el descuento")
-	private Byte descuento;
+	@Pattern(regexp = "[0-9]+", message = "Debe ingresar un número valido")
+	private String descuento;
 
 	private String imagen;
 	// endregion
 
 	// region Constructors
 	public Product() {
-		this.imagen = "/images/pet_food_paw.svg";
+		this.imagen = "/images/logos/convenience_store.svg";
 	}
 
 	public Product(
 			String nombre,
 			short codigo,
-			Float precio,
+			String precio,
 			String categoria,
-			Byte descuento,
+			String descuento,
 			String imagen) {
 
 		this.nombre = nombre;
@@ -71,9 +74,9 @@ public class Product {
 
 		this.nombre = nombre;
 		this.codigo = codigo;
-		this.precio = randomPrecio();
+		this.precio = Float.toString(randomPrecio());
 		this.categoria = categoria;
-		this.descuento = randomDescuento();
+		this.descuento = Byte.toString(randomDescuento());
 		this.imagen = imagen;
 
 	}
@@ -96,11 +99,11 @@ public class Product {
 		this.codigo = codigo;
 	}
 
-	public Float getPrecio() {
+	public String getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(Float precio) {
+	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
 
@@ -112,11 +115,11 @@ public class Product {
 		this.categoria = categoria;
 	}
 
-	public Byte getDescuento() {
+	public String getDescuento() {
 		return descuento;
 	}
 
-	public void setDescuento(Byte descuento) {
+	public void setDescuento(String descuento) {
 		this.descuento = descuento;
 	}
 
@@ -139,12 +142,12 @@ public class Product {
 
 		Float resultado = 0f;
 
-		if (descuento == 0) {
-			resultado = precio;
+		if (Byte.parseByte(descuento) == 0) {
+			resultado = Float.parseFloat(precio);
 		}
 
-		if (descuento > 0) {
-			resultado = precio - (precio * this.descuento / 100);
+		if (Byte.parseByte(descuento) > 0) {
+			resultado = Float.parseFloat(precio) - (Float.parseFloat(precio) * Byte.parseByte(this.descuento) / 100);
 		}
 
 		return String.format("%.2f", resultado);

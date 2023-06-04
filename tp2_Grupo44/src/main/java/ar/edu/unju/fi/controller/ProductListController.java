@@ -119,11 +119,6 @@ public class ProductListController {
 
 		boolean allowEditing = true;
 
-		// System.out.println(productoModificar.getNombre());
-		// System.out.println(productoModificar.getPrecio());
-		// System.out.println(productoModificar.getCategoria());
-		// System.out.println(productoModificar.getDescuento());
-
 		if (resultadoValidacion.hasErrors()) {
 
 			modelAndView.setViewName("nuevo_producto");

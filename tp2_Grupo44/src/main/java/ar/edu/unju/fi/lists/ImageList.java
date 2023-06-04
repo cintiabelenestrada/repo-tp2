@@ -21,18 +21,18 @@ public class ImageList {
 
         imagenes.add(
                 new Image(
-                        "/images/sucursales-jujuy.png",
+                        "/images/banners/sucursal_jujuy.png",
                         "Jujuy"));
 
         imagenes.add(
                 new Image(
-                        "/images/sucursales-salta.png",
+                        "/images/banners/sucursal_salta.png",
                         "Salta"));
 
         imagenes.add(
                 new Image(
-                        "/images/sucursales-tucuman.jpg",
-                        "Tucuman"));
+                        "/images/banners/sucursal_tucuman.png",
+                        "Tucumán"));
 
     }
     // endregion

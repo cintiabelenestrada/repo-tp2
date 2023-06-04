@@ -6,24 +6,43 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- #region Bootstrap (import) -->
-        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
         <!-- #endregion -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}">
     </head>
 
     <body>
         <!-- #region Footer -->
-        <div th:fragment="footer">
-            <footer>
-                <section>
+        <div th:fragment="footer" class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
                     <a th:href="@{/index}">
                         <img src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
-                             alt="Logo de la página"
-                             title="Logo"
-                             width="100px"
-                             height="100px">
+                            alt="Logo de la página" title="Logo" width="100px" height="100px">
                     </a>
-                    <p>Copyright © 2023 - Tienda Grupo 44 - Diseñado por Grupo 44 - Jujuy - República Argentina</p>
-                </section>
+                    <span class="mb-3 mb-md-0 text-secondary">
+                        Copyright © 2023 - Tienda Grupo 44 - Diseñado por el Grupo 44 - Jujuy - República Argentina
+                    </span>
+                </div>
+
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3">
+                        <a class="text-body-secondary" href="https://github.com/cintiabelenestrada/repo-tp2"
+                            target="_blank">
+                            <i class="bi bi-github text-secondary fs-3"></i>
+                        </a>
+                    </li>
+                    <li class="ms-3">
+                        <a class="text-body-secondary" href="#" target="_blank">
+                            <i class="bi bi-facebook text-secondary fs-3"></i>
+                        </a>
+                    </li>
+                    <li class="ms-3">
+                        <a class="text-body-secondary" href="#" target="_blank">
+                            <i class="bi bi-whatsapp text-secondary fs-3"></i>
+                        </a>
+                    </li>
+                </ul>
             </footer>
         </div>
         <!-- #endregion -->

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
@@ -16,18 +17,21 @@ public class Branch {
 
 	// region Attributes
 	@NotEmpty(message = "Debes introducir un nombre")
-	@Size(min = 5, max = 20, message = "El nombre solo puede contener entre 5 y 20 caracteres")
+	@Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 30 caracteres")
 	private String nombre;
 
 	@NotEmpty(message = "Debes introducir una dirección")
-	@Size(min = 5, max = 20, message = "La dirección solo puede contener entre 5 y 20 caracteres")
+	@Size(min = 5, max = 30, message = "La dirección solo puede contener entre 5 y 30 caracteres")
+	@Pattern(regexp = "[a-z A-Z]+", message = "Debe contener solo letras")
 	private String direccion;
 
 	@NotNull(message = "Debes ingresar el número")
 	@PositiveOrZero(message = "Debes ingresar un número positivo")
-	private Integer numeroDireccion;
+	@Pattern(regexp = "[0-9]+", message = "Debe contener solo números")
+	private String numeroDireccion;
 
 	@NotEmpty(message = "Debes introducir un telefono")
+	@Pattern(regexp = "0388-[0-9]{3}-[0-9]{4}", message = "Ingrese un número de telefono válido")
 	private String telefono;
 
 	@DateTimeFormat(pattern = "HH:mm")
@@ -51,7 +55,7 @@ public class Branch {
 	public Branch(
 			String nombre,
 			String direccion,
-			Integer numeroDireccion,
+			String numeroDireccion,
 			String telefono,
 			LocalTime horarioApertura,
 			LocalTime horarioCierre,
@@ -87,11 +91,11 @@ public class Branch {
 		this.direccion = direccion;
 	}
 
-	public Integer getNumeroDireccion() {
+	public String getNumeroDireccion() {
 		return numeroDireccion;
 	}
 
-	public void setNumeroDireccion(Integer numeroDireccion) {
+	public void setNumeroDireccion(String numeroDireccion) {
 		this.numeroDireccion = numeroDireccion;
 	}
 
@@ -136,7 +140,7 @@ public class Branch {
 	}
 	// endregion
 
-	// region Method
+	// region Methods
 	// endregion
 
 }
