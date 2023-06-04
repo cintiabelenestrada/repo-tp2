@@ -1,51 +1,74 @@
 package ar.edu.unju.fi.lists;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ar.edu.unju.fi.model.Branch;
 
+@Component
 public class BranchList {
 
 	// region Attributes
 	private List<Branch> sucursales;
 	private List<String> provincias = List.of(
 			"Jujuy",
-			"Salta");
+			"Salta",
+			"Tucuman");
+	// private List<String> provinciasImagenes = List.of(
+	// "/images/sucursales-jujuy.png",
+	// "/images/sucursales-salta.png");
 	// endregion
 
 	// region Constructors
+
 	public BranchList() {
 
 		this.sucursales = new ArrayList<Branch>();
 
-		// Sucursales
+		// Sucursales precargadas
 		this.sucursales.add(
 				new Branch(
 						"CASA CENTRAL",
-						"Necochea N°65",
+						"Necochea",
+						65,
 						"3885557773",
-						"Lunes a sábados de 9 a 20hs",
-						provincias.get(0)));
+						LocalTime.of(9, 0),
+						LocalTime.of(20, 0),
+						provincias.get(1),
+						(short) 1));
 		this.sucursales.add(
 				new Branch(
-						"SUCURSAL ALTO COMEDERO",
-						"Patricias Argentinas 500",
+						"ALTO COMEDERO",
+						"Patricias Argentinas",
+						500,
 						"3886669988",
-						"Lunes a sábados de 9 a 20hs", provincias.get(0)));
+						LocalTime.of(8, 0),
+						LocalTime.of(15, 0),
+						provincias.get(0),
+						(short) 2));
 		this.sucursales.add(
 				new Branch(
-						"SUCURSAL CHIJRA",
-						"Avenida Vicuña 78",
+						"CHIJRA",
+						"Avenida Vicuña",
+						78,
 						"3885557773",
-						"Lunes a sábados de 9 a 20hs", provincias.get(0)));
+						LocalTime.of(9, 0),
+						LocalTime.of(16, 0),
+						provincias.get(0),
+						(short) 3));
 		this.sucursales.add(
 				new Branch(
 						"CASA CENTRAL",
-						"Cordoba 24",
-						"38854567773",
-						"Lunes a sábados de 9 a 20hs",
-						provincias.get(1)));
+						"Cordoba",
+						24,
+						"38854567223",
+						LocalTime.of(13, 0),
+						LocalTime.of(20, 0),
+						provincias.get(2),
+						(short) 4));
 	}
 	// endregion
 
@@ -65,6 +88,17 @@ public class BranchList {
 	public void setProvincias(List<String> provincias) {
 		this.provincias = provincias;
 	}
+
+	// public List<String> getProvinciasImagenes() {
+	// return provinciasImagenes;
+	// }
+
+	// public void setProvinciasImagenes(List<String> provinciasImagenes) {
+	// this.provinciasImagenes = provinciasImagenes;
+	// }
+	// endregion
+
+	// region Methods
 	// endregion
 
 }

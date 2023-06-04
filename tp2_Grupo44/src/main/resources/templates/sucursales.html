@@ -18,71 +18,99 @@
         <!-- #region Header -->
         <header th:replace="~{layouts/header :: header}"></header>
         <!-- #endregion -->
+
         <!-- #region Sucursales -->
-        <div>
-            <h1>¡Encontrá la sucursal más cercana!</h1>
-            <h2> Actualmente contamos con 4 locales en Jujuy y Salta, seguiremos creciendo con nuevas aperturas en el
-                Norte Argentino. </h2>
-            <img src="https://img.freepik.com/vector-gratis/marco-perros-sobre-fondo-blanco_53876-99295.jpg?w=740&t=st=1682266630~exp=1682267230~hmac=cc2f9246ace86745cc1098ee56e0db85dcf6bb0849c2089131c2c6e991cd1181"
-                 alt="Fondo mascotas"
-                 title="fondo mascotas"
-                 width="400"
-                 height="400">
+        <div class="container" id="seccion">
+
+            <div class="bg-light border border-light-subtle rounded text-center">
+                <h1 class="m-3">¡Encontrá la sucursal más cercana!</h1>
+                <p class="text-secondary">
+                    <em>
+                        Contamos con varios locales en Jujuy, Salta y Tucumán, seguiremos
+                        creciendo con nuevas aperturas en el Norte Argentino.
+                    </em>
+                </p>
+                <a class="btn btn-primary mb-3" th:href="@{/sucursales/nuevo}">Nuevo Sucursal</a>
+            </div>
             <hr>
-            <img src="../static/images/sucursales-jujuy.png"
-                 alt="Sucursales Jujuy"
-                 title="Imagen sucursales Jujuy"
-                 style="height: 100%; width: auto">
-            <div>
-                <h3>CASA CENTRAL</h3>
-                <ul>
-                    <li>Necochea N°65</li>
-                    <li>3885557773</li>
-                    <li>Lunes a sábados de 9 a 20hs</li>
-                </ul>
-            </div>
-            <div>
-                <h3>SUCURSAL ALTO COMEDERO</h3>
-                <ul>
-                    <li>Patricias Argentinas 500</li>
-                    <li>3886669988</li>
-                    <li>Lunes a sábados de 9 a 20hs</li>
-                </ul>
-            </div>
-            <div>
-                <h3>SUCURSAL CHIJRA</h3>
-                <ul>
-                    <li>Avenida Vicuña 78</li>
-                    <li>3885557773</li>
-                    <li>Lunes a sábados de 9 a 20hs</li>
-                </ul>
-            </div>
-        </div>
-        <!-- #endregion -->
-        <div>
-            <img src="../static/images/sucursales-salta.png"
-                 alt="Sucursales Salta"
-                 title="Imagen sucursales Salta"
-                 style="height: 100%; width: auto">
-            <div>
-                <h3>SUCURSAL INDEPENDENCIA</h3>
-                <ul>
-                    <li>Cordoba 24</li>
-                    <li>3885224466</li>
-                    <li>Lunes a sábados de 9 a 19hs</li>
-                </ul>
-                <div th:each="provincia: ${listaProvincias}">
-                    <h2 th:text="${provincia}" th:id="${provincia}" href="#seccion"></h2>
-                    <div th:each="sucursal: ${listaSucursales}" th:if="${sucursal.provincia} == ${provincia}">
-                        <div>
-                            <h3 th:text="${sucursal.nombre}"></h3>
-                            <h4 th:text="${sucursal.direccion}"></h4>
-                            <h4 th:text="${sucursal.telefono}"></h4>
-                            <h4 th:text="${sucursal.horario}"></h4>
+            <!-- #endregion -->
+
+            <div class="card mb-3"
+                 th:each="provincia : ${listaProvincias}">
+
+                <div class="card-header fs-2 text-center"
+                     th:text="${provincia}">
+                </div>
+
+                <img class="img-thumbnail d-block mx-3 mt-3"
+                     style="height: 150px;"
+                     alt="..."
+                     th:each="imagen : ${listaImagenes}"
+                     th:if="${#strings.equals(imagen.identificador, provincia)}"
+                     th:src="${imagen.nombre}">
+
+                <div class="card-body">
+                    <h5 class="card-title text-center">Sucursales</h5>
+
+                    <!-- #region Sucursales -->
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item"
+                             th:each="sucursal : ${listaSucursales}"
+                             th:if="${sucursal.provincia} == ${provincia}">
+
+                            <h2 class="accordion-header">
+                                <button class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        th:attr="data-bs-target='#id' + ${sucursal.identificador}, aria-controls='id' + ${sucursal.identificador}"
+                                        aria-expanded="false"
+                                        th:text="${sucursal.nombre}">
+                                </button>
+                            </h2>
+
+                            <div th:id="'id' + ${sucursal.identificador}"
+                                 class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p><strong>Dirección:</strong>
+                                        <span
+                                              th:text="${sucursal.direccion} + ' Nº ' + ${sucursal.numeroDireccion}">
+                                        </span>
+                                    </p>
+                                    <p><strong>Telefono:</strong>
+                                        <span th:text="${sucursal.telefono}"></span>
+                                    </p>
+                                    <p><strong>Horario de apertura:</strong>
+                                        <span th:text="${#temporals.format(sucursal.horarioApertura, 'HH:mm a')}">
+                                        </span>
+                                    </p>
+                                    <p><strong>Horario de cierre:</strong>
+                                        <span th:text="${#temporals.format(sucursal.horarioCierre, 'HH:mm a')}">
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between align-items-center">
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-sm btn-outline-primary text-decoration-none"
+                                           role="button"
+                                           th:href="@{/sucursales/modificar/} + ${sucursal.identificador}">Modificar</a>
+
+                                        <a class="btn btn-sm btn-outline-danger text-decoration-none"
+                                           role="button"
+                                           th:href="@{/sucursales/eliminar/} + ${sucursal.identificador}">Eliminar</a>
+                                    </div>
+                                    <small class="text-black text-body-secondary"
+                                           th:text="${sucursal.identificador}"></small>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- #endregion Sucursales -->
                 </div>
             </div>
+            <p class="text-center">
+                <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
+            </p>
         </div>
         <!-- #region Footer -->
         <footer th:replace="~{layouts/footer :: footer}"></footer>

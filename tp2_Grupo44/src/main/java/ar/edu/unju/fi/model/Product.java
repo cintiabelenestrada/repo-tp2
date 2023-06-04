@@ -2,38 +2,57 @@ package ar.edu.unju.fi.model;
 
 import java.util.Random;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
+
+@Component
 public class Product {
 
 	// region static Objects
 	private final static Random random = new Random();
 	// endregion
 
-	// region static Variables
-	// endregion
-
 	// region Attributes
+
+	@NotEmpty(message = "Debes introducir un nombre")
+	@Size(min = 5, max = 20, message = "El nombre solo puede contener entre 5 y 20 caracteres")
 	private String nombre;
+
 	private short codigo;
-	private float precio;
+
+	@PositiveOrZero(message = "Debes ingresar un número positivo")
+	@NotNull(message = "Debes ingresar el precio")
+	private Float precio;
+
+	@NotBlank(message = "Debe seleccionar una categoria")
 	private String categoria;
-	private byte descuento;
+
+	@Min(value = 0, message = "El valor mínimo permitido es 0")
+	@Max(value = 50, message = "El valor máximo permitido es 50")
+	@NotNull(message = "Debes ingresar el descuento")
+	private Byte descuento;
+
 	private String imagen;
 	// endregion
 
 	// region Constructors
 	public Product() {
-	}
-
-	public Product(short codigo) {
-		this.codigo = codigo;
+		this.imagen = "/images/pet_food_paw.svg";
 	}
 
 	public Product(
 			String nombre,
 			short codigo,
-			float precio,
+			Float precio,
 			String categoria,
-			byte descuento,
+			Byte descuento,
 			String imagen) {
 		this.nombre = nombre;
 		this.codigo = codigo;
@@ -74,11 +93,11 @@ public class Product {
 		this.codigo = codigo;
 	}
 
-	public float getPrecio() {
+	public Float getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(float precio) {
+	public void setPrecio(Float precio) {
 		this.precio = precio;
 	}
 
@@ -90,11 +109,11 @@ public class Product {
 		this.categoria = categoria;
 	}
 
-	public byte getDescuento() {
+	public Byte getDescuento() {
 		return descuento;
 	}
 
-	public void setDescuento(byte descuento) {
+	public void setDescuento(Byte descuento) {
 		this.descuento = descuento;
 	}
 
@@ -115,7 +134,7 @@ public class Product {
 	 */
 	public String calcularDescuento() {
 
-		float resultado = 0f;
+		Float resultado = 0f;
 
 		if (descuento == 0) {
 			resultado = precio;

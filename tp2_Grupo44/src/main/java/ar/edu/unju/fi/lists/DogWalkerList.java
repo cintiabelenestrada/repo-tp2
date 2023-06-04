@@ -3,8 +3,11 @@ package ar.edu.unju.fi.lists;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ar.edu.unju.fi.model.Service;
 
+@Component
 public class DogWalkerList {
 
 	// region Attributes
