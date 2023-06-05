@@ -3,7 +3,7 @@
 .elemento-superpuesto {
     margin-bottom: 90px;
 }
-nav {
+nav, footer {
     background-color: #b7a1e2;
     border: 1px solid #712cf9;;
 }
@@ -13,3 +13,4 @@ nav {
 body {
     background-image: url("/images/fondo-huellitas.jpg");
 }
+
