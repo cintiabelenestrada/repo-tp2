@@ -1,62 +1,113 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Inicio</title>
-        <!-- Importar CSS -->
-        <link rel="stylesheet" th:href="@{/css/estilos.css}" />
-    </head>
-    <body>
-        <div id="container">
-            <header th:replace="~{layouts/header :: header}"></header>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- #region Bootstrap (import) -->
+        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+        <!-- #endregion -->
+        <!-- #region Webpage Icon & Title -->
+        <link rel="shortcut icon" type="image/svg" th:href="@{/images/pet_shop_favicon.svg}">
+        <!-- region Import CSS -->
+        <link rel="stylesheet"  type="text/css" th:href="@{/css/estilos.css}" />
+        <title>Inicio</title>
+        <!-- #endregion -->
+    </head>
+
+    <body>
+        <!-- #region Header -->
+        <header th:replace="~{layouts/header :: header}"></header>
+        <!-- #endregion -->
+        <!-- #region Index -->
+        <section>
+            <h2>Últimas noticias</h2>
             <aside>
-                <h3>Últimas noticias</h3>
                 <ul>
-                    <li>
-                        <a href="#">Nuevo servicio de cuidado de mascotas</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            >Promoción de invierno: 10% de descuento en
-                            paseos</a
-                        >
-                    </li>
-                    <li>
-                        <a href="#"
-                            >Cómo mantener a tu perro feliz y saludable durante
-                            el verano</a
-                        >
-                    </li>
+                    <li><a href="#">Nuevo servicio de cuidado de mascotas</a></li>
+                    <li><a href="#">Promoción de invierno: 10% de descuento en paseos</a></li>
+                    <li><a href="#">Cómo mantener a tu perro feliz y saludable durante el verano</a></li>
                 </ul>
             </aside>
-
-            <section id="content">
-                <h2>Nuestro objetivo</h2>
-                <!-- Para mostrar los artículos de "Consejos de salud", utilizar la etiqueta <article> y dentro de ella, incluir el título del artículo y su contenido. -->
-                <article>
-                    <h3>Compromiso con la salud y bienestar de las mascotas</h3>
-                    <p>
-                        Somos una empresa dedicada a brindar servicios de alta
-                        calidad para mascotas y sus dueños. Nos esforzamos en
-                        ofrecer una experiencia única y satisfactoria para
-                        nuestros clientes y sus mascotas.
-                    </p>
-                </article>
-                <article>
-                    <h3>Cuidado personalizado</h3>
-                    <p>
-                        Cada mascota es única y por eso ofrecemos un trato
-                        personalizado para cada una de ellas. Desde el paseo
-                        diario hasta la alimentación, nos aseguramos de que cada
-                        mascota reciba la atención que merece.
-                    </p>
-                </article>
-            </section>
-
-            <footer th:replace="~{layouts/footer :: footer}"></footer>
-        </div>
+            <h2>Nuestro objetivo</h2>
+            <!-- #region Articles -->
+            <article>
+                <h3>Compromiso con la salud y bienestar de las mascotas</h3>
+                <p>Somos una empresa dedicada a brindar servicios de alta calidad para mascotas y sus dueños. Nos
+                    esforzamos en ofrecer una experiencia única y satisfactoria para nuestros clientes y sus mascotas.
+                </p>
+            </article>
+            <article>
+                <h3>Cuidado personalizado</h3>
+                <p>Cada mascota es única y por eso ofrecemos un trato personalizado para cada una de ellas. Desde el
+                    paseo diario hasta la alimentación, nos aseguramos de que cada mascota reciba la atención que
+                    merece. </p>
+            </article>
+            <article>
+                <h3>Lorem 200 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae molestiae debitis obcaecati facilis
+                    asperiores. Exercitationem tempora sunt id nobis quisquam animi porro, quasi est facere saepe unde
+                    eius. Sit vitae fugit voluptatum nam, nemo dolor non rem corporis asperiores similique officiis
+                    veniam amet dolores deleniti pariatur veritatis. Id ipsum repudiandae dignissimos in et unde
+                    molestias qui cum deleniti eligendi dolor aut, voluptate impedit nisi voluptatum deserunt voluptas
+                    suscipit, rerum neque omnis dolorem! Minima error sequi aspernatur vel voluptas autem repellendus
+                    numquam laboriosam tempora totam veritatis quam, iure obcaecati provident? Perferendis eum mollitia
+                    beatae fugiat, libero magnam atque aut aliquam dolor recusandae at commodi porro consequatur!
+                    Voluptates expedita ipsa culpa. Beatae, nam corporis? Facilis, voluptatum iure. Eum error
+                    dignissimos natus a veritatis unde accusamus officiis esse, temporibus sit odio consequuntur,
+                    recusandae distinctio, ducimus nobis quam alias ipsa corporis quo illo labore assumenda! Aspernatur
+                    sint eligendi vero, eaque commodi nemo sapiente rem eum ipsa quos ab provident possimus atque sequi
+                    vitae fuga blanditiis corporis fugiat unde ipsam deserunt ratione porro error! Ut molestiae laborum
+                    provident fugit est, saepe consequuntur doloribus beatae eveniet, a cum temporibus eum! Excepturi
+                    ipsum nam asperiores cumque accusamus eius expedita nostrum saepe, aperiam beatae iusto, laborum
+                    officiis vero.</p>
+            </article>
+            <article>
+                <h3>Lorem 200 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae molestiae debitis obcaecati facilis
+                    asperiores. Exercitationem tempora sunt id nobis quisquam animi porro, quasi est facere saepe unde
+                    eius. Sit vitae fugit voluptatum nam, nemo dolor non rem corporis asperiores similique officiis
+                    veniam amet dolores deleniti pariatur veritatis. Id ipsum repudiandae dignissimos in et unde
+                    molestias qui cum deleniti eligendi dolor aut, voluptate impedit nisi voluptatum deserunt voluptas
+                    suscipit, rerum neque omnis dolorem! Minima error sequi aspernatur vel voluptas autem repellendus
+                    numquam laboriosam tempora totam veritatis quam, iure obcaecati provident? Perferendis eum mollitia
+                    beatae fugiat, libero magnam atque aut aliquam dolor recusandae at commodi porro consequatur!
+                    Voluptates expedita ipsa culpa. Beatae, nam corporis? Facilis, voluptatum iure. Eum error
+                    dignissimos natus a veritatis unde accusamus officiis esse, temporibus sit odio consequuntur,
+                    recusandae distinctio, ducimus nobis quam alias ipsa corporis quo illo labore assumenda! Aspernatur
+                    sint eligendi vero, eaque commodi nemo sapiente rem eum ipsa quos ab provident possimus atque sequi
+                    vitae fuga blanditiis corporis fugiat unde ipsam deserunt ratione porro error! Ut molestiae laborum
+                    provident fugit est, saepe consequuntur doloribus beatae eveniet, a cum temporibus eum! Excepturi
+                    ipsum nam asperiores cumque accusamus eius expedita nostrum saepe, aperiam beatae iusto, laborum
+                    officiis vero.</p>
+            </article>
+            <article>
+                <h3>Lorem 200 3</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae molestiae debitis obcaecati facilis
+                    asperiores. Exercitationem tempora sunt id nobis quisquam animi porro, quasi est facere saepe unde
+                    eius. Sit vitae fugit voluptatum nam, nemo dolor non rem corporis asperiores similique officiis
+                    veniam amet dolores deleniti pariatur veritatis. Id ipsum repudiandae dignissimos in et unde
+                    molestias qui cum deleniti eligendi dolor aut, voluptate impedit nisi voluptatum deserunt voluptas
+                    suscipit, rerum neque omnis dolorem! Minima error sequi aspernatur vel voluptas autem repellendus
+                    numquam laboriosam tempora totam veritatis quam, iure obcaecati provident? Perferendis eum mollitia
+                    beatae fugiat, libero magnam atque aut aliquam dolor recusandae at commodi porro consequatur!
+                    Voluptates expedita ipsa culpa. Beatae, nam corporis? Facilis, voluptatum iure. Eum error
+                    dignissimos natus a veritatis unde accusamus officiis esse, temporibus sit odio consequuntur,
+                    recusandae distinctio, ducimus nobis quam alias ipsa corporis quo illo labore assumenda! Aspernatur
+                    sint eligendi vero, eaque commodi nemo sapiente rem eum ipsa quos ab provident possimus atque sequi
+                    vitae fuga blanditiis corporis fugiat unde ipsam deserunt ratione porro error! Ut molestiae laborum
+                    provident fugit est, saepe consequuntur doloribus beatae eveniet, a cum temporibus eum! Excepturi
+                    ipsum nam asperiores cumque accusamus eius expedita nostrum saepe, aperiam beatae iusto, laborum
+                    officiis vero.</p>
+            </article>
+            <!-- #endregion -->
+        </section>
+        <!-- #endregion -->
+        <!-- #region Footer -->
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        <!-- #endregion -->
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </body>
+
 </html>

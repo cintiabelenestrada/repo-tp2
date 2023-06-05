@@ -1,7 +1,9 @@
 package ar.edu.unju.fi.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,12 +13,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.lists.ProductList;
 import ar.edu.unju.fi.model.Product;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/productos")
-public class productListController {
+public class ProductListController {
 
-	ProductList listaProductos = new ProductList();
+	@Autowired
+	ProductList listaProductos;
+
+	@Autowired
+	Product producto;
 
 	@GetMapping("/listado")
 	public String getProductListPage(Model model) {
@@ -39,7 +46,8 @@ public class productListController {
 
 		model.addAttribute(
 				"producto",
-				new Product());
+				producto);
+
 		model.addAttribute(
 				"editar",
 				allowEditing);
@@ -48,55 +56,86 @@ public class productListController {
 	}
 
 	@PostMapping("/guardar")
-	public ModelAndView saveProductInformation(@ModelAttribute(value = "producto") Product productoAgregar) {
+	public ModelAndView saveProductInformation(
+			@Valid @ModelAttribute(value = "producto") Product productoAgregar,
+			BindingResult resultadoValidacion) {
 
-		ModelAndView modelAndView = new ModelAndView("productos");
+		ModelAndView modelAndView = new ModelAndView(
+				"redirect:/productos/listado");
 
-		short codigoContador = listaProductos.getProductos().get(listaProductos.getProductos().size() -
-				1).getCodigo();
+		short codigoContador = listaProductos.getProductos().get(listaProductos.getProductos().size() - 1).getCodigo();
 		codigoContador++;
 
-		productoAgregar.setCodigo(codigoContador);
+		if (resultadoValidacion.hasErrors()) {
 
+			modelAndView.setViewName(
+					"nuevo_producto");
+
+			modelAndView.addObject(
+					"producto",
+					productoAgregar);
+
+			return modelAndView;
+		}
+
+		productoAgregar.setCodigo(codigoContador);
 		listaProductos.getProductos().add(productoAgregar);
 
 		modelAndView.addObject(
 				"listaProductos",
 				listaProductos.getProductos());
-		modelAndView.addObject(
-				"listaCategorias",
-				listaProductos.getCategorias());
 
 		return modelAndView;
 	}
 
 	@GetMapping("/modificar/{codigo}")
-	public String getModifyProductPage(Model model, @PathVariable(value = "codigo") short codigoProducto) {
+	public String getModifyProductPage(
+			Model model,
+			@PathVariable(value = "codigo") short codigoProducto) {
 
-		Product productFound = new Product();
+		Product ProductFound = new Product();
 		boolean allowEditing = true;
 
 		for (Product producto : listaProductos.getProductos()) {
 			if (producto.getCodigo() == codigoProducto) {
-				productFound = producto;
+				ProductFound = producto;
 				break;
 			}
 		}
 
-		System.out.println("Precio enviado: " + productFound.getPrecio());
-
-		model.addAttribute("producto", productFound);
+		model.addAttribute("producto", ProductFound);
 		model.addAttribute("editar", allowEditing);
 
 		return "nuevo_producto";
 	}
 
 	@PostMapping("/modificar")
-	public String modifyProduct(@ModelAttribute(value = "producto") Product productoModificar) {
+	public ModelAndView modifyProduct(
+			@Valid @ModelAttribute(value = "producto") Product productoModificar,
+			BindingResult resultadoValidacion) {
+
+		ModelAndView modelAndView = new ModelAndView(
+				"redirect:/productos/listado");
+
+		boolean allowEditing = true;
+
+		if (resultadoValidacion.hasErrors()) {
+
+			modelAndView.setViewName("nuevo_producto");
+
+			modelAndView.addObject(
+					"producto",
+					productoModificar);
+
+			modelAndView.addObject(
+					"editar",
+					allowEditing);
+
+			return modelAndView;
+		}
 
 		for (Product producto : listaProductos.getProductos()) {
 			if (producto.getCodigo() == productoModificar.getCodigo()) {
-
 				producto.setNombre(productoModificar.getNombre());
 				producto.setPrecio(productoModificar.getPrecio());
 				producto.setCategoria(productoModificar.getCategoria());
@@ -105,17 +144,21 @@ public class productListController {
 			}
 		}
 
-		return ("redirect:/productos/listado");
+		return modelAndView;
 	}
 
 	@GetMapping("/eliminar/{codigo}")
-	public String deleteProduct(@PathVariable(value = "codigo") short codigoProducto) {
+	public String deleteProduct(
+			@PathVariable(value = "codigo") short codigoProducto) {
+
 		for (Product producto : listaProductos.getProductos()) {
 			if (producto.getCodigo() == codigoProducto) {
 				listaProductos.getProductos().remove(producto);
 				break;
 			}
 		}
+
 		return ("redirect:/productos/listado");
 	}
+
 }

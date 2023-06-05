@@ -1,76 +1,137 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
     <head>
-        <meta charset="UTF-8" />
+        <!-- #region Meta -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- #endregion -->
+
+        <!-- #region Bootstrap (import) -->
+        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+        <!-- #endregion -->
+
+        <!-- #region Custom CSS -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}">
+        <!-- #endregion -->
+
+        <!-- #region Webpage Icon & Title -->
+        <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
         <title>Contáctanos</title>
-        <!-- Importar CSS -->
-        <link rel="stylesheet" th:href="@{/css/estilos.css}" />
+        <!-- #endregion -->
     </head>
+
     <body>
-        <div id="container">
-            <!-- header -->
-            <header th:replace="~{layouts/header :: header}"></header>
+        <!-- #region Header -->
+        <header th:replace="~{layouts/header :: header}"></header>
+        <!-- #endregion -->
+        <!-- #region Contact -->
+        <div class="container" id="seccion">
 
-            <!-- inicio codigo contactanos -->
-            <div class="clearfix"></div>
-            <h2>Contáctenos</h2>
-            <p>
-                3915 Av. General Belgrano, 388-4999999<br />
-                Lunes a Viernes: 9:00 a.m. a 8:00 p.m.<br />
-                Sabados a domingos: 9:00 a.m. a 12:30 p.m
+            <div class="px-3 bg-light border rounded">
+
+                <div>
+                    <h2 class="display-1 fst-italic text-center">Contáctenos</h2>
+                    <!-- #region informacionContacto -->
+                    <address>
+                        <!-- #region Informacion de contacto -->
+                        <p class="lead">
+                            3915 Av. General Belgrano, 388-4999999 <br>
+                            Lunes a Viernes: 9:00 a.m. a 8:00 p.m. <br>
+                            Sabados a domingos: 9:00 a.m. a 12:30 p.m
+                        </p>
+                        <p>
+                            <small class="text-secondary">Contactanos a traves de nuestro correo</small>
+                            <a class="text-body-empashis fw-bold"
+                               href="mailto:contactos@mail.com.ar">contactos@mail.com.ar</a>
+                        </p>
+                        <!-- #endregion -->
+
+                        <!-- #region RedesSociales -->
+                        <div class="d-flex justify-content-start align-items-center gap-2">
+                            <div class="btn-group" role="group" aria-label="RedesSociales">
+                                <button type="button" class="btn btn-dark">
+                                    <a href="#"><i class="bi bi-facebook text-light"></i></a>
+                                </button>
+                                <button type="button" class="btn btn-dark">
+                                    <a href="#"><i class="bi bi-instagram text-light"></i></a>
+                                </button>
+                                <button type="button" class="btn btn-dark">
+                                    <a href="#"><i class="bi bi-whatsapp text-light"></i></a>
+                                </button>
+                                <button type="button" class="btn btn-dark">
+                                    <a href="#"><i class="bi bi-twitter text-light"></i></a>
+                                </button>
+                            </div>
+                            <small class="text-secondary"><em>Nuestras redes sociales</em></small>
+                        </div>
+                        <!-- #endregion -->
+                    </address>
+                    <!-- #endregion -->
+                </div>
+            </div>
+            <!-- #endregion -->
+            <hr>
+
+            <!-- #region Formulario -->
+            <div class="p-3 bg-light border rounded" novalidate>
+                <form class="needs-validation">
+                    <div class="input-group mb-3">
+                        <label for="nombre" class="input-group-text">Nombre</label>
+                        <input type="text"
+                               id="nombre"
+                               class="form-control"
+                               placeholder="Ingrese su nombre"
+                               required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label for="email" class="input-group-text">Email</label>
+                        <span class="input-group-text">@</span>
+                        <input type="email"
+                               id="email"
+                               placeholder="Ingrese un email válido"
+                               class="form-control"
+                               required>
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <label for="ciudad" class="input-group-text">Ciudad</label>
+                        <input type="text"
+                               id="ciudad"
+                               placeholder="Ingrese su ciudad"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label for="mensaje" class="input-group-text">Mensaje</label>
+                        <textarea id="mensaje"
+                                  name="mensaje"
+                                  aria-label="enviarMensaje"
+                                  class="form-control"
+                                  required>
+                        </textarea>
+                    </div>
+                    <button class="btn btn-success" type="button">
+                        <a class="text-decoration-none text-light" th:href="@{/index}">Enviar</a>
+                    </button>
+                </form>
+            </div>
+            <p class="text-center mt-3">
+                <a class="btn btn-primary" href="#seccion">Ir arriba</a>
             </p>
-            <a href="mailto:contactos@mail.com.ar">contactos@mail.com.ar</a>
-            <!-- utilizamos la etiqueta a y especificamos el protocolo mailto: seguido de la dirección de correo electrónico a utilizar. Cuando los usuarios hagan clic en este enlace, su cliente de correo electrónico se abrirá para que puedan enviar un correo electrónico a la dirección especificada. -->
-            <ul>
-                <li><a href="https://www.facebook.com">Facebook</a></li>
-                <li><a href="https://www.instagram.com">Instagram</a></li>
-                <li><a href="https://www.twitter.com">Twitter</a></li>
-            </ul>
-            <hr />
-            <!-- etiqueta hr para agregar una línea horizontal  -->
-            <form action="#" method="post">
-                <!-- La propiedad action especifica la URL a la que se enviará el formulario, y la propiedad method especifica el método de envío del formulario (en este caso, POST).	-->
-                <label for="nombre">Nombre:</label>
-                <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    placeholder="Ingrese su nombre"
-                    required
-                />
-                <!--  utilizamos el atributo placeholder en cada campo de entrada para mostrar un mensaje de ayuda en gris claro dentro del campo. Cuando el usuario comience a escribir, el mensaje desaparecerá automáticamente. -->
-                <br /><br />
-                <!-- el atributo type="email" para que el navegador valide automáticamente que el valor ingresado sea una dirección de correo electrónico válida. -->
-                <label for="email">Email:</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Ingrese un email válido"
-                    required
-                />
-                <br /><br />
-                <!-- la etiqueta label para agregar etiquetas descriptivas a cada campo de entrada, y la etiqueta input para crear campos de entrada de texto -->
-                <label for="ciudad">Ciudad:</label>
-                <input
-                    type="text"
-                    id="ciudad"
-                    name="ciudad"
-                    placeholder="Ingrese su ciudad"
-                    required
-                />
-                <br /><br />
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
-                <br /><br />
-                <!-- etiqueta input con el atributo type="submit" para crear el botón de enviar. El atributo value establece el texto que aparecerá en el botón. -->
-                <input type="submit" value="Enviar" />
-                <br /><br />
-            </form>
-            <br />
-
-            <!-- pie de pagina -->
-            <footer th:replace="~{layouts/footer :: footer}"></footer>
+            <!-- #endregion -->
         </div>
+        <!-- #endregion -->
+        <hr>
+        <!-- #region Footer -->
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        <!-- #endregion -->
+        <script type="text/javascript"
+                th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </body>
+
 </html>

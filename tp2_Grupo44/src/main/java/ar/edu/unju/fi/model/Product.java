@@ -2,45 +2,68 @@ package ar.edu.unju.fi.model;
 
 import java.util.Random;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
+
+@Component
 public class Product {
 
 	// region static Objects
 	private final static Random random = new Random();
 	// endregion
 
-	// region static Variables
-	// endregion
-
 	// region Attributes
+	@NotEmpty(message = "Debes introducir un nombre")
+	@Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 30 caracteres")
 	private String nombre;
+
 	private short codigo;
-	private float precio;
+
+	@NotNull(message = "Debes ingresar el precio")
+	@PositiveOrZero(message = "Debes ingresar un número positivo")
+	@Pattern(regexp = "[0-9]+.[0-9]+", message = "Debe ingresar un número valido")
+	private String precio;
+
+	@NotBlank(message = "Debe seleccionar una categoria")
 	private String categoria;
-	private byte descuento;
+
+	@Max(value = 50, message = "El valor máximo permitido es 50")
+	@Min(value = 0, message = "El valor mínimo permitido es 0")
+	@NotNull(message = "Debes ingresar el descuento")
+	@Pattern(regexp = "[0-9]+", message = "Debe ingresar un número valido")
+	private String descuento;
+
 	private String imagen;
 	// endregion
 
-	// region Constructor
+	// region Constructors
 	public Product() {
-	}
-
-	public Product(short codigo) {
-		this.codigo = codigo;
+		this.imagen = "/images/logos/convenience_store.svg";
 	}
 
 	public Product(
 			String nombre,
 			short codigo,
-			float precio,
+			String precio,
 			String categoria,
-			byte descuento,
+			String descuento,
 			String imagen) {
+
 		this.nombre = nombre;
 		this.codigo = codigo;
 		this.precio = precio;
 		this.categoria = categoria;
 		this.descuento = descuento;
 		this.imagen = imagen;
+
 	}
 
 	public Product(
@@ -48,12 +71,14 @@ public class Product {
 			short codigo,
 			String categoria,
 			String imagen) {
+
 		this.nombre = nombre;
 		this.codigo = codigo;
-		this.precio = randomPrecio();
+		this.precio = Float.toString(randomPrecio());
 		this.categoria = categoria;
-		this.descuento = randomDescuento();
+		this.descuento = Byte.toString(randomDescuento());
 		this.imagen = imagen;
+
 	}
 	// endregion
 
@@ -74,11 +99,11 @@ public class Product {
 		this.codigo = codigo;
 	}
 
-	public float getPrecio() {
+	public String getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(float precio) {
+	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
 
@@ -90,11 +115,11 @@ public class Product {
 		this.categoria = categoria;
 	}
 
-	public byte getDescuento() {
+	public String getDescuento() {
 		return descuento;
 	}
 
-	public void setDescuento(byte descuento) {
+	public void setDescuento(String descuento) {
 		this.descuento = descuento;
 	}
 
@@ -115,14 +140,14 @@ public class Product {
 	 */
 	public String calcularDescuento() {
 
-		float resultado = 0f;
+		Float resultado = 0f;
 
-		if (descuento == 0) {
-			resultado = precio;
+		if (Byte.parseByte(descuento) == 0) {
+			resultado = Float.parseFloat(precio);
 		}
 
-		if (descuento > 0) {
-			resultado = precio - (precio * this.descuento / 100);
+		if (Byte.parseByte(descuento) > 0) {
+			resultado = Float.parseFloat(precio) - (Float.parseFloat(precio) * Byte.parseByte(this.descuento) / 100);
 		}
 
 		return String.format("%.2f", resultado);
