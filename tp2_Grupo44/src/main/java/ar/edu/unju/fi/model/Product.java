@@ -29,7 +29,7 @@ public class Product {
 
 	@NotNull(message = "Debes ingresar el precio")
 	@PositiveOrZero(message = "Debes ingresar un número positivo")
-	@Pattern(regexp = "[0-9]+.[0-9]+", message = "Debe ingresar un número valido")
+	@Pattern(regexp = "([0-9]*[.])?[0-9]+", message = "Debe ingresar un número valido")
 	private String precio;
 
 	@NotBlank(message = "Debe seleccionar una categoria")

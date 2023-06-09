@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.lists.ProductList;
 import ar.edu.unju.fi.model.Product;
+import ar.edu.unju.fi.service.IProductService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -20,21 +20,18 @@ import jakarta.validation.Valid;
 public class ProductListController {
 
 	@Autowired
-	ProductList listaProductos;
-
-	@Autowired
-	Product producto;
+	private IProductService productService;
 
 	@GetMapping("/listado")
 	public String getProductListPage(Model model) {
 
 		model.addAttribute(
 				"listaProductos",
-				listaProductos.getProductos());
+				productService.getProductos());
 
 		model.addAttribute(
 				"listaCategorias",
-				listaProductos.getCategorias());
+				productService.getCategorias());
 
 		return "productos";
 	}
@@ -46,7 +43,7 @@ public class ProductListController {
 
 		model.addAttribute(
 				"producto",
-				producto);
+				productService.getProduct());
 
 		model.addAttribute(
 				"editar",
@@ -63,9 +60,6 @@ public class ProductListController {
 		ModelAndView modelAndView = new ModelAndView(
 				"redirect:/productos/listado");
 
-		short codigoContador = listaProductos.getProductos().get(listaProductos.getProductos().size() - 1).getCodigo();
-		codigoContador++;
-
 		if (resultadoValidacion.hasErrors()) {
 
 			modelAndView.setViewName(
@@ -78,12 +72,13 @@ public class ProductListController {
 			return modelAndView;
 		}
 
-		productoAgregar.setCodigo(codigoContador);
-		listaProductos.getProductos().add(productoAgregar);
+		productService.setProductCode(productoAgregar);
+
+		productService.saveNewProduct(productoAgregar);
 
 		modelAndView.addObject(
 				"listaProductos",
-				listaProductos.getProductos());
+				productService.getProductos());
 
 		return modelAndView;
 	}
@@ -93,17 +88,10 @@ public class ProductListController {
 			Model model,
 			@PathVariable(value = "codigo") short codigoProducto) {
 
-		Product ProductFound = new Product();
+		Product productFound = productService.findProductByCode(codigoProducto);
 		boolean allowEditing = true;
 
-		for (Product producto : listaProductos.getProductos()) {
-			if (producto.getCodigo() == codigoProducto) {
-				ProductFound = producto;
-				break;
-			}
-		}
-
-		model.addAttribute("producto", ProductFound);
+		model.addAttribute("producto", productFound);
 		model.addAttribute("editar", allowEditing);
 
 		return "nuevo_producto";
@@ -134,15 +122,7 @@ public class ProductListController {
 			return modelAndView;
 		}
 
-		for (Product producto : listaProductos.getProductos()) {
-			if (producto.getCodigo() == productoModificar.getCodigo()) {
-				producto.setNombre(productoModificar.getNombre());
-				producto.setPrecio(productoModificar.getPrecio());
-				producto.setCategoria(productoModificar.getCategoria());
-				producto.setDescuento(productoModificar.getDescuento());
-				break;
-			}
-		}
+		productService.modifyProductByCode(productoModificar);
 
 		return modelAndView;
 	}
@@ -151,12 +131,7 @@ public class ProductListController {
 	public String deleteProduct(
 			@PathVariable(value = "codigo") short codigoProducto) {
 
-		for (Product producto : listaProductos.getProductos()) {
-			if (producto.getCodigo() == codigoProducto) {
-				listaProductos.getProductos().remove(producto);
-				break;
-			}
-		}
+		productService.deleteProductByCode(codigoProducto);
 
 		return ("redirect:/productos/listado");
 	}
