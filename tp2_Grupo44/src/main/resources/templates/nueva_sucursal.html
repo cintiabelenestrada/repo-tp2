@@ -45,7 +45,8 @@
                 <!-- #endregion -->
 
                 <!-- #region Contenido -->
-                <form th:action="${editar} ? @{/sucursales/modificar} : @{/sucursales/guardar}" th:object="${sucursal}"
+                <form th:action="${editar} ? @{/sucursales/modificar} : @{/sucursales/guardar}"
+                      th:object="${sucursal}"
                       method="post">
 
                     <!-- #region Entrada de datos -->
@@ -60,9 +61,13 @@
                         <!-- #region Nombre -->
                         <div class="input-group mb-3">
                             <label for="nombre" class="input-group-text">Nombre</label>
-                            <input type="text" id="nombre" th:field="*{nombre}"
-                                   placeholder="Ingrese nombre de la sucursal" aria-label="Nombre"
-                                   aria-describedby="Nombre" class="form-control">
+                            <input type="text"
+                                   id="nombre"
+                                   th:field="*{nombre}"
+                                   placeholder="Ingrese nombre de la sucursal"
+                                   aria-label="Nombre"
+                                   aria-describedby="Nombre"
+                                   class="form-control">
                         </div>
                         <div class="text-danger mb-3" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
                         </div>
@@ -71,9 +76,13 @@
                         <!-- #region Dirección -->
                         <div class="input-group mb-3">
                             <label for="direccion" class="input-group-text">Direccion</label>
-                            <input type="text" id="direccion" th:field="*{direccion}"
-                                   placeholder="Ingrese dirección de la sucursal" aria-label="Direccion"
-                                   aria-describedby="Direccion" class="form-control">
+                            <input type="text"
+                                   id="direccion"
+                                   th:field="*{direccion}"
+                                   placeholder="Ingrese dirección de la sucursal"
+                                   aria-label="Direccion"
+                                   aria-describedby="Direccion"
+                                   class="form-control">
                         </div>
                         <div class="text-danger mb-3" th:if="${#fields.hasErrors('direccion')}"
                              th:errors="*{direccion}">
