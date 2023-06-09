@@ -49,8 +49,7 @@ public class Branch {
 	// endregion
 
 	// region Constructors
-	public Branch() {
-	}
+	public Branch() {}
 
 	public Branch(
 			String nombre,

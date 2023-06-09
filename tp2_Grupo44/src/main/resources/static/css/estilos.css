@@ -1,16 +1,1 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
-
-.elemento-superpuesto {
-    margin-bottom: 90px;
-}
-nav, footer {
-    background-color: #b7a1e2;
-    border: 1px solid #712cf9;;
-}
-.link-nav {
-    color:#333333;
-}
-body {
-    background-image: url("/images/fondo-huellitas.jpg");
-}
-

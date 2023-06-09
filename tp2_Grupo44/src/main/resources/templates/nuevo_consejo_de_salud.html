@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+    <head>
+        <!-- #region Meta -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- #endregion -->
+
+        <!-- #region Bootstrap (import) -->
+        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+        <!-- #endregion -->
+
+        <!-- #region Custom CSS -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}">
+        <!-- #endregion -->
+
+        <!-- #region Webpage Icon & Title -->
+        <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
+        <!-- region Import CSS -->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}" />
+        <title>Nuevo Consejo de Salud</title>
+        <!-- #endregion -->
+    </head>
+
+    <body>
+        <!-- #region Header -->
+        <header th:replace="~{layouts/header :: header}"></header>
+        <!-- #endregion -->
+
+        <!-- #region nueva_sucursal.html -->
+        <div class="container">
+
+            <!-- #region Formulario -->
+            <div class="card">
+
+                <!-- #region Titulo -->
+                <div class="card-header text-center">
+                    <h3 class="mb-0" th:text="${editar} ? 'Modificar Consejo de Salud' : 'Nuevo Consejo de Salud'"></h3>
+                    <h6 class="badge bg-secondary"
+                        th:text="${editar} ? 'Identificador ' + ${consejo.identificador} : 'Identificador no asignado todavia'">
+                    </h6>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Contenido -->
+                <form th:action="${editar} ? @{/consejos_de_salud/modificar} : @{/consejos_de_salud/guardar}"
+                    th:object="${consejo}"
+                    method="post">
+
+                    <!-- #region Entrada de datos -->
+                    <div class="card-body">
+                        
+                        <!-- #region Identificador -->
+                        <div>
+                            <input type="hidden" id="identificador" th:field="*{identificador}" class="form-control">
+                        </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Nombre -->
+                        <div class="input-group mb-3">
+                            <label for="titulo" class="input-group-text">Titulo</label>
+                            <input type="text"
+                                   id="titulo"
+                                   th:field="*{titulo}"
+                                   placeholder="Ingrese titulo del consejo de salud"
+                                   aria-label="Titulo"
+                                   aria-describedby="Titulo"
+                                   class="form-control">
+                        </div>
+                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}">
+                        </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Dirección -->
+                        <div class="input-group mb-3">
+                            <label for="contenido" class="input-group-text">Contenido</label>
+                            <textarea
+                                   id="contenido"
+                                   th:field="*{contenido}"
+                                   placeholder="Ingrese el contenido del consejo de salud"
+                                   aria-label="Contenido"
+                                   aria-describedby="Contenido"
+                                   class="form-control">
+                            </textarea>
+                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('contenido')}"
+                             th:errors="*{contenido}">
+                        </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Fecha de publicación -->
+                        <div class="input-group mb-3">
+                            <label for="fecha_publicacion" class="input-group-text">Fecha Publicación</label>
+                            <input type="date"
+                                   id="fecha_publicacion"
+                                   th:field="*{fechaPublicacion}"
+                                   aria-label="FechaPublicacion"
+                                   aria-labelledby="FechaPublicacion"
+                                   class="form-control">
+                        </div>
+                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('fechaPublicacion')}"
+                            th:errors="*{fechaPublicacion}">
+                        </div>
+                        <!-- #endregion -->
+
+                    </div>
+                    <!-- #endregion -->
+
+                    <!-- #region Opciones -->
+                    <div class="card-footer d-flex gap-3 justify-content-center">
+                        <button class="btn btn-danger">
+                            <a class="text-decoration-none link-light" th:href="@{/consejos_de_salud/listado}">Cancelar</a>
+                        </button>
+                        <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'">
+                        </button>
+                    </div>
+                    <!-- #endregion -->
+
+                </form>
+                <!-- #endregion -->
+
+            </div>
+            <!-- #endregion -->
+
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region Separator -->
+        <hr>
+        <!-- #endregion -->
+
+        <!-- #region Footer -->
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        <!-- #endregion -->
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </body>
+
+</html>

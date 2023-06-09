@@ -17,55 +17,51 @@
 
     <body>
         <!-- #region Header -->
-        <div class="elemento-superpuesto" th:fragment="header">
-            <header class="fixed-top">
-                <!-- #region Navbar -->
-                <nav class="navbar navbar-expand-lg px-3 py-2 text-dark">
-                    <div class="container-fluid">
-                        <div >
-                            <!-- <h1>Bienvenidos a la Página Web del Grupo 44</h1> -->
-                            <a class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-dark text-decoration-none" th:href="@{/index}">
-                                <img class="bi me-2" src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
-                                     alt="Logo de la página"
-                                     title="Logo"
-                                     width="70" 
-                                     height="62" 
-                                     role="img">
-                                <h5>Veterinaria Grupo 44</h5>                             
-                            </a>
-                        </div>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                            <ul class="navbar-nav text-center navbar-list">
-                                <li class="nav-item nav-link">
-                                    <a th:href="@{/index}" class="link-nav" >Inicio</a>
-                                </li>
-                                <li class="nav-item nav-link">
-                                    <a th:href="@{/productos/listado}" class="link-nav">Productos</a>
-                                </li>
-                                <li class="nav-item nav-link">
-                                    <a th:href="@{/consejos_de_salud}" class="link-nav">Consejos de Salud</a>
-                                </li>
-                                <li class="nav-item nav-link">
-                                    <a th:href="@{/servicio_de_paseos/listado}" class="link-nav">Servicio de Paseos</a>
-                                </li>
-                                <li class="nav-item nav-link">
-                                    <a th:href="@{/sucursales/listado}" class="link-nav">Sucursales</a>
-                                </li>
-                                <li class="nav-item nav-link">
-                                    <a th:href="@{/contactanos}" class="link-nav">Contáctanos</a>
-                                </li>
-                            </ul>
-                        </div>
+        <header th:fragment="header" class="container-fluid pb-3 sticky-top">
+            <!-- #region Navbar -->
+            <nav class="navbar navbar-expand-lg bg-light border-bottom px-3 py-2 text-dark">
+                <div class="container-fluid">
+                    <div>
+                        <!-- <h1>Bienvenidos a la Página Web del Grupo 44</h1> -->
+                        <a class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-dark text-decoration-none" th:href="@{/index}">
+                            <img class="bi me-2" src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
+                                    alt="Logo de la página"
+                                    title="Logo"
+                                    width="70" 
+                                    height="62" 
+                                    role="img">
+                            <h5>Veterinaria Grupo 44</h5>                             
+                        </a>
                     </div>
-                </nav>
-                
-                <!-- #endregion -->
-            </header>
-        </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav text-center navbar-list">
+                            <li class="nav-item nav-link">
+                                <a th:href="@{/index}" class="link-nav" >Inicio</a>
+                            </li>
+                            <li class="nav-item nav-link">
+                                <a th:href="@{/productos/listado}" class="link-nav">Productos</a>
+                            </li>
+                            <li class="nav-item nav-link">
+                                <a th:href="@{/consejos_de_salud/listado}" class="link-nav">Consejos de Salud</a>
+                            </li>
+                            <li class="nav-item nav-link">
+                                <a th:href="@{/servicio_de_paseos/listado}" class="link-nav">Servicio de Paseos</a>
+                            </li>
+                            <li class="nav-item nav-link">
+                                <a th:href="@{/sucursales/listado}" class="link-nav">Sucursales</a>
+                            </li>
+                            <li class="nav-item nav-link">
+                                <a th:href="@{/contactanos}" class="link-nav">Contáctanos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>  
+        </header>
         <!-- #endregion -->
     </body>
 
