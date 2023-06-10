@@ -2,21 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
     <head>
-        <!-- #region Meta -->
+        <!-- #region Etiquetas Meta -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- #endregion -->
 
-        <!-- #region Bootstrap (import) -->
+        <!-- #region Importar Bootstrap -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
         <!-- #endregion -->
 
-        <!-- #region Custom CSS -->
-        <link rel="stylesheet" th:href="@{/css/estilos.css}">
+        <!-- #region Importar CSS personalizado -->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
         <!-- #endregion -->
 
-        <!-- #region Webpage Icon & Title -->
+        <!-- #region Icono y Título de la Página -->
         <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
         <title>Contáctanos</title>
         <!-- #endregion -->
@@ -26,6 +26,7 @@
         <!-- #region Header -->
         <header th:replace="~{layouts/header :: header}"></header>
         <!-- #endregion -->
+        
         <!-- #region Contact -->
         <div class="container" id="seccion">
 

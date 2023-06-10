@@ -25,6 +25,7 @@ public class HealthTipList {
                         "Cómo cuidar a nuestras mascotas",
                         "Tener una mascota en casa requiere de compromiso y responsabilidad por parte de toda la familia.",
                         LocalDate.of(2020, 4, 6),
+                        "/images/healttips/consejo0.jpg",
                         (short) 0));
 
         this.consejos.add(
@@ -39,6 +40,7 @@ public class HealthTipList {
                 "de pulgas y/o garrapatas.\n" +
                 "\nMantener limpia el área donde se encuentre la mascota.",
                 LocalDate.of(2022, 3, 7),
+                "/images/healttips/consejo1.png",
                 (short) 1));
 
         this.consejos.add(
@@ -50,15 +52,17 @@ public class HealthTipList {
                 "\nEvitar que ingieran alimentos en mal estado; en caso de que no se sientan bien llevarlos con un " +
                 "veterinario y evitar darles remedios caseros o de humanos.",
                 LocalDate.of(2020, 6, 16),
+                "/images/healttips/consejo2.jpg",
                 (short) 2));
 
         this.consejos.add(
             new HealthTip(
                 "Ejercicios",
-                "\nLos perros y gatos necesitas necesitan ejercicio ya que esto les ayuda a desestresaese y gastar su " +
+                "\nLos perros y gatos necesitas necesitan ejercicio ya que esto les ayuda a desestrarse y gastar su " +
                 "energía." +
                 "\nNecesitan socializar con otros animales.",
                 LocalDate.of(2023, 1, 23),
+                "/images/healttips/consejo3.jpg",
                 (short) 3));
 
     }
