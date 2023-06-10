@@ -2,24 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
     <head>
-        <!-- #region MetaTags -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- #endregion -->
-        
-        <!-- #region Bootstrap -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-        <!-- #endregion -->
-
-        <!-- #region CSS -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
-        <!-- #endregion -->
-
-        <!-- #region Icono y Título de la Página -->
         <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
         <title>Inicio</title>
-        <!-- #endregion -->
     </head>
 
     <body>
@@ -28,9 +17,11 @@
         <!-- #endregion -->
         
         <!-- #region Index -->
-        <div class="container bg-light border border-2 rounded">
+        <div class="container bg-light border border-2 rounded mb-3">
             <section class="pt-3">
                 <h2>Últimas noticias</h2>
+
+                <!-- #region Noticias -->
                 <aside>
                     <ul>
                         <li><a href="#">Nuevo servicio de cuidado de mascotas</a></li>
@@ -38,8 +29,9 @@
                         <li><a href="#">Cómo mantener a tu perro feliz y saludable durante el verano</a></li>
                     </ul>
                 </aside>
-                <h2>Nuestro objetivo</h2>
-                <!-- #region Articles -->
+                <!-- #endregion -->
+                <h2><u>Nuestro objetivo</u></h2>
+                <!-- #region Contenido -->
                 <article>
                     <h3>Compromiso con la salud y bienestar de las mascotas</h3>
                     <p>
@@ -56,6 +48,7 @@
                     </p>
                 </article>
                 <!-- #endregion -->
+
             </section>
         </div>
         <!-- #endregion -->

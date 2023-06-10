@@ -5,18 +5,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- #region Bootstrap (import) -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-        <!-- #endregion -->
-        <!-- #region Custom CSS -->
-        <link rel="stylesheet" th:href="@{/css/estilos.css}">
-        <!-- #endregion -->
-        <!-- #region Webpage Icon & Title -->
+        <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
         <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
-        <!-- region Import CSS -->
-        <link rel="stylesheet"  type="text/css" th:href="@{/css/estilos.css}" />
         <title>Productos</title>
-        <!-- #endregion -->
     </head>
 
     <body>
@@ -25,7 +17,7 @@
         <!-- #endregion -->
 
         <!-- #region Productos -->
-        <div class="container" id="seccion">
+        <div class="container pt-3" id="seccion">
 
             <!-- #region Navegación -->
             <div class="bg-light border border-light-subtle rounded text-center">
@@ -85,8 +77,6 @@
 
                         <!-- #region Card Body -->
                         <div class="card-body">
-                            <!-- Auxiliar -->
-                            
                             <p class="card-text">Precio: <span th:text="'$' + ${producto.precio}"></span>
                             </p>
                             <p class="card-text">Descuento: <span th:text="${producto.descuento}+'%'"></span>
@@ -109,7 +99,7 @@
                                     <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
                                     th:href="@{/productos/eliminar/} + ${producto.codigo}">Eliminar</a>
                                 </div>
-                                <small class="text-black text-body-secondary" th:text="${producto.codigo}"></small>
+                                <!-- <small class="text-black text-body-secondary" th:text="${producto.codigo}"></small> -->
                             </div>
                     </div>
                     <!-- #endregion -->
