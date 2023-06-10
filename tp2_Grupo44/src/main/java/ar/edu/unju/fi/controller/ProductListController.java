@@ -53,7 +53,7 @@ public class ProductListController {
 			modelAndView.setViewName("nuevo_producto");
 			modelAndView.addObject("producto", productoAgregar);
 			return modelAndView;
-		}
+		}		
 
 		productService.setProductCode(productoAgregar);
 		productService.saveNewProduct(productoAgregar);

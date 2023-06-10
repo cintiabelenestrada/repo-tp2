@@ -2,18 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
     <head>
-        <!-- #region Etiquetas Meta -->
+        <!-- #region MetaTags -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- #endregion -->
         
-        <!-- #region Importar Bootstrap -->
+        <!-- #region Bootstrap -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
         <!-- #endregion -->
 
-        <!-- #region Importar CSS personalizado -->
-        <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+        <!-- #region CSS -->
+        <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
         <!-- #endregion -->
 
         <!-- #region Icono y Título de la Página -->
@@ -28,11 +28,11 @@
         <!-- #endregion -->
         
         <!-- #region Index -->
-        <div class="container">
-            <section>
+        <div class="container bg-light border border-2 rounded">
+            <section class="pt-3">
                 <h2>Últimas noticias</h2>
                 <aside>
-                        <ul>
+                    <ul>
                         <li><a href="#">Nuevo servicio de cuidado de mascotas</a></li>
                         <li><a href="#">Promoción de invierno: 10% de descuento en paseos</a></li>
                         <li><a href="#">Cómo mantener a tu perro feliz y saludable durante el verano</a></li>

@@ -11,8 +11,7 @@ public class Image {
     // endregion
 
     // region Constructors
-    public Image() {
-    }
+    public Image() {}
 
     public Image(
             String nombre,

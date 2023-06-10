@@ -2,24 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
     <head>
-        <!-- #region Meta -->
+        <!-- #region MetaTags -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- #endregion -->
 
-        <!-- #region Bootstrap (import) -->
+        <!-- #region Bootstrap -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
         <!-- #endregion -->
 
-        <!-- #region Custom CSS -->
-        <link rel="stylesheet" th:href="@{/css/estilos.css}">
+        <!-- region Import CSS -->
+        <link rel="stylesheet"  type="text/css" th:href="@{/css/estilos.css}">
         <!-- #endregion -->
 
         <!-- #region Webpage Icon & Title -->
-        <link rel="shortcut icon" type="image/svg" th:href="@{/images/pet_shop_favicon.svg}">
-        <!-- region Import CSS -->
-        <link rel="stylesheet"  type="text/css" th:href="@{/css/estilos.css}" />
+        <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
         <title>Nuevo Producto</title>
         <!-- #endregion -->
     </head>
@@ -45,8 +43,10 @@
                 <!-- #endregion -->
 
                 <!-- #region Contenido -->
-                <form th:action="${editar} ? @{/productos/modificar} : @{/productos/guardar}" th:object="${producto}"
-                    method="post">
+                <form th:action="${editar} ? @{/productos/modificar} : @{/productos/guardar}"
+                      th:object="${producto}"
+                      enctype="multipart/form-data"
+                      method="post">
 
                     <!-- #region Entrada de datos -->
                     <div class="card-body">
@@ -104,10 +104,12 @@
                                 <option value="Prendas">Prendas</option>
                             </select>
                         </div>
-                        <div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}">
+                        <div class="text-danger"
+                             th:if="${#fields.hasErrors('categoria')}"
+                             th:errors="*{categoria}">
                         </div>
                         <!-- #endregion -->
-
+                        
                     </div>
                     <!-- #endregion -->
 
