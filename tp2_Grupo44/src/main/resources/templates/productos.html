@@ -1,129 +1,159 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- #region Bootstrap (import) -->
-        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-        <!-- #endregion -->
-        <!-- #region Custom CSS -->
-        <link rel="stylesheet" th:href="@{/css/estilos.css}">
-        <!-- #endregion -->
-        <!-- #region Webpage Icon & Title -->
-        <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
-        <!-- region Import CSS -->
-        <link rel="stylesheet"  type="text/css" th:href="@{/css/estilos.css}" />
-        <title>Productos</title>
-        <!-- #endregion -->
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- #region Bootstrap (import) -->
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <!-- #endregion -->
+    <!-- #region Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <!-- #endregion -->
+    <!-- #region Webpage Icon & Title -->
+    <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
+    <!-- region Import CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}" />
+    <title>Productos</title>
+    <!-- #endregion -->
+</head>
 
-    <body>
-        <!-- #region Header -->
-        <header th:replace="~{layouts/header :: header}"></header>
-        <!-- #endregion -->
+<body>
+    <!-- #region Header -->
+    <header th:replace="~{layouts/header :: header}"></header>
+    <!-- #endregion -->
 
-        <!-- #region Productos -->
-        <div class="container" id="seccion">
+    <!-- #region Productos -->
+    <div class="container" id="seccion">
 
-            <!-- #region Navegación -->
-            <div class="bg-light border border-light-subtle rounded text-center">
-                <h1 class="m-3">¡Los productos que buscas estan aquí!</h1>
-                    <p class="text-secondary">
-                        <em>Poseemos una variedad de artículos para todos los gustos</em>
-                    </p>
-                    <a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo producto</a>
-                
-                <h5 class="m-3">Categoria de Productos</h5>
-                
-                <ul class="nav nav-pills nav-fill">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Alimentos">Alimentos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Camas">Camas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Collares y correas">Collares y correas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Higiene">Productos de Higiene</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Juguetes">Juguetes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Prendas">Prendas</a>
-                    </li>
-                </ul>
-            </div>
-            <hr>
-            <!-- #region Section -->
+        <!-- #region Navegación -->
+        <div class="bg-light border border-light-subtle rounded text-center">
+            <h1 class="m-3">¡Los productos que buscas estan aquí!</h1>
+            <p class="text-secondary">
+                <em>Poseemos una variedad de artículos para todos los gustos</em>
+            </p>
+            <a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo producto</a>
 
-            <!-- #region List of Products -->
-            <div class="row" th:each="categoria: ${listaCategorias}">
-                
-                <h2 class="m-3 fs-2 text-center">
-                    <a class="text-decoration-none" href="#seccion" th:text="${categoria}" th:id="${categoria}"></a>
-                </h2>
+            <h5 class="m-3">Categoria de Productos</h5>
 
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3" th:each="producto: ${listaProductos}"
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="#Alimentos">Alimentos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Camas">Camas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Collares y correas">Collares y correas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Higiene">Productos de Higiene</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Juguetes">Juguetes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Prendas">Prendas</a>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <!-- #region Section -->
+
+        <!-- #region List of Products -->
+        <div class="row" th:each="categoria: ${listaCategorias}">
+
+            <h2 class="m-3 fs-2 text-center">
+                <a class="text-decoration-none" href="#seccion" th:text="${categoria}" th:id="${categoria}"></a>
+            </h2>
+
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3" th:each="producto: ${listaProductos}"
                 th:if="${producto.categoria} == ${categoria}">
 
                 <!-- #region Product Card -->
                 <div class="card h-100 text-bg-light">
-                        <!-- #region Title -->
-                        <div class="card-header text-center">
-                            <h5 class="mb-0" th:text="${producto.nombre}"></h5>
-                        </div>
-                        <!-- #endregion -->
-                        
-                        <!-- #region Image -->
-                        <img class="card-img-top" th:src="${producto.imagen}" alt="...">
-                        <!-- #endregion -->
+                    <!-- #region Title -->
+                    <div class="card-header text-center">
+                        <h5 class="mb-0" th:text="${producto.nombre}"></h5>
+                    </div>
+                    <!-- #endregion -->
 
-                        <!-- #region Card Body -->
-                        <div class="card-body">
-                            <!-- Auxiliar -->
-                            
-                            <p class="card-text">Precio: <span th:text="'$' + ${producto.precio}"></span>
-                            </p>
-                            <p class="card-text">Descuento: <span th:text="${producto.descuento}+'%'"></span>
-                            </p>
-                            <p class="card-text">Precio con descuento:
-                                <span th:text="'$' + ${producto.calcularDescuento}"></span>
-                            </p>
-                        </div>
-                        <!-- #endregion -->
+                    <!-- #region Image -->
+                    <img class="card-img-top" th:src="${producto.imagen}" alt="...">
+                    <!-- #endregion -->
 
-                        <div class="card-footer
+                    <!-- #region Card Body -->
+                    <div class="card-body">
+                        <!-- Auxiliar -->
+
+                        <p class="card-text">Precio: <span th:text="'$' + ${producto.precio}"></span>
+                        </p>
+                        <p class="card-text">Descuento: <span th:text="${producto.descuento}+'%'"></span>
+                        </p>
+                        <p class="card-text">Precio con descuento:
+                            <span th:text="'$' + ${producto.calcularDescuento}"></span>
+                        </p>
+                    </div>
+                    <!-- #endregion -->
+
+                    <div class="card-footer
                                     d-flex
                                     justify-content-between
                                     align-items-center">
-                                    <div class="btn-group" role="group">
-                                        
-                                <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
-                                    th:href="@{/productos/modificar/} + ${producto.codigo}">Modificar</a>
+                        <div class="btn-group" role="group">
 
-                                    <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
-                                    th:href="@{/productos/eliminar/} + ${producto.codigo}">Eliminar</a>
+                            <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
+                                th:href="@{/productos/modificar/} + ${producto.codigo}">Modificar</a>
+                                
+                            <!-- region delete Product Modal-->
+                            <div>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-sm btn-outline-danger text-decoration-none"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Eliminar
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Eliminar producto</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Estas seguro/a que deseas eliminar este producto?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cerrar</button>
+                                                <a class="btn btn-danger" role="button"
+                                                    th:href="@{/productos/eliminar/} + ${producto.codigo}">Eliminar</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <small class="text-black text-body-secondary" th:text="${producto.codigo}"></small>
                             </div>
+                        </div>
+                        <small class="text-black text-body-secondary" th:text="${producto.codigo}"></small>
                     </div>
-                    <!-- #endregion -->
                 </div>
+                <!-- #endregion -->
             </div>
-            <p class="text-center">
-                <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
-            </p>
         </div>
+        <p class="text-center">
+            <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
+        </p>
+    </div>
     <!-- #endregion -->
-        <!-- #region Footer -->
-        <footer th:replace="~{layouts/footer :: footer}"></footer>
-        <!-- #endregion -->
-        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    </body>
+    <!-- #region Footer -->
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
+    <!-- #endregion -->
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
 
 </html>
