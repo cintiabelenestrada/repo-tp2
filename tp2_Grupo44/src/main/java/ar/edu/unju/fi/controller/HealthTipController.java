@@ -87,7 +87,7 @@ public class HealthTipController {
     }
 
     @PostMapping("/modificar")
-    public ModelAndView modifyBranchOffice(
+    public ModelAndView modifyHealthTip(
             @Valid @ModelAttribute(value = "consejo") HealthTip consejoModificar,
             BindingResult resultadoValidacion) {
 
@@ -115,6 +115,7 @@ public class HealthTipController {
             if (consejo.getIdentificador() == consejoModificar.getIdentificador()) {
                 consejo.setTitulo(consejoModificar.getTitulo());
                 consejo.setContenido(consejoModificar.getContenido());
+                consejo.setImagen(consejoModificar.getImagen());
                 consejo.setFechaPublicacion(consejoModificar.getFechaPublicacion());
                 break;
             }
@@ -145,7 +146,7 @@ public class HealthTipController {
     }
 
     @GetMapping("/eliminar/{identificador}")
-    public String deleteBranchOffice(
+    public String deleteHealthTip(
             @PathVariable(value = "identificador") short identificadorConsejo) {
 
         for (HealthTip consejo : listaConsejos.getConsejos()) {
