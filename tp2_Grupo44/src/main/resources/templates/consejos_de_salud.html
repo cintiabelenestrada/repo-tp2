@@ -2,25 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
     <head>
-        <!-- #region Etiquetas Meta -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- #endregion -->
-        
-        <!-- #region Importar Bootstrap -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-        <!-- #endregion -->
-        
-        <!-- #region Importar CSS personalizado -->
-        <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
-        <!-- #endregion -->
-
-        <!-- #region Icono y Título de la Página -->
+        <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
         <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
         <title>Consejos de salud</title>
-        <!-- #endregion -->
-        
     </head>
 
     <body>
@@ -29,21 +17,27 @@
         <!-- #endregion -->
 
         <!-- #region Consejos de Salud -->
-        <section class="container" id="seccion">
+        <section class="container pt-3" id="seccion">
 
             <div class="bg-light border border-light-subtle rounded text-center">
                 <h1 class="m-3">¡Encuentrá los mejores consejos!</h1>
+                <p class="text-secondary">
+                    <em>Artículos para que estes informado sobre la salud de tu mascota</em>
+                </p>
                 <a class="btn btn-primary mb-3" th:href="@{/consejos_de_salud/nuevo}">Nuevo Consejo</a>
             </div>
             <hr>
 
             <article th:each="consejo : ${listaConsejos}">
             	<div class="card text-center mx-auto mb-3" style="width: 60%;">
-	                <!-- #region Titulo -->
+	                
+                    <!-- #region Titulo -->
 	                <h2 class="card-title" th:text="${consejo.titulo}"></h2>
 	                <!-- #endregion -->
-					<img th:src="@{${consejo.imagen}}" style="max-height:600px" class="card-img-middle">
-					<div class="card-body">
+					
+                    <img th:src="@{${consejo.imagen}}" style="max-height:600px" class="card-img-middle">
+					
+                    <div class="card-body">
 		                <!-- #region Contenido -->
 		                <p style="white-space: pre-line;" th:text="${consejo.contenido}"></p>
 		                <!-- #endregion -->
@@ -52,6 +46,7 @@
 		                <small class="text-secondary" th:text="${consejo.fechaPublicacion}"></small>
 		                <!-- #endregion -->
 	                </div>
+
 	                <!-- #region Acciones(Modificar/Eliminar) -->
 	                <div class="btn-group" role="group">
 	                    <a class="btn btn-sm btn-outline-primary text-decoration-none"
@@ -65,7 +60,9 @@
 	                <!-- #endregion -->
 				</div>
             </article>
-
+            <p class="text-center">
+                <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
+            </p>
         </section>
         <!-- #endregion -->
 

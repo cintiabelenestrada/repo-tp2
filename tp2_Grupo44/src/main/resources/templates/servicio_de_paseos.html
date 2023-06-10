@@ -2,26 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
     <head>
-        <!-- #region Meta-->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- #endregion -->
-
-        <!-- #region Bootstrap (import) -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-        <!-- #endregion -->
-
-        <!-- #region Custom CSS -->
-        <link rel="stylesheet" th:href="@{/css/estilos.css}">
-        <!-- #endregion -->
-
-        <!-- #region Webpage Icon & Title -->
+        <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
         <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
-        <!-- region Import CSS -->
-        <link rel="stylesheet"  type="text/css" th:href="@{/css/estilos.css}" />
         <title>Servicio de paseos</title>
-        <!-- #endregion -->
     </head>
 
     <body>
@@ -29,7 +16,7 @@
         <header th:replace="~{layouts/header :: header}"></header>
         <!-- #endregion -->
 
-        <div class="container">
+        <div class="container pt-3" id="seccion">
             <div class="bg-light border border-light-subtle rounded text-center mb-3">
                 <h1 class="m-3">¡Encontrá al paseador más cercano!</h1>
                 <p class="text-secondary">
@@ -50,7 +37,7 @@
                          th:if="${#strings.equals(imagen.identificador, provincia)}"
                          th:src="${imagen.nombre}">
                 </div>
-                <table class="table table-bordered table-striped table-hover">
+                <table class="table table-bordered table-striped table-hover text-center">
                     <thead class="align-middle text-center">
                         <tr>
                             <th scope="col">Nombre</th>
@@ -85,6 +72,9 @@
                     </tbody>
                 </table>
             </div>
+            <p class="text-center">
+                <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
+            </p>
         </div>
 
         <!-- #region Footer -->
