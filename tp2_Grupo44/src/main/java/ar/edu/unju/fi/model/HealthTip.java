@@ -46,6 +46,7 @@ public class HealthTip {
         this.fechaPublicacion = fechaPublicacion;
         this.imagen=imagen;
         this.identificador = identificador;
+
     }
     // endregion
 
