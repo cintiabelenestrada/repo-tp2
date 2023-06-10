@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.lists.BranchList;
-import ar.edu.unju.fi.lists.ImageList;
 import ar.edu.unju.fi.model.Branch;
+import ar.edu.unju.fi.service.IBranchService;
+import ar.edu.unju.fi.service.ICommonService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -21,31 +21,19 @@ import jakarta.validation.Valid;
 public class BranchOfficeController {
 
     @Autowired
-    BranchList listaSucursales;
+    private IBranchService branchService;
 
     @Autowired
-    ImageList listaImagenes;
-
-    @Autowired
-    Branch sucursal;
+    private ICommonService commonService;
 
     @GetMapping("/listado")
     public String getBranchOfficePage(Model model) {
 
-        model.addAttribute(
-                "listaSucursales",
-                listaSucursales.getSucursales());
-
-        model.addAttribute(
-                "listaProvincias",
-                listaSucursales.getProvincias());
-
-        model.addAttribute(
-                "listaImagenes",
-                listaImagenes.getImagenes());
-
+        model.addAttribute("listaSucursales", branchService.getSucursales());
+        model.addAttribute("listaProvincias", branchService.getProvincias());
+        model.addAttribute("listaImagenes", commonService.getImagenes());
+        
         return "sucursales";
-
     }
 
     @GetMapping("/nuevo")
@@ -53,13 +41,8 @@ public class BranchOfficeController {
 
         boolean allowEditing = false;
 
-        model.addAttribute(
-                "sucursal",
-                sucursal);
-
-        model.addAttribute(
-                "editar",
-                allowEditing);
+        model.addAttribute("sucursal", branchService.getBranch());
+        model.addAttribute("editar", allowEditing);
 
         return "nueva_sucursal";
     }
@@ -69,31 +52,18 @@ public class BranchOfficeController {
             @Valid @ModelAttribute(value = "sucursal") Branch sucursalAgregar,
             BindingResult resultadoValidacion) {
 
-        ModelAndView modelAndView = new ModelAndView(
-                "redirect:/sucursales/listado");
-
-        short identificadorContador = listaSucursales.getSucursales().get(listaSucursales.getSucursales().size() - 1).getIdentificador();
-        identificadorContador++;
+        ModelAndView modelAndView = new ModelAndView("redirect:/sucursales/listado");
 
         if (resultadoValidacion.hasErrors()) {
-
-            modelAndView.setViewName(
-                    "nueva_sucursal");
-
-            modelAndView.addObject(
-                    "sucursal",
-                    sucursalAgregar);
-
+            modelAndView.setViewName("nueva_sucursal");
+            modelAndView.addObject("sucursal", sucursalAgregar);
             return modelAndView;
-
         }
 
-        sucursalAgregar.setIdentificador(identificadorContador);
-        listaSucursales.getSucursales().add(sucursalAgregar);
+        branchService.setBranchOfficeIdentifier(sucursalAgregar);
+        branchService.saveNewBranchOffice(sucursalAgregar);
 
-        modelAndView.addObject(
-                "listaSucursales",
-                listaSucursales.getSucursales());
+        modelAndView.addObject("listaSucursales",branchService.getSucursales());
 
         return modelAndView;
     }
@@ -103,17 +73,10 @@ public class BranchOfficeController {
             Model model,
             @PathVariable(value = "identificador") short identificadorSucursal) {
 
-        Branch BranchFound = new Branch();
+        Branch branchFound = branchService.findBranchOfficeByIdentifier(identificadorSucursal);
         boolean allowEditing = true;
 
-        for (Branch sucursal : listaSucursales.getSucursales()) {
-            if (sucursal.getIdentificador() == identificadorSucursal) {
-                BranchFound = sucursal;
-                break;
-            }
-        }
-
-        model.addAttribute("sucursal", BranchFound);
+        model.addAttribute("sucursal", branchFound);
         model.addAttribute("editar", allowEditing);
 
         return "nueva_sucursal";
@@ -124,36 +87,17 @@ public class BranchOfficeController {
             @Valid @ModelAttribute(value = "sucursal") Branch sucursalModificar,
             BindingResult resultadoValidacion) {
 
-        ModelAndView modelAndView = new ModelAndView(
-                "redirect:/sucursales/listado");
-
+        ModelAndView modelAndView = new ModelAndView("redirect:/sucursales/listado");
         boolean allowEditing = true;
 
         if (resultadoValidacion.hasErrors()) {
-
             modelAndView.setViewName("nueva_sucursal");
-
-            modelAndView.addObject(
-                    "sucursal",
-                    sucursalModificar);
-
-            modelAndView.addObject(
-                    "editar",
-                    allowEditing);
-
+            modelAndView.addObject("sucursal", sucursalModificar);
+            modelAndView.addObject("editar", allowEditing);
             return modelAndView;
         }
 
-        for (Branch sucursal : listaSucursales.getSucursales()) {
-            if (sucursal.getIdentificador() == sucursalModificar.getIdentificador()) {
-                sucursal.setNombre(sucursalModificar.getNombre());
-                sucursal.setDireccion(sucursalModificar.getDireccion());
-                sucursal.setNumeroDireccion(sucursalModificar.getNumeroDireccion());
-                sucursal.setTelefono(sucursalModificar.getTelefono());
-                sucursal.setProvincia(sucursalModificar.getProvincia());
-                break;
-            }
-        }
+        branchService.modifyBranchOfficeByIdentifier(sucursalModificar);
 
         return modelAndView;
     }
@@ -162,12 +106,7 @@ public class BranchOfficeController {
     public String deleteBranchOffice(
             @PathVariable(value = "identificador") short identificadorSucursal) {
 
-        for (Branch sucursal : listaSucursales.getSucursales()) {
-            if (sucursal.getIdentificador() == identificadorSucursal) {
-                listaSucursales.getSucursales().remove(sucursal);
-                break;
-            }
-        }
+        branchService.deleteBranchOfficeByIdentifier(identificadorSucursal);
 
         return ("redirect:/sucursales/listado");
     }

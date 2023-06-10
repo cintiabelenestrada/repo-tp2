@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.lists.DogWalkerList;
-import ar.edu.unju.fi.lists.ImageList;
 import ar.edu.unju.fi.model.DogWalker;
+import ar.edu.unju.fi.service.ICommonService;
+import ar.edu.unju.fi.service.IDogWalkerService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -21,28 +21,17 @@ import jakarta.validation.Valid;
 public class DogWalkingServiceController {
 
     @Autowired
-    DogWalkerList listaPaseadores;
-
+    private IDogWalkerService dogWalkerService;
+    
     @Autowired
-    ImageList listaImagenes;
-
-    @Autowired
-    DogWalker paseador;
+    private ICommonService commonService;
 
     @GetMapping("/listado")
     public String getDogWalkingServicePage(Model model) {
 
-        model.addAttribute(
-                "listaPaseadores",
-                listaPaseadores.getPaseadores());
-
-        model.addAttribute(
-                "listaProvincias",
-                listaPaseadores.getProvincias());
-
-        model.addAttribute(
-                "listaImagenes",
-                listaImagenes.getImagenes());
+        model.addAttribute("listaPaseadores", dogWalkerService.getPaseadores());
+        model.addAttribute("listaProvincias", dogWalkerService.getProvincias());
+        model.addAttribute("listaImagenes", commonService.getImagenes());
 
         return "servicio_de_paseos";
     }
@@ -52,13 +41,8 @@ public class DogWalkingServiceController {
 
         boolean allowEditing = false;
 
-        model.addAttribute(
-                "paseador",
-                paseador);
-
-        model.addAttribute(
-                "editar",
-                allowEditing);
+        model.addAttribute("paseador", dogWalkerService.getDogWalker());
+        model.addAttribute("editar", allowEditing);
 
         return "nuevo_paseador";
     }
@@ -68,32 +52,18 @@ public class DogWalkingServiceController {
             @Valid @ModelAttribute(value = "paseador") DogWalker paseadorAgregar,
             BindingResult resultadoValidacion) {
 
-        ModelAndView modelAndView = new ModelAndView(
-                "redirect:/servicio_de_paseos/listado");
-
-        short identificadorContador = listaPaseadores.getPaseadores().get(listaPaseadores.getPaseadores().size() - 1)
-                .getIdentificador();
-        identificadorContador++;
+        ModelAndView modelAndView = new ModelAndView("redirect:/servicio_de_paseos/listado");
 
         if (resultadoValidacion.hasErrors()) {
-
-            modelAndView.setViewName(
-                    "nuevo_paseador");
-
-            modelAndView.addObject(
-                    "paseador",
-                    paseadorAgregar);
-
+            modelAndView.setViewName("nuevo_paseador");
+            modelAndView.addObject("paseador", paseadorAgregar);
             return modelAndView;
-
         }
 
-        paseadorAgregar.setIdentificador(identificadorContador);
-        listaPaseadores.getPaseadores().add(paseadorAgregar);
+        dogWalkerService.setDogWalkerIdentifier(paseadorAgregar);
+        dogWalkerService.saveNewDogWalker(paseadorAgregar);
 
-        modelAndView.addObject(
-                "listaPaseadores",
-                listaPaseadores.getPaseadores());
+        modelAndView.addObject("listaPaseadores", dogWalkerService.getPaseadores());
 
         return modelAndView;
     }
@@ -103,15 +73,8 @@ public class DogWalkingServiceController {
             Model model,
             @PathVariable(value = "identificador") short identificadorPaseador) {
 
-        DogWalker DogWalkerFound = new DogWalker();
+        DogWalker DogWalkerFound = dogWalkerService.findDogWalkerByIdentifier(identificadorPaseador);
         boolean allowEditing = true;
-
-        for (DogWalker paseador : listaPaseadores.getPaseadores()) {
-            if (paseador.getIdentificador() == identificadorPaseador) {
-                DogWalkerFound = paseador;
-                break;
-            }
-        }
 
         model.addAttribute("paseador", DogWalkerFound);
         model.addAttribute("editar", allowEditing);
@@ -124,37 +87,17 @@ public class DogWalkingServiceController {
             @Valid @ModelAttribute(value = "paseador") DogWalker paseadorModificar,
             BindingResult resultadoValidacion) {
 
-        ModelAndView modelAndView = new ModelAndView(
-                "redirect:/servicio_de_paseos/listado");
-
+        ModelAndView modelAndView = new ModelAndView("redirect:/servicio_de_paseos/listado");
         boolean allowEditing = true;
 
         if (resultadoValidacion.hasErrors()) {
-
             modelAndView.setViewName("nuevo_paseador");
-
-            modelAndView.addObject(
-                    "paseador",
-                    paseadorModificar);
-
-            modelAndView.addObject(
-                    "editar",
-                    allowEditing);
-
+            modelAndView.addObject("paseador", paseadorModificar);
+            modelAndView.addObject("editar", allowEditing);
             return modelAndView;
         }
 
-        for (DogWalker paseador : listaPaseadores.getPaseadores()) {
-            if (paseador.getIdentificador() == paseadorModificar.getIdentificador()) {
-                paseador.setNombre(paseadorModificar.getNombre());
-                paseador.setApellido(paseadorModificar.getApellido());
-                paseador.setDiaDisponible(paseadorModificar.getDiaDisponible());
-                paseador.setHorarioDisponibleDesde(paseadorModificar.getHorarioDisponibleDesde());
-                paseador.setHorarioDisponibleHasta(paseadorModificar.getHorarioDisponibleHasta());
-                paseador.setProvincia(paseadorModificar.getProvincia());
-                break;
-            }
-        }
+        dogWalkerService.modifyDogWalkerByIdentifier(paseadorModificar);
 
         return modelAndView;
     }
@@ -163,12 +106,7 @@ public class DogWalkingServiceController {
     public String deleteDogWalker(
             @PathVariable(value = "identificador") short identificadorPaseador) {
 
-        for (DogWalker paseador : listaPaseadores.getPaseadores()) {
-            if (paseador.getIdentificador() == identificadorPaseador) {
-                listaPaseadores.getPaseadores().remove(paseador);
-                break;
-            }
-        }
+        dogWalkerService.deleteDogWalkerByIdentifier(identificadorPaseador);
 
         return ("redirect:/servicio_de_paseos/listado");
     }

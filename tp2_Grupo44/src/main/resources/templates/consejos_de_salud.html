@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
     <head>
-        <!-- #region Meta Tags -->
+        <!-- #region Etiquetas Meta -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,30 +38,32 @@
             <hr>
 
             <article th:each="consejo : ${listaConsejos}">
-                <!-- #region Titulo -->
-                <h2 th:text="${consejo.titulo}"></h2>
-                <!-- #endregion -->
-
-                <!-- #region Contenido -->
-                <p style="white-space: pre-line;" th:text="${consejo.contenido}"></p>
-                <!-- #endregion -->
-
-                <!-- #region Fecha de Publicacion -->
-                <small class="text-secondary" th:text="${consejo.fechaPublicacion}"></small>
-                <!-- #endregion -->
-                
-                <!-- #region Acciones(Modificar/Eliminar) -->
-                <div class="btn-group" role="group">
-                    <a class="btn btn-sm btn-outline-primary text-decoration-none"
-                       role="button"
-                       th:href="@{/consejos_de_salud/modificar/} + ${consejo.identificador}">Modificar</a>
-
-                    <a class="btn btn-sm btn-outline-danger text-decoration-none"
-                       role="button"
-                       th:href="@{/consejos_de_salud/eliminar/} + ${consejo.identificador}">Eliminar</a>
-                </div>
-                <!-- #endregion -->
-
+            	<div class="card text-center mx-auto mb-3" style="width: 60%;">
+	                <!-- #region Titulo -->
+	                <h2 class="card-title" th:text="${consejo.titulo}"></h2>
+	                <!-- #endregion -->
+					<img th:src="@{${consejo.imagen}}" style="max-height:600px" class="card-img-middle">
+					<div class="card-body">
+		                <!-- #region Contenido -->
+		                <p style="white-space: pre-line;" th:text="${consejo.contenido}"></p>
+		                <!-- #endregion -->
+		
+		                <!-- #region Fecha de Publicacion -->
+		                <small class="text-secondary" th:text="${consejo.fechaPublicacion}"></small>
+		                <!-- #endregion -->
+	                </div>
+	                <!-- #region Acciones(Modificar/Eliminar) -->
+	                <div class="btn-group" role="group">
+	                    <a class="btn btn-sm btn-outline-primary text-decoration-none"
+	                       role="button"
+	                       th:href="@{/consejos_de_salud/modificar/} + ${consejo.identificador}">Modificar</a>
+	
+	                    <a class="btn btn-sm btn-outline-danger text-decoration-none"
+	                       role="button"
+	                       th:href="@{/consejos_de_salud/eliminar/} + ${consejo.identificador}">Eliminar</a>
+	                </div>
+	                <!-- #endregion -->
+				</div>
             </article>
 
         </section>

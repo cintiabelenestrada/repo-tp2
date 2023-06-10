@@ -90,6 +90,23 @@
                              th:errors="*{contenido}">
                         </div>
                         <!-- #endregion -->
+						
+						<!-- #region Imagen -->
+                        <div class="input-group mb-3">
+                            <label for="imagen" class="input-group-text">Url de imagen</label>
+                            <input type="text"
+                                   id="imagen"
+                                   th:field="*{imagen}"
+                                   placeholder="Ingrese url de imagen del consejo de salud"
+                                   aria-label="Imagen"
+                                   aria-describedby="Imagen"
+                                   class="form-control">
+                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('contenido')}"
+                             th:errors="*{imagen}">
+                        </div>
+                        <!-- #endregion -->
 
                         <!-- #region Fecha de publicación -->
                         <div class="input-group mb-3">
@@ -111,9 +128,7 @@
 
                     <!-- #region Opciones -->
                     <div class="card-footer d-flex gap-3 justify-content-center">
-                        <button class="btn btn-danger">
-                            <a class="text-decoration-none link-light" th:href="@{/consejos_de_salud/listado}">Cancelar</a>
-                        </button>
+                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/consejos_de_salud/listado}">Cancelar</a>
                         <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'">
                         </button>
                     </div>
