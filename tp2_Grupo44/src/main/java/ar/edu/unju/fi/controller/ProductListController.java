@@ -25,13 +25,8 @@ public class ProductListController {
 	@GetMapping("/listado")
 	public String getProductListPage(Model model) {
 
-		model.addAttribute(
-				"listaProductos",
-				productService.getProductos());
-
-		model.addAttribute(
-				"listaCategorias",
-				productService.getCategorias());
+		model.addAttribute("listaProductos", productService.getProductos());
+		model.addAttribute("listaCategorias", productService.getCategorias());
 
 		return "productos";
 	}
@@ -41,13 +36,8 @@ public class ProductListController {
 
 		boolean allowEditing = false;
 
-		model.addAttribute(
-				"producto",
-				productService.getProduct());
-
-		model.addAttribute(
-				"editar",
-				allowEditing);
+		model.addAttribute("producto", productService.getProduct());
+		model.addAttribute("editar", allowEditing);
 
 		return "nuevo_producto";
 	}
@@ -57,28 +47,18 @@ public class ProductListController {
 			@Valid @ModelAttribute(value = "producto") Product productoAgregar,
 			BindingResult resultadoValidacion) {
 
-		ModelAndView modelAndView = new ModelAndView(
-				"redirect:/productos/listado");
+		ModelAndView modelAndView = new ModelAndView("redirect:/productos/listado");
 
 		if (resultadoValidacion.hasErrors()) {
-
-			modelAndView.setViewName(
-					"nuevo_producto");
-
-			modelAndView.addObject(
-					"producto",
-					productoAgregar);
-
+			modelAndView.setViewName("nuevo_producto");
+			modelAndView.addObject("producto", productoAgregar);
 			return modelAndView;
 		}
 
 		productService.setProductCode(productoAgregar);
-
 		productService.saveNewProduct(productoAgregar);
 
-		modelAndView.addObject(
-				"listaProductos",
-				productService.getProductos());
+		modelAndView.addObject("listaProductos",productService.getProductos());
 
 		return modelAndView;
 	}
@@ -102,23 +82,13 @@ public class ProductListController {
 			@Valid @ModelAttribute(value = "producto") Product productoModificar,
 			BindingResult resultadoValidacion) {
 
-		ModelAndView modelAndView = new ModelAndView(
-				"redirect:/productos/listado");
-
+		ModelAndView modelAndView = new ModelAndView("redirect:/productos/listado");
 		boolean allowEditing = true;
 
 		if (resultadoValidacion.hasErrors()) {
-
 			modelAndView.setViewName("nuevo_producto");
-
-			modelAndView.addObject(
-					"producto",
-					productoModificar);
-
-			modelAndView.addObject(
-					"editar",
-					allowEditing);
-
+			modelAndView.addObject("producto", productoModificar);
+			modelAndView.addObject("editar", allowEditing);
 			return modelAndView;
 		}
 

@@ -16,7 +16,7 @@ public class ProductServiceImp implements IProductService {
 	private ProductList listaProductos;
 
     @Autowired
-	Product producto;
+	private Product producto;
 
     // region Methods
     @Override
@@ -30,27 +30,9 @@ public class ProductServiceImp implements IProductService {
     }
 
     @Override
-    public Product getProduct() {
-        return producto;
-    }
-    
-    public void setProductCode(Product producto) {
-        
-        int listSize = listaProductos.getProductos().size() - 1;
-        
-        short codigoContador = listaProductos.getProductos().get(listSize).getCodigo();
-		
-        codigoContador++;
-        
-        producto.setCodigo(codigoContador);
-
-    }
-
-    @Override
     public void saveNewProduct(Product productoAgregar) {
         listaProductos.getProductos().add(productoAgregar);
     }
-    // endregion
 
     @Override
     public Product findProductByCode(short codigo) {
@@ -73,12 +55,10 @@ public class ProductServiceImp implements IProductService {
 
         for (Product producto : listaProductos.getProductos()) {
 			if (producto.getCodigo() == productoModificar.getCodigo()) {
-				
                 producto.setNombre(productoModificar.getNombre());
 				producto.setPrecio(productoModificar.getPrecio());
 				producto.setCategoria(productoModificar.getCategoria());
 				producto.setDescuento(productoModificar.getDescuento());
-
 				break;
 			}
 		}
@@ -90,13 +70,27 @@ public class ProductServiceImp implements IProductService {
 
         for (Product producto : listaProductos.getProductos()) {
 			if (producto.getCodigo() == codigo) {
-				
                 listaProductos.getProductos().remove(producto);
-				
                 break;
 			}
 		}
 
     }
+
+    @Override
+    public Product getProduct() {
+        return producto;
+    }
+    
+    public void setProductCode(Product producto) {
+        
+        int listSize = listaProductos.getProductos().size() - 1;
+        short codigoContador = listaProductos.getProductos().get(listSize).getCodigo();
+		
+        codigoContador++;
+        producto.setCodigo(codigoContador);
+
+    }
+    // endregion
 
 }
