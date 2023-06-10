@@ -90,7 +90,24 @@
                              th:errors="*{contenido}">
                         </div>
                         <!-- #endregion -->
-
+						
+						<!-- #region Imagen -->
+                        <div class="input-group mb-3">
+                            <label for="imagen" class="input-group-text">Url de imagen</label>
+                            <input type="text"
+                                   id="imagen"
+                                   th:field="*{imagen}"
+                                   placeholder="Ingrese url de imagen del consejo de salud"
+                                   aria-label="Imagen"
+                                   aria-describedby="Imagen"
+                                   class="form-control">
+                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('contenido')}"
+                             th:errors="*{imagen}">
+                        </div>
+                        <!-- #endregion -->
+						
                         <!-- #region Fecha de publicación -->
                         <div class="input-group mb-3">
                             <label for="fecha_publicacion" class="input-group-text">Fecha Publicación</label>

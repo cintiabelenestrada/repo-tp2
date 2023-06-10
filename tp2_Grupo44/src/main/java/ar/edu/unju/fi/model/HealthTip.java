@@ -25,6 +25,9 @@ public class HealthTip {
     @NotNull(message = "Ingrese la fecha de publicación")
     private LocalDate fechaPublicacion;
 
+    @NotEmpty(message = "Ingrese la url de imagen")
+    private String imagen;
+    
     private short identificador;
     // endregion
 
@@ -35,13 +38,14 @@ public class HealthTip {
             String titulo,
             String contenido,
             LocalDate fechaPublicacion,
+            String imagen,
             short identificador) {
 
         this.titulo = titulo;
         this.contenido = contenido;
         this.fechaPublicacion = fechaPublicacion;
+        this.imagen=imagen;
         this.identificador = identificador;
-
     }
     // endregion
 
@@ -76,7 +80,16 @@ public class HealthTip {
 
     public void setIdentificador(short identificador) {
         this.identificador = identificador;
-    };
+    }
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	};
     // endregion
 
+    
 }
