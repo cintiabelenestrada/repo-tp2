@@ -24,16 +24,16 @@
         <header th:replace="~{layouts/header :: header}"></header>
         <!-- #endregion -->
         <!-- #region Section -->
-        <div class="container bg-light border border-2 border-secondary-subtle rounded">
+        <div class="container border border-2 border-secondary-subtle rounded">
             <div class="row">
                 <div class="text-center">
-                    <h1 class="display-3">Productos</h1>
-                    <a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo producto</a>
+                    <h1 class="m-3">Productos</h1>
                 </div>
             </div>
             <!-- #region Navigation -->
-            <div class="row" id="seccion">
-                <ul class="nav flex-column">
+            <div class="row bg-light" id="seccion">
+                <h5>Categoria de Productos</h5>
+                <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
                         <a class="nav-link" href="#Alimentos">Alimentos</a>
                     </li>
@@ -60,7 +60,7 @@
             <!-- #region List of Products -->
             <div class="row" th:each="categoria: ${listaCategorias}">
 
-                <h2 class="fs-2 text-center">
+                <h2 class="m-3 fs-2 text-center">
                     <a class="text-decoration-none" href="#seccion" th:text="${categoria}" th:id="${categoria}"></a>
                 </h2>
 
@@ -111,8 +111,10 @@
                     <!-- #endregion -->
                 </div>
             </div>
+
             <!-- </div> -->
             <p class="text-center">
+                <a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo producto</a>
                 <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
             </p>
         </div>
