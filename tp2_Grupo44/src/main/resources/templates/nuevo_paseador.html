@@ -145,12 +145,8 @@
 
                     <!-- #region Opciones -->
                     <div class="card-footer d-flex gap-3 justify-content-center">
-                    <a class="btn btn-danger text-decoration-none link-light"
-                               th:href="@{/servicio_de_paseos/listado}">
-                                Cancelar
-                    </a>
-                        <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'">
-                        </button>
+                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/servicio_de_paseos/listado}">Cancelar</a>
+                        <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'"></button>
                     </div>
                     <!-- #endregion -->
 
