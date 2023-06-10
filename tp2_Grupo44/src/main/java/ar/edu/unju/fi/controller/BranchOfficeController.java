@@ -72,8 +72,7 @@ public class BranchOfficeController {
         ModelAndView modelAndView = new ModelAndView(
                 "redirect:/sucursales/listado");
 
-        short identificadorContador = listaSucursales.getSucursales().get(listaSucursales.getSucursales().size() - 1)
-                .getIdentificador();
+        short identificadorContador = listaSucursales.getSucursales().get(listaSucursales.getSucursales().size() - 1).getIdentificador();
         identificadorContador++;
 
         if (resultadoValidacion.hasErrors()) {

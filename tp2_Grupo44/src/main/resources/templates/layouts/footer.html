@@ -14,8 +14,9 @@
 
     <body>
         <!-- #region Footer -->
-        <div th:fragment="footer" class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <footer th:fragment="footer" class="container-fluid pt-3">
+            
+            <div class="bg-light d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
                 <div class="col-md-4 d-flex align-items-center">
                     <a th:href="@{/index}">
                         <img src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_1280.png"
@@ -34,18 +35,19 @@
                         </a>
                     </li>
                     <li class="ms-3">
-                        <a class="text-body-secondary" href="#" target="_blank">
+                        <a class="text-body-secondary" href="#">
                             <i class="bi bi-facebook text-secondary fs-3"></i>
                         </a>
                     </li>
                     <li class="ms-3">
-                        <a class="text-body-secondary" href="#" target="_blank">
+                        <a class="text-body-secondary" href="#">
                             <i class="bi bi-whatsapp text-secondary fs-3"></i>
                         </a>
                     </li>
                 </ul>
-            </footer>
-        </div>
+            </div>
+            
+        </footer>
         <!-- #endregion -->
     </body>
 
