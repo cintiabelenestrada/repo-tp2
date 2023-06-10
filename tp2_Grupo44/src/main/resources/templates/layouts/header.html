@@ -36,27 +36,15 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav text-center navbar-list">
-                            <li class="nav-item nav-link">
-                                <a th:href="@{/index}" class="list-group-item-action list-group-item-info" >Inicio</a>
-                            </li>
-                            <li class="nav-item nav-link">
-                                <a th:href="@{/productos/listado}" class="list-group-item-action list-group-item-info">Productos</a>
-                            </li>
-                            <li class="nav-item nav-link">
-                                <a th:href="@{/consejos_de_salud/listado}" class="list-group-item-action list-group-item-info">Consejos de Salud</a>
-                            </li>
-                            <li class="nav-item nav-link">
-                                <a th:href="@{/servicio_de_paseos/listado}" class="list-group-item-action list-group-item-info">Servicio de Paseos</a>
-                            </li>
-                            <li class="nav-item nav-link">
-                                <a th:href="@{/sucursales/listado}" class="list-group-item-action list-group-item-info">Sucursales</a>
-                            </li>
-                            <li class="nav-item nav-link">
-                                <a th:href="@{/contactanos}" class="list-group-item-action list-group-item-info">Contáctanos</a>
-                            </li>
-                        </ul>
+                    <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
+                        <div class="navbar-nav text-center navbar-list">
+                            <a th:href="@{/index}" class="nav-link" >Inicio</a>
+                            <a th:href="@{/productos/listado}" class="nav-link">Productos</a>
+                            <a th:href="@{/consejos_de_salud/listado}" class="nav-link">Consejos de Salud</a>
+                            <a th:href="@{/servicio_de_paseos/listado}" class="nav-link">Servicio de Paseos</a>
+                            <a th:href="@{/sucursales/listado}" class="nav-link">Sucursales</a>                          
+                            <a th:href="@{/contactanos}" class="nav-link">Contáctanos</a>
+                        </div>
                     </div>
                 </div>
             </nav>  
