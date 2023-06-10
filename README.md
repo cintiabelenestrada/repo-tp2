@@ -2,10 +2,10 @@
 
 **Integrantes**:
 
-- Estrada Cintia Belèn
-- Gregorio Gastón Yamil
-- Gutierrez Angel Gonzalo
-- Ortiz Marcelo Fernando
+- Estrada, Cintia Belèn
+- Gregorio, Gastón Yamil
+- Gutierrez, Angel Gonzalo
+- Velazquez, Gonzalo Nicolás
 
 ## Programación Visual
 
@@ -38,6 +38,12 @@
 - Anotaciones, `@Component` y `@Autowired`
 - Uso de validaciones en formularios
 
+### Trabajo Práctico Nº 06
+
+**Objetivo de aprendizaje:**
+- Implementación de la capa `service`
+- Anotación, `@Service`
+
 **Notas sobre el Repositorio**
 
 | Branch             | Information                                                                  |
@@ -45,4 +51,4 @@
 | main               | El proyecto finalizado se guarda en esta rama                                |
 | develop            | El desarrolo del proyecto se almacena aqui antes de ser enviado a `main`     |
 | branch\_{_nombre_} | Multiples ramas derivadas de `develop` usadas por los integrantes del equipo |
-| branch\_{_nombre_}_{_task_} | Multiples ramas usadas para realizar tareas por los integrantes del equipo |
+| branch\_{_nombre_}_{_tarea_} | Multiples ramas usadas para realizar tareas por los integrantes del equipo |
