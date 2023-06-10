@@ -2,9 +2,9 @@
 
 **Integrantes**:
 
-- Estrada Cintia Belèn
-- Gregorio Gastón Yamil
-- Gutierrez Angel Gonzalo
+- Estrada, Cintia Belèn
+- Gregorio, Gastón Yamil
+- Gutierrez, Angel Gonzalo
 - Velazquez, Gonzalo Nicolás
 
 ## Programación Visual
