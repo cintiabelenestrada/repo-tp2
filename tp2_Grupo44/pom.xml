@@ -13,7 +13,7 @@
 	<artifactId>tp_Grupo44</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tp_Grupo44</name>
-	<description>Demo htm</description>
+	<description>Demostración de una tienda virtual de productos y servicios para mastcotas</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
