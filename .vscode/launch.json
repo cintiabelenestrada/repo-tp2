@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TpGrupo44Application<tp_Grupo44>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "ar.edu.unju.fi.TpGrupo44Application",
+            "projectName": "tp_Grupo44",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
