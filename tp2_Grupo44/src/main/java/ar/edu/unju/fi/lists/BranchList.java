@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.Branch;
+import ar.edu.unju.fi.entity.Branch;
 
 @Component
 public class BranchList {
@@ -33,7 +33,8 @@ public class BranchList {
 						LocalTime.of(9, 0),
 						LocalTime.of(20, 0),
 						provincias.get(1),
-						(short) 1));
+						(long) 1,
+						true));
 		this.sucursales.add(
 				new Branch(
 						"ALTO COMEDERO",
@@ -43,7 +44,8 @@ public class BranchList {
 						LocalTime.of(8, 0),
 						LocalTime.of(15, 0),
 						provincias.get(0),
-						(short) 2));
+						(long) 2,
+						true));
 		this.sucursales.add(
 				new Branch(
 						"CHIJRA",
@@ -53,7 +55,8 @@ public class BranchList {
 						LocalTime.of(9, 0),
 						LocalTime.of(16, 0),
 						provincias.get(0),
-						(short) 3));
+						(long) 3,
+						true));
 		this.sucursales.add(
 				new Branch(
 						"CASA CENTRAL",
@@ -63,7 +66,8 @@ public class BranchList {
 						LocalTime.of(13, 0),
 						LocalTime.of(20, 0),
 						provincias.get(2),
-						(short) 4));
+						(long) 4,
+						true));
 	}
 	// endregion
 

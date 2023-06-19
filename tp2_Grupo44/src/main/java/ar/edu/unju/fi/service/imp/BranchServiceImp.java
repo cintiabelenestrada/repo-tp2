@@ -5,92 +5,98 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.lists.BranchList;
-import ar.edu.unju.fi.model.Branch;
+import ar.edu.unju.fi.entity.Branch;
+import ar.edu.unju.fi.repository.IBranchRepository;
 import ar.edu.unju.fi.service.IBranchService;
 
 @Service
 public class BranchServiceImp implements IBranchService {
 
+    // region Componentes
     @Autowired
-    private BranchList listaSucursales;
+    private IBranchRepository branchRepository;
+    
+    // @Autowired
+    // private BranchList listaSucursales;
     
     @Autowired
     private Branch sucursal;
+    // endregion
 
+    // region Metodos
     @Override
     public List<Branch> getSucursales() {
-        return listaSucursales.getSucursales();
+        return branchRepository.findByEstado(true);
     }
 
-    // Crear clase nueva separarla de productos y vincularla mediante un identificador "nombre"
-    @Override
-    public List<String> getProvincias() {
-        return listaSucursales.getProvincias();
-    }
+    // @Override
+    // public List<String> getProvincias() {
+    //     return listaSucursales.getProvincias();
+    // }
 
     @Override
     public void saveNewBranchOffice(Branch sucursalAgregar) {
-        listaSucursales.getSucursales().add(sucursalAgregar);
+        branchRepository.save(sucursalAgregar);
     }
 
     @Override
-    public Branch findBranchOfficeByIdentifier(short identificador) {
+    public Branch findBranchOfficeByIdentifier(Long identificador) {
         
-        Branch branchFound = null;
+        // Branch branchFound = null;
 
-        for (Branch sucursal : listaSucursales.getSucursales()) {
-            if (sucursal.getIdentificador() == identificador) {
-                branchFound = sucursal;
-                break;
-            }
-        }
-
-        return branchFound;
+        // for (Branch sucursal : listaSucursales.getSucursales()) {
+        //     if (sucursal.getIdentificador() == identificador) {
+        //         branchFound = sucursal;
+        //         break;
+        //     }
+        // }
+        return branchRepository.findById(identificador).get();
     }
 
-    @Override
-    public void modifyBranchOfficeByIdentifier(Branch sucursalModificar) {
+    // @Override
+    // public void modifyBranchOfficeByIdentifier(Branch sucursalModificar) {
         
-        for (Branch sucursal : listaSucursales.getSucursales()) {
-            if (sucursal.getIdentificador() == sucursalModificar.getIdentificador()) {
-                sucursal.setNombre(sucursalModificar.getNombre());
-                sucursal.setDireccion(sucursalModificar.getDireccion());
-                sucursal.setNumeroDireccion(sucursalModificar.getNumeroDireccion());
-                sucursal.setTelefono(sucursalModificar.getTelefono());
-                sucursal.setProvincia(sucursalModificar.getProvincia());
-                break;
-            }
-        }
+    //     for (Branch sucursal : listaSucursales.getSucursales()) {
+    //         if (sucursal.getIdentificador() == sucursalModificar.getIdentificador()) {
+    //             sucursal.setNombre(sucursalModificar.getNombre());
+    //             sucursal.setDireccion(sucursalModificar.getDireccion());
+    //             sucursal.setNumeroDireccion(sucursalModificar.getNumeroDireccion());
+    //             sucursal.setTelefono(sucursalModificar.getTelefono());
+    //             sucursal.setProvincia(sucursalModificar.getProvincia());
+    //             break;
+    //         }
+    //     }
+        // branchRepository.save(sucursalModificar);
 
-    }
+    // }
 
-    @Override
-    public void deleteBranchOfficeByIdentifier(short identificador) {
+    // @Override
+    // public void deleteBranchOfficeByIdentifier(Branch sucursalEliminar) {
         
-        for (Branch sucursal : listaSucursales.getSucursales()) {
-            if (sucursal.getIdentificador() == identificador) {
-                listaSucursales.getSucursales().remove(sucursal);
-                break;
-            }
-        }
-
-    }
+    //     for (Branch sucursal : listaSucursales.getSucursales()) {
+    //         if (sucursal.getIdentificador() == identificador) {
+    //             listaSucursales.getSucursales().remove(sucursal);
+    //             break;
+    //         }
+    //     }
+    //     sucursalEliminar.setEstado(false);
+    //     branchRepository.save(sucursalEliminar);
+    // }
 
     @Override
     public Branch getBranch() {
         return sucursal;
     }
 
-    @Override
-    public void setBranchOfficeIdentifier(Branch sucursal) {
+    // @Override
+    // public void setBranchOfficeIdentifier(Branch sucursal) {
         
-        int listSize = listaSucursales.getSucursales().size() - 1;
-        short identificadorContador = listaSucursales.getSucursales().get(listSize).getIdentificador();
+    //     int listSize = listaSucursales.getSucursales().size() - 1;
+    //     short identificadorContador = listaSucursales.getSucursales().get(listSize).getIdentificador();
 		
-        identificadorContador++;
-        sucursal.setIdentificador(identificadorContador);
-    }
+    //     identificadorContador++;
+    //     sucursal.setIdentificador(identificadorContador);
+    // }
     // endregion
     
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.entity.Image;
 import ar.edu.unju.fi.lists.ImageList;
-import ar.edu.unju.fi.model.Image;
 import ar.edu.unju.fi.service.ICommonService;
 
 @Service
