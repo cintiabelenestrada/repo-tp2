@@ -21,7 +21,7 @@ public class Branch {
 	private Long identificador;
 	
 	private boolean estado;
-
+	
 	// @NotEmpty(message = "Debes introducir un nombre")
 	// @Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 30 caracteres")
 	private String nombre;
@@ -53,7 +53,9 @@ public class Branch {
 	// endregion
 
 	// region Constructors
-	public Branch() {}
+	public Branch() {
+		this.estado = true; // Asignar el valor true por defecto
+	}
 
 	public Branch(
 			String nombre,
