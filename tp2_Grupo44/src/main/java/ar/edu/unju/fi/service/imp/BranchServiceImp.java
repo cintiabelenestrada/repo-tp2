@@ -40,7 +40,7 @@ public class BranchServiceImp implements IBranchService {
     }
 
     @Override
-    public Branch findBranchOfficeByIdentifier(Long identificador) {
+    public Branch findBranchOfficeByIdentifier(long identificador) {
         
         // Branch branchFound = null;
 
@@ -50,6 +50,7 @@ public class BranchServiceImp implements IBranchService {
         //         break;
         //     }
         // }
+
         return branchRepository.findById(identificador).get();
     }
 
@@ -70,8 +71,8 @@ public class BranchServiceImp implements IBranchService {
 
     // }
 
-    // @Override
-    // public void deleteBranchOfficeByIdentifier(Branch sucursalEliminar) {
+    @Override
+    public void deleteBranchOfficeByIdentifier(Branch sucursalEliminar) {
         
     //     for (Branch sucursal : listaSucursales.getSucursales()) {
     //         if (sucursal.getIdentificador() == identificador) {
@@ -79,9 +80,10 @@ public class BranchServiceImp implements IBranchService {
     //             break;
     //         }
     //     }
-    //     sucursalEliminar.setEstado(false);
-    //     branchRepository.save(sucursalEliminar);
-    // }
+    
+        sucursalEliminar.setEstado(false);
+        branchRepository.save(sucursalEliminar);
+    }
 
     @Override
     public Branch getBranch() {

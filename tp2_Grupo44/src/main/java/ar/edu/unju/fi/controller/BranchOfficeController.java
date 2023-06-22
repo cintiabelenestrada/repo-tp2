@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.entity.Branch;
 import ar.edu.unju.fi.service.IBranchService;
-import ar.edu.unju.fi.service.ICommonService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -22,8 +21,8 @@ public class BranchOfficeController {
     @Autowired
     private IBranchService branchService;
 
-    @Autowired
-    private ICommonService commonService;
+    // @Autowired
+    // private ICommonService commonService;
 
     // @Autowired
     // private Branch sucursal;
@@ -33,7 +32,7 @@ public class BranchOfficeController {
 
         model.addAttribute("listaSucursales", branchService.getSucursales());
         // model.addAttribute("listaProvincias", branchService.getProvincias());
-        model.addAttribute("listaImagenes", commonService.getImagenes());
+        // model.addAttribute("listaImagenes", commonService.getImagenes());
         
         return "sucursales";
     }

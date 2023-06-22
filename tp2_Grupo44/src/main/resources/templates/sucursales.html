@@ -33,7 +33,12 @@
             <hr>
             <!-- #endregion -->
 
-            <div class="card mb-3"
+            <div th:each="sucursal : ${listaSucursales}">
+                <h2 th:text="${sucursal.nombre}"></h2>
+                <p th:text="${sucursal.estado}"></p>
+            </div>
+
+            <!-- <div class="card mb-3"
                  th:each="provincia : ${listaProvincias}">
 
                 <div class="card-header fs-2 text-center"
@@ -48,10 +53,10 @@
                      th:src="${imagen.nombre}">
 
                 <div class="card-body">
-                    <h5 class="card-title text-center">Sucursales</h5>
+                    <h5 class="card-title text-center">Sucursales</h5> -->
 
                     <!-- #region Sucursales -->
-                    <div class="accordion" id="accordionExample">
+                    <!-- <div class="accordion" id="accordionExample">
                         <div class="accordion-item"
                              th:each="sucursal : ${listaSucursales}"
                              th:if="${sucursal.provincia} == ${provincia}">
@@ -102,10 +107,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- #endregion Sucursales -->
-                </div>
-            </div>
+                <!-- </div> -->
+            <!-- </div> -->
             <p class="text-center">
                 <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
             </p>

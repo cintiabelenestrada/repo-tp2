@@ -6,23 +6,15 @@ import ar.edu.unju.fi.entity.Branch;
 
 public interface IBranchService {
     
-    // region Methods
+    //#region Methods
     public List<Branch> getSucursales();
-
     // public List<String> getProvincias();
-
     public void saveNewBranchOffice(Branch sucursalAgregar);
-    
-    public Branch findBranchOfficeByIdentifier(Long identificador);
-
+    public Branch findBranchOfficeByIdentifier(long identificador);
     // public void modifyBranchOfficeByIdentifier(Branch sucursalModificar);
-
-    // public void deleteBranchOfficeByIdentifier(Branch sucursalEliminar);
-
+    public void deleteBranchOfficeByIdentifier(Branch sucursalEliminar);
 	public Branch getBranch();
-
     // public void setBranchOfficeIdentifier(Branch sucursal);
-
-    // endregion
+    //#endregion
 
 }
