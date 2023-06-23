@@ -21,14 +21,13 @@
 
             <!-- #region Navegación -->
             <div class="bg-light border border-light-subtle rounded text-center">
-                <h1 class="m-3">¡Encuentrá la sucursal más cercana!</h1>
+                <h1 class="m-3">Administración de Provincias</h1>
                 <p class="text-secondary">
                     <em>
-                        Contamos con varios locales en Jujuy, Salta y Tucumán, seguiremos
-                        creciendo con nuevas aperturas en el Norte Argentino.
+                        Agregar, eliminar o modificar provincia/s.
                     </em>
                 </p>
-                <a class="btn btn-primary mb-3" th:href="@{/sucursales/formulario}">Nuevo Sucursal</a>
+                <a class="btn btn-primary mb-3" th:href="@{/provincias/formulario}">Nueva provincia</a>
             </div>
             <hr>
             <!-- #endregion -->
@@ -38,11 +37,10 @@
                 <p th:text="${sucursal.estado}"></p>
             </div> -->
 
-            <div class="card mb-3"
-                 th:each="provincia : ${listaProvincias}">
+            <div class="card mb-3">
 
-                <div class="card-header fs-2 text-center"
-                     th:text="${provincia.nombre}">
+                <div class="card-header fs-2 text-center">
+                    <em>Listado</em>
                 </div>
                 
                 <!-- <img class="img-thumbnail d-block mx-auto mt-3"
@@ -53,57 +51,56 @@
                      th:src="${imagen.nombre}"> -->
 
                 <div class="card-body">
-                    <h5 class="card-title text-center">Sucursales</h5>
+                    <h5 class="card-title text-center">Provincias</h5>
 
                     <!-- #region Sucursales -->
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item"
-                             th:each="sucursal : ${listaSucursales}"
-                             th:if="${sucursal.provincia} == ${provincia}">
+                             th:each="provincia : ${listaProvincias}">
 
                             <h2 class="accordion-header">
                                 <button class="accordion-button"
                                         type="button"
                                         data-bs-toggle="collapse"
-                                        th:attr="data-bs-target='#id' + ${sucursal.identificador}, aria-controls='id' + ${sucursal.identificador}"
+                                        th:attr="data-bs-target='#id' + ${provincia.identificador}, aria-controls='id' + ${provincia.identificador}"
                                         aria-expanded="false"
-                                        th:text="${sucursal.nombre}">
+                                        th:text="${provincia.nombre}">
                                 </button>
                             </h2>
 
-                            <div th:id="'id' + ${sucursal.identificador}"
+                            <div th:id="'id' + ${provincia.identificador}"
                                  class="accordion-collapse collapse"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <p><strong>Dirección:</strong>
+                                    <!-- <p><strong>Dirección:</strong>
                                         <span
-                                              th:text="${sucursal.direccion} + ' Nº ' + ${sucursal.numeroDireccion}">
+                                              th:text="${provincia.direccion} + ' Nº ' + ${provincia.numeroDireccion}">
                                         </span>
                                     </p>
                                     <p><strong>Telefono:</strong>
-                                        <span th:text="${sucursal.telefono}"></span>
+                                        <span th:text="${provincia.telefono}"></span>
                                     </p>
                                     <p><strong>Horario de apertura:</strong>
-                                        <span th:text="${#temporals.format(sucursal.horarioApertura, 'HH:mm a')}">
+                                        <span th:text="${#temporals.format(provincia.horarioApertura, 'HH:mm a')}">
                                         </span>
                                     </p>
                                     <p><strong>Horario de cierre:</strong>
-                                        <span th:text="${#temporals.format(sucursal.horarioCierre, 'HH:mm a')}">
+                                        <span th:text="${#temporals.format(provincia.horarioCierre, 'HH:mm a')}">
                                         </span>
-                                    </p>
+                                    </p> -->
                                 </div>
                                 <div class="card-footer d-flex justify-content-between align-items-center">
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-sm btn-outline-primary text-decoration-none"
                                            role="button"
-                                           th:href="@{/sucursales/modificar/} + ${sucursal.identificador}">Modificar</a>
+                                           th:href="@{/provincias/modificar/} + ${provincia.identificador}">Modificar</a>
 
                                         <a class="btn btn-sm btn-outline-danger text-decoration-none"
                                            role="button"
-                                           th:href="@{/sucursales/eliminar/} + ${sucursal.identificador}">Eliminar</a>
+                                           th:href="@{/provincias/eliminar/} + ${provincia.identificador}">Eliminar</a>
                                     </div>
                                     <small class="text-black text-body-secondary"
-                                           th:text="${sucursal.identificador}"></small>
+                                           th:text="${provincia.identificador}"></small>
                                 </div>
                             </div>
                         </div>

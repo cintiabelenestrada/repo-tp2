@@ -5,13 +5,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.entity.Branch;
+import ar.edu.unju.fi.entity.Sucursal;
 
 @Component
 public class BranchList {
 
 	// region Attributes
-	private List<Branch> sucursales;
+	private List<Sucursal> sucursales;
 	private List<String> provincias = List.of(
 			"Jujuy",
 			"Salta",
@@ -20,7 +20,7 @@ public class BranchList {
 
 	public BranchList() {
 
-		this.sucursales = new ArrayList<Branch>();
+		this.sucursales = new ArrayList<Sucursal>();
 
 		// Sucursales precargadas
 		// this.sucursales.add(
@@ -71,11 +71,11 @@ public class BranchList {
 	// endregion
 
 	// region Getters and Setters
-	public List<Branch> getSucursales() {
+	public List<Sucursal> getSucursales() {
 		return sucursales;
 	}
 
-	public void setSucursales(List<Branch> sucursales) {
+	public void setSucursales(List<Sucursal> sucursales) {
 		this.sucursales = sucursales;
 	}
 
