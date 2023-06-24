@@ -39,29 +39,25 @@ public class SucursalController {
     public ModelAndView getSucursalesPage() {
 
         ModelAndView modelAndView = new ModelAndView("sucursales");
+
         modelAndView.addObject("listaSucursales", sucursalServiceImp.getSucursales());
         modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
-        // Implementar al último
-        // model.addAttribute("listaImagenes", commonService.getImagenes());
-
+        // Imagenes
         return modelAndView;
-
     }
 
     @GetMapping("/formulario")
     public ModelAndView getNewSucursalPage() {
 
-        ModelAndView modelAndView = new ModelAndView("nueva_sucursal");
+        ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = false;
-        sucursal = new Sucursal();
 
-        // modelAndView.addObject("sucursal", sucursalServiceImp.getSucursal());
-        modelAndView.addObject("sucursal", sucursal);
+        modelAndView.setViewName("nueva_sucursal");
+        modelAndView.addObject("sucursal", sucursalServiceImp.getSucursal());
         modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
         modelAndView.addObject("editar", allowEditing);
 
         return modelAndView;
-
     }
 
     @PostMapping("/guardar")
@@ -69,77 +65,49 @@ public class SucursalController {
             @Valid @ModelAttribute(value = "sucursal") Sucursal sucursalAgregar,
             BindingResult resultadoValidacion) {
 
-        ModelAndView modelAndView = new ModelAndView("redirect:/sucursales/listado");
+        ModelAndView modelAndView = new ModelAndView();
 
         if (resultadoValidacion.hasErrors()) {
-            
             modelAndView.setViewName("nueva_sucursal");
-            modelAndView.addObject("sucursal", sucursalAgregar);
-            modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
-
+            // modelAndView.addObject("sucursal", sucursalAgregar);
+            // modelAndView.addObject("listaProvincias",
+            // provinciaServiceImp.getProvincias());
         } else {
-
-            provincia = provinciaServiceImp.findProvinciaByIdentifier(sucursalAgregar.getProvincia().getIdentificador());
-            sucursalAgregar.setProvincia(provincia);
+            modelAndView.setViewName("redirect:/sucursales/listado");
             sucursalServiceImp.saveNewSucursal(sucursalAgregar);
             modelAndView.addObject("listaSucursales", sucursalServiceImp.getSucursales());
-
         }
 
         return modelAndView;
-
     }
 
-    /*
-     * @GetMapping("/modificar/{identificador}")
-     * public String getModifySucursalPage(
-     * Model model,
-     * 
-     * @PathVariable(value = "identificador") Long identificadorSucursal) {
-     * 
-     * Branch branchFound =
-     * branchService.findBranchOfficeByIdentifier(identificadorSucursal);
-     * boolean allowEditing = true;
-     * 
-     * model.addAttribute("sucursal", branchFound);
-     * model.addAttribute("editar", allowEditing);
-     * 
-     * return "nueva_sucursal";
-     * }
-     */
+    @GetMapping("/modificar/{identificador}")
+    public ModelAndView getModifySucursalPage(
+            @PathVariable(value = "identificador") long identificadorSucursal) {
 
-    /*
-     * @PostMapping("/modificar")
-     * public ModelAndView modifySucursal(
-     * 
-     * @Valid @ModelAttribute(value = "sucursal") Branch sucursalModificar,
-     * BindingResult resultadoValidacion) {
-     * 
-     * ModelAndView modelAndView = new ModelAndView("redirect:/sucursales/listado");
-     * boolean allowEditing = true;
-     * 
-     * if (resultadoValidacion.hasErrors()) {
-     * modelAndView.setViewName("nueva_sucursal");
-     * modelAndView.addObject("sucursal", sucursalModificar);
-     * modelAndView.addObject("editar", allowEditing);
-     * return modelAndView;
-     * }
-     * 
-     * branchService.modifyBranchOfficeByIdentifier(sucursalModificar);
-     * 
-     * return modelAndView;
-     * }
-     */
+        ModelAndView modelAndView = new ModelAndView();
+        boolean allowEditing = true;
+
+        sucursal = sucursalServiceImp.findSucursalByIdentifier(identificadorSucursal);
+
+        modelAndView.setViewName("nueva_sucursal");
+        modelAndView.addObject("sucursal", sucursal);
+        modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
+        modelAndView.addObject("editar", allowEditing);
+
+        return modelAndView;
+    }
 
     @GetMapping("/eliminar/{identificador}")
-    public String deleteSucursal(
-            @PathVariable(value = "identificador") Long identificadorSucursal) {
+    public ModelAndView deleteSucursal(
+            @PathVariable(value = "identificador") long identificadorSucursal) {
 
-        // branchService.deleteBranchOfficeByIdentifier(identificadorSucursal);
+        ModelAndView modelAndView = new ModelAndView();
 
+        modelAndView.setViewName("redirect:/sucursales/listado");
         sucursalServiceImp.deleteSucursalByIdentifier(sucursalServiceImp.findSucursalByIdentifier(identificadorSucursal));
 
-        return ("redirect:/sucursales/listado");
+        return modelAndView;
     }
 
 }

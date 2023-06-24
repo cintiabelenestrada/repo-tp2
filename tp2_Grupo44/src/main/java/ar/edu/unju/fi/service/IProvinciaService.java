@@ -11,9 +11,9 @@ public interface IProvinciaService {
 
     public void saveNewProvincia(Provincia provinciaAgregar);
 
-    public Provincia findProvinciaByIdentifier(Long identificador);
+    public Provincia findProvinciaByIdentifier(long identificador);
 
-    // public void modifyProvinciaByIdentifier(Provincia provinciaModificar);
+    public void modifyProvinciaByIdentifier(Provincia provinciaModificar);
 
     public void deleteProvinciaByIdentifier(Provincia provinciaEliminar);
     

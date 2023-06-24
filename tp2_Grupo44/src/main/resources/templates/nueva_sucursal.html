@@ -32,7 +32,8 @@
                 <!-- #endregion -->
 
                 <!-- #region Contenido -->
-                <form th:action="${editar} ? @{/sucursales/modificar} : @{/sucursales/guardar}"
+                <!-- <form th:action="${editar} ? @{/sucursales/modificar} : @{/sucursales/guardar}" -->
+                <form th:action="@{/sucursales/guardar}"
                       th:object="${sucursal}"
                       method="post">
 
@@ -40,15 +41,15 @@
                     <div class="card-body">
 
                         <!-- #region Identificador -->
-                        <!-- <div>
+                        <div>
                             <input type="hidden" id="identificador" th:field="*{identificador}" class="form-control">
-                        </div> -->
+                        </div>
                         <!-- #endregion -->
 
                         <!-- #region Estado -->
-                        <!-- <div>
+                        <div>
                             <input type="hidden" id="estado" th:field="*{estado}" th:attr="value=${sucursal.estado}" class="form-control">
-                        </div> -->
+                        </div>
                         <!-- #endregion -->
 
                         <!-- #region Nombre -->
@@ -62,7 +63,7 @@
                                    aria-describedby="Nombre"
                                    class="form-control">
                         </div>
-                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+                            <div class="text-danger mb-3" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
                         </div>
                         <!-- #endregion -->
 
@@ -131,7 +132,6 @@
                                     aria-label="Provincia"
                                     class="form-select">
                                 <!-- #region Lista de opciones -->
-                                <option value="0" selected>Selecciona una provincia</option>
                                 <option th:each="p : ${listaProvincias}"
                                         th:value="${p.identificador}"
                                         th:text="${p.nombre}">

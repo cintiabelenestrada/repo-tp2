@@ -23,8 +23,8 @@ public class Provincia {
     //#region Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "identificador")
-    private Long identificador;
+    @Column(name = "provincia_identificador")
+    private long identificador;
 
     @Column(name = "estado", columnDefinition = "boolean default true")
     private boolean estado;
@@ -46,7 +46,7 @@ public class Provincia {
     }
 
     public Provincia(
-            Long identificador,
+            long identificador,
             boolean estado,
             String nombre,
             List<Sucursal> listaSucursales) {
@@ -60,11 +60,11 @@ public class Provincia {
     // #endregion
 
     // #region Getters and Setters
-    public Long getIdentificador() {
+    public long getIdentificador() {
         return identificador;
     }
 
-    public void setIdentificador(Long identificador) {
+    public void setIdentificador(long identificador) {
         this.identificador = identificador;
     }
 

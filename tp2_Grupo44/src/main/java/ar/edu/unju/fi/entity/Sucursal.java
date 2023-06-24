@@ -3,6 +3,7 @@ package ar.edu.unju.fi.entity;
 import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.CascadeType;
@@ -25,8 +26,8 @@ public class Sucursal {
 	// #region Attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "identificador")
-	private Long identificador;
+	@Column(name = "sucursal_identificador")
+	private long identificador;
 
 	@Column(name = "estado", columnDefinition = "boolean default true")
 	private boolean estado;
@@ -38,7 +39,7 @@ public class Sucursal {
 
 	// @NotEmpty(message = "Debes introducir una dirección")
 	// @Size(min = 5, max = 30, message = "La dirección solo puede contener entre 5 y 30 caracteres")
-	// @Pattern(regexp = "[a-z A-Z]+", message = "Debe contener solo letras")
+	// @Pattern(regexp = "[a-zA-Z]+", message = "La dirección solo puede contener letras")
 	@Column(name = "direccion")
 	private String direccion;
 
@@ -53,12 +54,12 @@ public class Sucursal {
 	@Column(name = "telefono")
 	private String telefono;
 
-	// @DateTimeFormat(pattern = "HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
 	// @NotNull(message = "Ingrese un horario de apertura")
 	@Column(name = "horario_apertura")
 	private LocalTime horarioApertura;
 
-	// @DateTimeFormat(pattern = "HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
 	// @NotNull(message = "Ingrese un horario de cierre")
 	@Column(name = "horario_cierre")
 	private LocalTime horarioCierre;
@@ -71,12 +72,27 @@ public class Sucursal {
 	// #endregion
 
 	// #region Constructors
+	/**
+	 * Constructor por defecto
+	 */
 	public Sucursal() {
 		this.estado = true;
 	}
 
+	/**
+	 * Constructor parametrizado
+	 * @param identificador es el ID de la sucursal
+	 * @param estado representa si es VISIBLE o no en el listado
+	 * @param nombre
+	 * @param direccion
+	 * @param numeroDireccion
+	 * @param telefono
+	 * @param horarioApertura
+	 * @param horarioCierre
+	 * @param provincia representa la ubicación de la sucursal
+	 */
 	public Sucursal(
-			Long identificador,
+			long identificador,
 			boolean estado,
 			String nombre,
 			String direccion,
@@ -100,11 +116,11 @@ public class Sucursal {
 	// #endregion
 
 	// #region Getters and Setters
-	public Long getIdentificador() {
+	public long getIdentificador() {
 		return identificador;
 	}
 
-	public void setIdentificador(Long identificador) {
+	public void setIdentificador(long identificador) {
 		this.identificador = identificador;
 	}
 

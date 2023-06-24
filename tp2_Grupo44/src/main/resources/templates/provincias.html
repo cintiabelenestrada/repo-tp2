@@ -1,121 +1,97 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}" />
-        <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
-        <title>Sucursales</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}" />
+    <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
+    <title>Sucursales</title>
+</head>
 
-    <body>
-        <!-- #region Header -->
-        <header th:replace="~{layouts/header :: header}"></header>
+<body>
+    <!-- #region Header -->
+    <header th:replace="~{layouts/header :: header}"></header>
+    <!-- #endregion -->
+
+    <!-- #region Sucursales -->
+    <div class="container pt-3" id="seccion">
+
+        <!-- #region Navegación -->
+        <div class="bg-light border border-light-subtle rounded text-center">
+            <h1 class="m-3">Administración de Provincias</h1>
+            <p class="text-secondary">
+                <em>
+                    Agregar, eliminar o modificar provincia/s.
+                </em>
+            </p>
+            <a class="btn btn-primary mb-3" th:href="@{/provincias/formulario}">Nueva provincia</a>
+        </div>
+        <hr>
         <!-- #endregion -->
 
-        <!-- #region Sucursales -->
-        <div class="container pt-3" id="seccion">
+        <!-- #region Provincias -->
+        <div class="card mb-3">
 
-            <!-- #region Navegación -->
-            <div class="bg-light border border-light-subtle rounded text-center">
-                <h1 class="m-3">Administración de Provincias</h1>
-                <p class="text-secondary">
-                    <em>
-                        Agregar, eliminar o modificar provincia/s.
-                    </em>
-                </p>
-                <a class="btn btn-primary mb-3" th:href="@{/provincias/formulario}">Nueva provincia</a>
+            <div class="card-header fs-2 text-center">
+                <h3 class="mb-0">Listado</h3>
             </div>
-            <hr>
-            <!-- #endregion -->
 
-            <!-- <div th:each="sucursal : ${listaSucursales}">
-                <h2 th:text="${sucursal.nombre}"></h2>
-                <p th:text="${sucursal.estado}"></p>
-            </div> -->
-
-            <div class="card mb-3">
-
-                <div class="card-header fs-2 text-center">
-                    <em>Listado</em>
-                </div>
-                
-                <!-- <img class="img-thumbnail d-block mx-auto mt-3"
+            <!-- <img class="img-thumbnail d-block mx-auto mt-3"
                      style="height: 150px;"
                      alt="..."
                      th:each="imagen : ${listaImagenes}"
                      th:if="${#strings.equals(imagen.identificador, provincia)}"
                      th:src="${imagen.nombre}"> -->
 
-                <div class="card-body">
-                    <h5 class="card-title text-center">Provincias</h5>
+            <div class="card-body">
+                
+                <h6 class="card-title text-center mb-0">
+                    <small class="badge bg-secondary" th:text="${#lists.size(listaProvincias)}"></small>
+                </h6>
 
-                    <!-- #region Sucursales -->
-                    <div class="accordion" id="accordionExample">
-                        <div class="accordion-item"
-                             th:each="provincia : ${listaProvincias}">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Acciones</th>
+                            <th scope="col">ObjectID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="provincia : ${listaProvincias}">
+                            <th scope="row" th:text="${provincia.identificador}"></th>
+                            <td th:text="${provincia.nombre}"></td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
+                                        th:href="@{/provincias/modificar/} + ${provincia.identificador}">Modificar</a>
 
-                            <h2 class="accordion-header">
-                                <button class="accordion-button"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        th:attr="data-bs-target='#id' + ${provincia.identificador}, aria-controls='id' + ${provincia.identificador}"
-                                        aria-expanded="false"
-                                        th:text="${provincia.nombre}">
-                                </button>
-                            </h2>
-
-                            <div th:id="'id' + ${provincia.identificador}"
-                                 class="accordion-collapse collapse"
-                                 data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <!-- <p><strong>Dirección:</strong>
-                                        <span
-                                              th:text="${provincia.direccion} + ' Nº ' + ${provincia.numeroDireccion}">
-                                        </span>
-                                    </p>
-                                    <p><strong>Telefono:</strong>
-                                        <span th:text="${provincia.telefono}"></span>
-                                    </p>
-                                    <p><strong>Horario de apertura:</strong>
-                                        <span th:text="${#temporals.format(provincia.horarioApertura, 'HH:mm a')}">
-                                        </span>
-                                    </p>
-                                    <p><strong>Horario de cierre:</strong>
-                                        <span th:text="${#temporals.format(provincia.horarioCierre, 'HH:mm a')}">
-                                        </span>
-                                    </p> -->
+                                    <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
+                                        th:href="@{/provincias/eliminar/} + ${provincia.identificador}">Eliminar</a>
                                 </div>
-                                <div class="card-footer d-flex justify-content-between align-items-center">
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-sm btn-outline-primary text-decoration-none"
-                                           role="button"
-                                           th:href="@{/provincias/modificar/} + ${provincia.identificador}">Modificar</a>
-
-                                        <a class="btn btn-sm btn-outline-danger text-decoration-none"
-                                           role="button"
-                                           th:href="@{/provincias/eliminar/} + ${provincia.identificador}">Eliminar</a>
-                                    </div>
-                                    <small class="text-black text-body-secondary"
-                                           th:text="${provincia.identificador}"></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- #endregion Sucursales -->
-                </div>
+                            </td>
+                            <td class="table-info" th:text="${provincia}"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <p class="text-center">
-                <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
-            </p>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                Footer
+            </div>
         </div>
-        <!-- #region Footer -->
-        <footer th:replace="~{layouts/footer :: footer}"></footer>
-        <!-- #endregion -->
-        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    </body>
+        <!-- #endregion Sucursales -->
+        <p class="text-center">
+            <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
+        </p>
+    </div>
+    <!-- #region Footer -->
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
+    <!-- #endregion -->
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
 
 </html>

@@ -18,7 +18,6 @@ import jakarta.validation.Valid;
 @RequestMapping("/provincias")
 public class ProvinciaController {
 
-    
     @Autowired
     private ProvinciaServiceImp provinciaServiceImp;
 
@@ -28,28 +27,23 @@ public class ProvinciaController {
     @GetMapping("/listado")
     public ModelAndView getProvinciasPage() {
 
-        // Aggrego la vista
         ModelAndView modelAndView = new ModelAndView("provincias");
-        // Agrego la lista de provincias y la lista de provincias <-(revisar)
         modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
-        // Implementar al último
-        // model.addAttribute("listaImagenes", commonService.getImagenes());
 
         return modelAndView;
-
     }
 
     @GetMapping("/formulario")
     public ModelAndView getNewProvinciaPage() {
 
-        ModelAndView modelAndView = new ModelAndView("nueva_provincia");
+        ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = false;
-        
+
+        modelAndView.setViewName("nueva_provincia");
         modelAndView.addObject("provincia", provinciaServiceImp.getProvincia());
         modelAndView.addObject("editar", allowEditing);
 
         return modelAndView;
-
     }
 
     @PostMapping("/guardar")
@@ -57,12 +51,13 @@ public class ProvinciaController {
             @Valid @ModelAttribute(value = "provincia") Provincia provinciaAgregar,
             BindingResult resultadoValidacion) {
 
-        ModelAndView modelAndView = new ModelAndView("redirect:/provincias/listado");
+        ModelAndView modelAndView = new ModelAndView();
 
         if (resultadoValidacion.hasErrors()) {
             modelAndView.setViewName("nueva_provincia");
-            modelAndView.addObject("provincia", provinciaAgregar);
+            // modelAndView.addObject("provincia", provinciaAgregar);
         } else {
+            modelAndView.setViewName("redirect:/provincias/listado");
             provinciaServiceImp.saveNewProvincia(provinciaAgregar);
             modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
         }
@@ -71,56 +66,32 @@ public class ProvinciaController {
 
     }
 
-    /*
-     * @GetMapping("/modificar/{identificador}")
-     * public String getModifySucursalPage(
-     * Model model,
-     * 
-     * @PathVariable(value = "identificador") Long identificadorSucursal) {
-     * 
-     * Branch branchFound =
-     * branchService.findBranchOfficeByIdentifier(identificadorSucursal);
-     * boolean allowEditing = true;
-     * 
-     * model.addAttribute("sucursal", branchFound);
-     * model.addAttribute("editar", allowEditing);
-     * 
-     * return "nueva_sucursal";
-     * }
-     */
+    @GetMapping("/modificar/{identificador}")
+    public ModelAndView getModifySucursalPage(
+            @PathVariable(value = "identificador") long identificadorSucursal) {
 
-    /*
-     * @PostMapping("/modificar")
-     * public ModelAndView modifySucursal(
-     * 
-     * @Valid @ModelAttribute(value = "sucursal") Branch sucursalModificar,
-     * BindingResult resultadoValidacion) {
-     * 
-     * ModelAndView modelAndView = new ModelAndView("redirect:/provincias/listado");
-     * boolean allowEditing = true;
-     * 
-     * if (resultadoValidacion.hasErrors()) {
-     * modelAndView.setViewName("nueva_sucursal");
-     * modelAndView.addObject("sucursal", sucursalModificar);
-     * modelAndView.addObject("editar", allowEditing);
-     * return modelAndView;
-     * }
-     * 
-     * branchService.modifyBranchOfficeByIdentifier(sucursalModificar);
-     * 
-     * return modelAndView;
-     * }
-     */
+        ModelAndView modelAndView = new ModelAndView();
+        boolean allowEditing = true;
+
+        provincia = provinciaServiceImp.findProvinciaByIdentifier(identificadorSucursal);
+
+        modelAndView.setViewName("nueva_provincia");
+        modelAndView.addObject("provincia", provincia);
+        modelAndView.addObject("editar", allowEditing);
+
+        return modelAndView;
+    }
 
     @GetMapping("/eliminar/{identificador}")
-    public String deleteProvincia(
-            @PathVariable(value = "identificador") Long identificadorProvincia) {
+    public ModelAndView deleteProvincia(
+            @PathVariable(value = "identificador") long identificadorProvincia) {
+            
+        ModelAndView modelAndView = new ModelAndView();
 
-        // branchService.deleteBranchOfficeByIdentifier(identificadorSucursal);
-
+        modelAndView.setViewName("redirect:/provincias/listado");
         provinciaServiceImp.deleteProvinciaByIdentifier(provinciaServiceImp.findProvinciaByIdentifier(identificadorProvincia));
 
-        return ("redirect:/provincias/listado");
+        return modelAndView;
     }
-    
+
 }

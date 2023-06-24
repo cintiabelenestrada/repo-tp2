@@ -32,12 +32,13 @@ public class ProvinciaServiceImp implements IProvinciaService {
     }
 
     @Override
-    public Provincia findProvinciaByIdentifier(Long identificador) {
-        provincia = provinciaRepository.findById(identificador).orElse(null);
-        return provincia;
+    public Provincia findProvinciaByIdentifier(long identificador) {
+        return provinciaRepository.findById(identificador).get();
     }
 
-    // public void modifyProvinciaByIdentifier(Provincia provinciaModificar);
+    public void modifyProvinciaByIdentifier(Provincia provinciaModificar) {
+        provinciaRepository.save(provinciaModificar);
+    }
 
     @Override
     public void deleteProvinciaByIdentifier(Provincia provinciaEliminar) {
