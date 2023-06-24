@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.Product;
+import ar.edu.unju.fi.entity.Product;
 
 @Component
 public class ProductList {

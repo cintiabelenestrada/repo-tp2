@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.model.HealthTip;
+import ar.edu.unju.fi.entity.HealthTip;
 import ar.edu.unju.fi.service.IHealthTipService;
 import jakarta.validation.Valid;
 

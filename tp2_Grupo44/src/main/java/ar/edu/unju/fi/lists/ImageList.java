@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.Image;
+import ar.edu.unju.fi.entity.Image;
 
 @Component
 public class ImageList {

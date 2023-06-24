@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.entity.DogWalker;
 import ar.edu.unju.fi.lists.DogWalkerList;
-import ar.edu.unju.fi.model.DogWalker;
 import ar.edu.unju.fi.service.IDogWalkerService;
 
 @Service

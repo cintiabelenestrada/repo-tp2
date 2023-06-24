@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.model.DogWalker;
+import ar.edu.unju.fi.entity.DogWalker;
 import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.IDogWalkerService;
 import jakarta.validation.Valid;
