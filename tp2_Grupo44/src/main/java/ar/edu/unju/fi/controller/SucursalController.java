@@ -27,10 +27,10 @@ public class SucursalController {
     private ProvinciaServiceImp provinciaServiceImp;
 
     @Autowired
-    private Sucursal sucursal;
+    private Sucursal unaSucursal;
 
     @Autowired
-    private Provincia provincia;
+    private Provincia unaProvincia;
 
     // @Autowired
     // private ICommonService commonService;
@@ -70,12 +70,28 @@ public class SucursalController {
         if (resultadoValidacion.hasErrors()) {
             modelAndView.setViewName("nueva_sucursal");
             // modelAndView.addObject("sucursal", sucursalAgregar);
-            // modelAndView.addObject("listaProvincias",
-            // provinciaServiceImp.getProvincias());
+            modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias()
+            );
         } else {
+
+            unaProvincia = provinciaServiceImp.findProvinciaByIdentifier(sucursalAgregar.getProvincia().getIdentificador());
+            sucursalAgregar.setProvincia(unaProvincia);
+
+            System.out.println("Agregar/Modificar");
+            System.out.println("ID: " + sucursalAgregar.getIdentificador());
+            System.out.println("Nombre: " + sucursalAgregar.getNombre());
+            System.out.println("Dirección: " + sucursalAgregar.getDireccion());
+            System.out.println("Nº: " + sucursalAgregar.getNumeroDireccion());
+            System.out.println("Telefono: " + sucursalAgregar.getTelefono());
+            System.out.println("Provincia: " + sucursalAgregar.getProvincia());
+            System.out.println("Provincia ID: " + sucursalAgregar.getProvincia().getIdentificador());
+            System.out.println("Provincia Nombre: " + sucursalAgregar.getProvincia().getNombre());
+
             modelAndView.setViewName("redirect:/sucursales/listado");
             sucursalServiceImp.saveNewSucursal(sucursalAgregar);
             modelAndView.addObject("listaSucursales", sucursalServiceImp.getSucursales());
+            modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
+
         }
 
         return modelAndView;
@@ -88,10 +104,10 @@ public class SucursalController {
         ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = true;
 
-        sucursal = sucursalServiceImp.findSucursalByIdentifier(identificadorSucursal);
+        unaSucursal = sucursalServiceImp.findSucursalByIdentifier(identificadorSucursal);
 
         modelAndView.setViewName("nueva_sucursal");
-        modelAndView.addObject("sucursal", sucursal);
+        modelAndView.addObject("sucursal", unaSucursal);
         modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
         modelAndView.addObject("editar", allowEditing);
 

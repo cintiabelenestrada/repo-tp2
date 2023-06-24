@@ -47,7 +47,7 @@
 
                         <!-- #region Estado -->
                         <div>
-                            <input type="hidden" id="estado" th:field="*{estado}" th:attr="value=${sucursal.estado}" class="form-control">
+                            <input type="hidden" id="estado" th:field="*{estado}" th:attr="value=${provincia.estado}" class="form-control">
                         </div>
                         <!-- #endregion -->
 
@@ -61,11 +61,8 @@
                                    aria-label="Nombre"
                                    aria-describedby="Nombre"
                                    class="form-control">
-                                </div>
-                                    <div class="text-danger mb-3" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
-                                </div>
                         </div>
-                        
+                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                         <!-- #endregion -->
                     </div>
                     <!-- #endregion -->

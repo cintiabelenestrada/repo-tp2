@@ -22,7 +22,7 @@ public class ProvinciaController {
     private ProvinciaServiceImp provinciaServiceImp;
 
     @Autowired
-    private Provincia provincia;
+    private Provincia unaProvincia;
 
     @GetMapping("/listado")
     public ModelAndView getProvinciasPage() {
@@ -67,16 +67,16 @@ public class ProvinciaController {
     }
 
     @GetMapping("/modificar/{identificador}")
-    public ModelAndView getModifySucursalPage(
-            @PathVariable(value = "identificador") long identificadorSucursal) {
+    public ModelAndView getModifyProvinciaPage(
+            @PathVariable(value = "identificador") long identificadorProvincia) {
 
         ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = true;
 
-        provincia = provinciaServiceImp.findProvinciaByIdentifier(identificadorSucursal);
+        unaProvincia = provinciaServiceImp.findProvinciaByIdentifier(identificadorProvincia);
 
         modelAndView.setViewName("nueva_provincia");
-        modelAndView.addObject("provincia", provincia);
+        modelAndView.addObject("provincia", unaProvincia);
         modelAndView.addObject("editar", allowEditing);
 
         return modelAndView;

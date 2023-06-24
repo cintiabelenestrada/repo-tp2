@@ -132,17 +132,16 @@
                                     aria-label="Provincia"
                                     class="form-select">
                                 <!-- #region Lista de opciones -->
-                                <option th:each="p : ${listaProvincias}"
-                                        th:value="${p.identificador}"
-                                        th:text="${p.nombre}">
+                                <option th:each="_provincia : ${listaProvincias}"
+                                        th:value="${_provincia.identificador}"
+                                        th:text="${_provincia.nombre}">
                                 </option>
                                 <!-- #endregion -->
                             </select>
                         </div>
-                            <div class="text-danger"
-                                 th:if="${#fields.hasErrors('provincia')}"
-                                 th:errors="*{provincia}">
-                            </div>
+                        <div class="text-danger"
+                             th:if="${#fields.hasErrors('provincia')}"
+                             th:errors="*{provincia}">
                         </div>
                         <!-- #endregion -->
 
