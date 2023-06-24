@@ -9,11 +9,9 @@ public interface ISucursalService {
     //#region Methods
     public List<Sucursal> getSucursales();
 
-    public void saveNewSucursal(Sucursal sucursalAgregar);
+    public void addSucursal(Sucursal sucursalAgregar);
 
     public Sucursal findSucursalByIdentifier(long identificador);
-
-    public void modifySucursalByIdentifier(Sucursal sucursalModificar);
 
     public void deleteSucursalByIdentifier(Sucursal sucursalEliminar);
 

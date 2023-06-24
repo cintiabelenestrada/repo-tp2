@@ -23,24 +23,17 @@ public class SucursalServiceImp implements ISucursalService {
     //#region Methods
     @Override
     public List<Sucursal> getSucursales() {
-        List<Sucursal> sucursales = sucursalRepository.findByEstado(true);
-        return sucursales;
+        return sucursalRepository.findByEstado(true);
     }
 
     @Override
-    public void saveNewSucursal(Sucursal sucursalAgregar) {
+    public void addSucursal(Sucursal sucursalAgregar) {
         sucursalRepository.save(sucursalAgregar);
     }
 
     @Override
     public Sucursal findSucursalByIdentifier(long identificador) {
-        sucursal = sucursalRepository.findById(identificador).get();
-        return sucursal;
-    }
-
-    @Override
-    public void modifySucursalByIdentifier(Sucursal sucursalModificar) {
-        sucursalRepository.save(sucursalModificar);
+        return sucursalRepository.findById(identificador).get();
     }
 
     @Override

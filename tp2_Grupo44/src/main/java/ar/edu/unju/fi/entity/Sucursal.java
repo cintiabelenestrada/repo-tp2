@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Component
@@ -23,7 +24,7 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "sucursales")
 public class Sucursal {
 
-	// #region Attributes
+	//#region Attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sucursal_identificador")
@@ -32,8 +33,8 @@ public class Sucursal {
 	@Column(name = "estado", columnDefinition = "boolean default true")
 	private boolean estado;
 
-	// @NotEmpty(message = "Debes introducir un nombre")
-	// @Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 30 caracteres")
+	@NotEmpty(message = "Debes introducir un nombre")
+	// @Size(min = 5, max = 15, message = "El nombre solo puede contener entre 5 y 15 caracteres")
 	@Column(name = "nombre")
 	private String nombre;
 
@@ -66,12 +67,12 @@ public class Sucursal {
 
 	@Autowired
 	@JoinColumn(name = "provincia_identificador")
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@NotNull(message = "Debe seleccionar una provincia")
 	private Provincia provincia;
-	// #endregion
+	//#endregion
 
-	// #region Constructors
+	//#region Constructors
 	/**
 	 * Constructor por defecto
 	 */
@@ -113,9 +114,9 @@ public class Sucursal {
 		this.provincia = provincia;
 
 	}
-	// #endregion
+	//#endregion
 
-	// #region Getters and Setters
+	//#region Getters and Setters
 	public long getIdentificador() {
 		return identificador;
 	}
@@ -187,9 +188,9 @@ public class Sucursal {
 	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
 	}
-	// #endregion
+	//#endregion
 
-	// #region Methods
-	// #endregion
+	//#region Methods
+	//#endregion
 
 }

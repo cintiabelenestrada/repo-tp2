@@ -11,49 +11,49 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Component
 @Entity
-@Table(name = "provincias")
-public class Provincia {
+@Table(name = "categorias")
+public class Categoria {
 
     //#region Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "provincia_identificador")
+    @Column(name = "categoria_identificador")
     private long identificador;
 
-    @Column(name = "estado", columnDefinition = "boolean default true")
+    @Column(name = "categoria_estado")
     private boolean estado;
 
-    @NotBlank(message = "Debes introducir un nombre")
+    @NotEmpty(message = "Debes introducir un nombre")
 	@Size(min = 5, max = 15, message = "El nombre solo puede contener entre 5 y 15 caracteres")
 	@Pattern(regexp = "[a-zA-Z]+", message = "Debe contener solo letras")
-    @Column(name = "nombre")
+    @Column(name = "categoria_nombre")
     private String nombre;
 
-    @OneToMany(mappedBy = "provincia")
-    private List<Sucursal> listaSucursales;
-    // #endregion
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> listaProductos;
+    //#endregion
 
     //#region Constructors
-    public Provincia() {
+    public Categoria() {
         this.estado = true;
     }
 
-    public Provincia(
+    public Categoria(
             long identificador,
             boolean estado,
             String nombre,
-            List<Sucursal> listaSucursales) {
+            List<Producto> listaProductos) {
 
         this.identificador = identificador;
         this.estado = estado;
         this.nombre = nombre;
-        this.listaSucursales = listaSucursales;
+        this.listaProductos = listaProductos;
 
     }
     //#endregion
@@ -83,12 +83,12 @@ public class Provincia {
         this.nombre = nombre;
     }
 
-    public List<Sucursal> getListaSucursal() {
-        return listaSucursales;
+    public List<Producto> getListaProductos() {
+        return listaProductos;
     }
 
-    public void setListaSucursal(List<Sucursal> listaSucursales) {
-        this.listaSucursales = listaSucursales;
+    public void setListaProductos(List<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
     }
     //#endregion
 

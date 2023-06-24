@@ -27,7 +27,9 @@ public class ProvinciaController {
     @GetMapping("/listado")
     public ModelAndView getProvinciasPage() {
 
-        ModelAndView modelAndView = new ModelAndView("provincias");
+        ModelAndView modelAndView = new ModelAndView();
+        
+        modelAndView.setViewName("provincias");
         modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
 
         return modelAndView;
@@ -39,8 +41,9 @@ public class ProvinciaController {
         ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = false;
 
+        unaProvincia = new Provincia();
         modelAndView.setViewName("nueva_provincia");
-        modelAndView.addObject("provincia", provinciaServiceImp.getProvincia());
+        modelAndView.addObject("provincia", unaProvincia);
         modelAndView.addObject("editar", allowEditing);
 
         return modelAndView;
@@ -58,7 +61,7 @@ public class ProvinciaController {
             // modelAndView.addObject("provincia", provinciaAgregar);
         } else {
             modelAndView.setViewName("redirect:/provincias/listado");
-            provinciaServiceImp.saveNewProvincia(provinciaAgregar);
+            provinciaServiceImp.addProvincia(provinciaAgregar);
             modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
         }
 
@@ -74,7 +77,6 @@ public class ProvinciaController {
         boolean allowEditing = true;
 
         unaProvincia = provinciaServiceImp.findProvinciaByIdentifier(identificadorProvincia);
-
         modelAndView.setViewName("nueva_provincia");
         modelAndView.addObject("provincia", unaProvincia);
         modelAndView.addObject("editar", allowEditing);

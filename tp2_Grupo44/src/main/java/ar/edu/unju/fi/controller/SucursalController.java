@@ -32,17 +32,15 @@ public class SucursalController {
     @Autowired
     private Provincia unaProvincia;
 
-    // @Autowired
-    // private ICommonService commonService;
-
     @GetMapping("/listado")
     public ModelAndView getSucursalesPage() {
 
-        ModelAndView modelAndView = new ModelAndView("sucursales");
+        ModelAndView modelAndView = new ModelAndView();
 
+        modelAndView.setViewName("sucursales");
         modelAndView.addObject("listaSucursales", sucursalServiceImp.getSucursales());
         modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
-        // Imagenes
+
         return modelAndView;
     }
 
@@ -52,8 +50,9 @@ public class SucursalController {
         ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = false;
 
+        unaSucursal = new Sucursal();
         modelAndView.setViewName("nueva_sucursal");
-        modelAndView.addObject("sucursal", sucursalServiceImp.getSucursal());
+        modelAndView.addObject("sucursal", unaSucursal);
         modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
         modelAndView.addObject("editar", allowEditing);
 
@@ -70,29 +69,15 @@ public class SucursalController {
         if (resultadoValidacion.hasErrors()) {
             modelAndView.setViewName("nueva_sucursal");
             // modelAndView.addObject("sucursal", sucursalAgregar);
-            modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias()
-            );
-        } else {
-
-            unaProvincia = provinciaServiceImp.findProvinciaByIdentifier(sucursalAgregar.getProvincia().getIdentificador());
-            sucursalAgregar.setProvincia(unaProvincia);
-
-            System.out.println("Agregar/Modificar");
-            System.out.println("ID: " + sucursalAgregar.getIdentificador());
-            System.out.println("Nombre: " + sucursalAgregar.getNombre());
-            System.out.println("Dirección: " + sucursalAgregar.getDireccion());
-            System.out.println("Nº: " + sucursalAgregar.getNumeroDireccion());
-            System.out.println("Telefono: " + sucursalAgregar.getTelefono());
-            System.out.println("Provincia: " + sucursalAgregar.getProvincia());
-            System.out.println("Provincia ID: " + sucursalAgregar.getProvincia().getIdentificador());
-            System.out.println("Provincia Nombre: " + sucursalAgregar.getProvincia().getNombre());
-
-            modelAndView.setViewName("redirect:/sucursales/listado");
-            sucursalServiceImp.saveNewSucursal(sucursalAgregar);
-            modelAndView.addObject("listaSucursales", sucursalServiceImp.getSucursales());
             modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
-
         }
+
+        unaProvincia = provinciaServiceImp.findProvinciaByIdentifier(sucursalAgregar.getProvincia().getIdentificador());
+        sucursalAgregar.setProvincia(unaProvincia);
+        sucursalServiceImp.addSucursal(sucursalAgregar);
+        modelAndView.setViewName("redirect:/sucursales/listado");
+        modelAndView.addObject("listaSucursales", sucursalServiceImp.getSucursales());
+        modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
 
         return modelAndView;
     }
@@ -105,7 +90,6 @@ public class SucursalController {
         boolean allowEditing = true;
 
         unaSucursal = sucursalServiceImp.findSucursalByIdentifier(identificadorSucursal);
-
         modelAndView.setViewName("nueva_sucursal");
         modelAndView.addObject("sucursal", unaSucursal);
         modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
@@ -115,8 +99,7 @@ public class SucursalController {
     }
 
     @GetMapping("/eliminar/{identificador}")
-    public ModelAndView deleteSucursal(
-            @PathVariable(value = "identificador") long identificadorSucursal) {
+    public ModelAndView deleteSucursal(@PathVariable(value = "identificador") long identificadorSucursal) {
 
         ModelAndView modelAndView = new ModelAndView();
 

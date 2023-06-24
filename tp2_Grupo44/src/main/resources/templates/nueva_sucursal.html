@@ -131,12 +131,10 @@
                                     th:field="*{provincia.identificador}"
                                     aria-label="Provincia"
                                     class="form-select">
-                                <!-- #region Lista de opciones -->
                                 <option th:each="_provincia : ${listaProvincias}"
                                         th:value="${_provincia.identificador}"
                                         th:text="${_provincia.nombre}">
                                 </option>
-                                <!-- #endregion -->
                             </select>
                         </div>
                         <div class="text-danger"
@@ -155,13 +153,10 @@
                         </button>
                     </div>
                     <!-- #endregion -->
-
                 </form>
                 <!-- #endregion -->
-
             </div>
             <!-- #endregion -->
-
         </div>
         <!-- #endregion -->
 
