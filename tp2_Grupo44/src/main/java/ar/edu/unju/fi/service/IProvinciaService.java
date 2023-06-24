@@ -9,11 +9,9 @@ public interface IProvinciaService {
     //#region Methods
     public List<Provincia> getProvincias();
 
-    public void saveNewProvincia(Provincia provinciaAgregar);
+    public void addProvincia(Provincia provinciaAgregar);
 
     public Provincia findProvinciaByIdentifier(long identificador);
-
-    public void modifyProvinciaByIdentifier(Provincia provinciaModificar);
 
     public void deleteProvinciaByIdentifier(Provincia provinciaEliminar);
     

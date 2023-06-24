@@ -25,11 +25,11 @@
                     <p class="text-secondary">
                         <em>Poseemos una variedad de artículos para todos los gustos</em>
                     </p>
-                    <a class="btn btn-primary" th:href="@{/productos/nuevo}">Nuevo producto</a>
+                    <a class="btn btn-primary" th:href="@{/productos/formulario}">Nuevo producto</a>
                 
                 <h5 class="m-3">Categoria de Productos</h5>
                 
-                <ul class="nav nav-pills nav-fill">
+                <!-- <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
                         <a class="nav-link" href="#Alimentos">Alimentos</a>
                     </li>
@@ -48,22 +48,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#Prendas">Prendas</a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <hr>
-            <!-- #region Section -->
+            <!-- #endregion-->
 
-            <!-- #region List of Products -->
+            <!-- #region Lista de Productos -->
             <div class="row" th:each="categoria: ${listaCategorias}">
                 
                 <h2 class="m-3 fs-2 text-center">
-                    <a class="text-decoration-none" href="#seccion" th:text="${categoria}" th:id="${categoria}"></a>
+                    <a class="text-decoration-none" href="#seccion" th:text="${categoria.nombre}" th:id="${categoria}"></a>
                 </h2>
 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3" th:each="producto: ${listaProductos}"
                 th:if="${producto.categoria} == ${categoria}">
 
-                <!-- #region Product Card -->
+                <!-- #region Productos -->
                 <div class="card h-100 text-bg-light">
                         <!-- #region Title -->
                         <div class="card-header text-center">
@@ -82,7 +82,7 @@
                             <p class="card-text">Descuento: <span th:text="${producto.descuento}+'%'"></span>
                             </p>
                             <p class="card-text">Precio con descuento:
-                                <span th:text="'$' + ${producto.calcularDescuento}"></span>
+                                <!-- <span th:text="'$' + ${producto.calcularDescuento}"></span> -->
                             </p>
                         </div>
                         <!-- #endregion -->

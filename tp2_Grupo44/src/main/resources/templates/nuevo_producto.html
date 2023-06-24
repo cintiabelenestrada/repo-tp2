@@ -32,9 +32,8 @@
                 <!-- #endregion -->
 
                 <!-- #region Contenido -->
-                <form th:action="${editar} ? @{/productos/modificar} : @{/productos/guardar}"
+                <form th:action="@{/productos/guardar}"
                       th:object="${producto}"
-                      enctype="multipart/form-data"
                       method="post">
 
                     <!-- #region Entrada de datos -->
@@ -49,54 +48,87 @@
                         <!-- #region Nombre -->
                         <div class="input-group mb-3">
                             <label for="nombre" class="input-group-text">Nombre</label>
-                            <input type="text" id="nombre" th:field="*{nombre}"
-                                placeholder="Ingrese nombre del producto" aria-label="Nombre" aria-describedby="Nombre"
-                                class="form-control">
+                            <input type="text"
+                                   id="nombre"
+                                   th:field="*{nombre}"
+                                   placeholder="Ingrese nombre del producto"
+                                   aria-label="Nombre"
+                                   aria-describedby="Nombre"
+                                   class="form-control">
                         </div>
-                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('nombre')}"
+                             th:errors="*{nombre}">
                         </div>
                         <!-- #endregion -->
 
                         <!-- #region Precio -->
-                        <div class="input-group mb-3">
+                        <!-- <div class="input-group mb-3">
                             <label for="precio" class="input-group-text">Precio</label>
                             <span class="input-group-text text-success">$</span>
-                            <input type="text" id="precio" th:field="*{precio}" placeholder="000.0" aria-label="Precio"
-                                aria-describedby="Precio" class="form-control">
+                            <input type="text"
+                                   id="precio"
+                                   th:field="*{precio}"
+                                   placeholder="000.0"
+                                   aria-label="Precio"
+                                   aria-describedby="Precio"
+                                   class="form-control">
                         </div>
-                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">
-                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('precio')}"
+                             th:errors="*{precio}">
+                        </div> -->
                         <!-- #endregion -->
 
                         <!-- #region Descuento -->
-                        <div class="input-group mb-3">
+                        <!-- <div class="input-group mb-3">
                             <label for="descuento" class="input-group-text">Descuento</label>
                             <span class="input-group-text text-success">$</span>
-                            <input type="text" id="descuento" th:field="*{descuento}" placeholder="00"
-                                aria-label="Descuento" aria-describedby="Descuento" class="form-control">
+                            <input type="text"
+                                   id="descuento"
+                                   th:field="*{descuento}"
+                                   placeholder="00"
+                                   aria-label="Descuento"
+                                   aria-describedby="Descuento"
+                                   class="form-control">
                         </div>
-                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('descuento')}"
-                            th:errors="*{descuento}">
-                        </div>
+                        <div class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('descuento')}"
+                             th:errors="*{descuento}">
+                        </div> -->
                         <!-- #endregion -->
 
                         <!-- #region Categoria -->
                         <div class="input-group mb-3">
                             <label for="categoria" class="input-group-text">Categoria</label>
-                            <select id="categoria" th:field="*{categoria}" aria-label="Categoria" class="form-select">
-                                <option value="">Selecciona una categoria</option>
-                                <option value="Alimentos">Alimentos</option>
-                                <option value="Camas">Camas</option>
-                                <option value="Collares y correas">Collares y correas</option>
-                                <option value="Higiene">Higiene</option>
-                                <option value="Juguetes">Juguetes</option>
-                                <option value="Prendas">Prendas</option>
+                            <select id="categoria"
+                                    th:field="*{categoria.identificador}"
+                                    aria-label="Categoria"
+                                    class="form-select">
+                                <option th:each="_categoria : ${listaCategorias}"
+                                        th:value="${_categoria.identificador}"
+                                        th:text="${_categoria.nombre}">
+                                </option>
                             </select>
                         </div>
                         <div class="text-danger"
                              th:if="${#fields.hasErrors('categoria')}"
                              th:errors="*{categoria}">
                         </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Nombre -->
+                        <div class="input-group mb-3">
+                            <label for="imagen" class="input-group-text">Imagen</label>
+                            <input type="text"
+                                   id="imagen"
+                                   th:field="*{imagen}"
+                                   placeholder="Ingrese URL de la imagen del producto"
+                                   aria-label="Imagen"
+                                   aria-describedby="Imagen"
+                                   class="form-control">
+                        </div>
+                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div>
                         <!-- #endregion -->
                         
                     </div>

@@ -27,17 +27,13 @@ public class ProvinciaServiceImp implements IProvinciaService {
     }
 
     @Override
-    public void saveNewProvincia(Provincia provinciaAgregar) {
+    public void addProvincia(Provincia provinciaAgregar) {
         provinciaRepository.save(provinciaAgregar);
     }
 
     @Override
     public Provincia findProvinciaByIdentifier(long identificador) {
         return provinciaRepository.findById(identificador).get();
-    }
-
-    public void modifyProvinciaByIdentifier(Provincia provinciaModificar) {
-        provinciaRepository.save(provinciaModificar);
     }
 
     @Override
