@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.lists.HealthTipList;
-import ar.edu.unju.fi.model.HealthTip;
+import ar.edu.unju.fi.entity.HealthTip;
+import ar.edu.unju.fi.service.IHealthTipService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -20,18 +20,12 @@ import jakarta.validation.Valid;
 public class HealthTipController {
 
     @Autowired
-    HealthTipList listaConsejos;
-
-    @Autowired
-    HealthTip consejo;
+    private IHealthTipService healthTipService;
 
     @GetMapping("/listado")
     public String getHealthTipPage(Model model) {
 
-        model.addAttribute(
-            "listaConsejos",
-            listaConsejos.getConsejos()
-        );
+        model.addAttribute("listaConsejos", healthTipService.getConsejos());
 
         return "consejos_de_salud";
     }
@@ -41,13 +35,8 @@ public class HealthTipController {
 
         boolean allowEditing = false;
 
-        model.addAttribute(
-                "consejo",
-                consejo);
-
-        model.addAttribute(
-                "editar",
-                allowEditing);
+        model.addAttribute("consejo", healthTipService.getHealthTip());
+        model.addAttribute("editar", allowEditing);
 
         return "nuevo_consejo_de_salud";
     }
@@ -57,68 +46,18 @@ public class HealthTipController {
             @Valid @ModelAttribute(value = "consejo") HealthTip consejoAgregar,
             BindingResult resultadoValidacion) {
 
-        ModelAndView modelAndView = new ModelAndView(
-                "redirect:/consejos_de_salud/listado");
-
-        short identificadorContador = listaConsejos.getConsejos().get(listaConsejos.getConsejos().size() - 1).getIdentificador();
-        identificadorContador++;
+        ModelAndView modelAndView = new ModelAndView("redirect:/consejos_de_salud/listado");
 
         if (resultadoValidacion.hasErrors()) {
-
-            modelAndView.setViewName(
-                    "nuevo_consejo_de_salud");
-
-            modelAndView.addObject(
-                    "consejo",
-                    consejoAgregar);
-
-            return modelAndView;
-
-        }
-
-        consejoAgregar.setIdentificador(identificadorContador);
-        listaConsejos.getConsejos().add(consejoAgregar);
-
-        modelAndView.addObject(
-                "listaConsejos",
-                listaConsejos.getConsejos());
-
-        return modelAndView;
-    }
-
-    @PostMapping("/modificar")
-    public ModelAndView modifyBranchOffice(
-            @Valid @ModelAttribute(value = "consejo") HealthTip consejoModificar,
-            BindingResult resultadoValidacion) {
-
-        ModelAndView modelAndView = new ModelAndView(
-                "redirect:/consejos_de_salud/listado");
-
-        boolean allowEditing = true;
-
-        if (resultadoValidacion.hasErrors()) {
-
             modelAndView.setViewName("nuevo_consejo_de_salud");
-
-            modelAndView.addObject(
-                    "consejo",
-                    consejoModificar);
-
-            modelAndView.addObject(
-                    "editar",
-                    allowEditing);
-
+            modelAndView.addObject("consejo", consejoAgregar);
             return modelAndView;
         }
 
-        for (HealthTip consejo : listaConsejos.getConsejos()) {
-            if (consejo.getIdentificador() == consejoModificar.getIdentificador()) {
-                consejo.setTitulo(consejoModificar.getTitulo());
-                consejo.setContenido(consejoModificar.getContenido());
-                consejo.setFechaPublicacion(consejoModificar.getFechaPublicacion());
-                break;
-            }
-        }
+        healthTipService.setHealthTipIdentifier(consejoAgregar);
+        healthTipService.saveNewHealthTip(consejoAgregar);
+
+        modelAndView.addObject("listaConsejos",healthTipService.getConsejos());
 
         return modelAndView;
     }
@@ -128,15 +67,8 @@ public class HealthTipController {
             Model model,
             @PathVariable(value = "identificador") short identificadorConsejo) {
 
-        HealthTip healthTipFound = new HealthTip();
+        HealthTip healthTipFound = healthTipService.findHealthTipByIdentifier(identificadorConsejo);
         boolean allowEditing = true;
-
-        for (HealthTip consejo : listaConsejos.getConsejos()) {
-            if (consejo.getIdentificador() == identificadorConsejo) {
-                healthTipFound = consejo;
-                break;
-            }
-        }
 
         model.addAttribute("consejo", healthTipFound);
         model.addAttribute("editar", allowEditing);
@@ -144,16 +76,31 @@ public class HealthTipController {
         return "nuevo_consejo_de_salud";
     }
 
+    @PostMapping("/modificar")
+    public ModelAndView modifyHealthTip(
+            @Valid @ModelAttribute(value = "consejo") HealthTip consejoModificar,
+            BindingResult resultadoValidacion) {
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/consejos_de_salud/listado");
+        boolean allowEditing = true;
+
+        if (resultadoValidacion.hasErrors()) {
+            modelAndView.setViewName("nuevo_consejo_de_salud");
+            modelAndView.addObject("consejo", consejoModificar);
+            modelAndView.addObject("editar", allowEditing);
+            return modelAndView;
+        }
+
+        healthTipService.modifyHealthTipByIdentifier(consejoModificar);
+
+        return modelAndView;
+    }
+
     @GetMapping("/eliminar/{identificador}")
-    public String deleteBranchOffice(
+    public String deleteHealthTip(
             @PathVariable(value = "identificador") short identificadorConsejo) {
 
-        for (HealthTip consejo : listaConsejos.getConsejos()) {
-            if (consejo.getIdentificador() == identificadorConsejo) {
-                listaConsejos.getConsejos().remove(consejo);
-                break;
-            }
-        }
+        healthTipService.deleteHealthTipByIdentifier(identificadorConsejo);
 
         return ("redirect:/consejos_de_salud/listado");
     }

@@ -5,38 +5,33 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <!-- #region Bootstrap (import) -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-        <!-- #endregion -->
-
-        <!-- #region Importar CSS personalizado -->
-        <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
-        <!-- #endregion -->
-
-        <!-- #region Webpage Icon & Title -->
+        <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
         <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
         <title>Inicio</title>
-        <!-- #endregion -->
     </head>
 
     <body>
         <!-- #region Header -->
         <header th:replace="~{layouts/header :: header}"></header>
         <!-- #endregion -->
+        
         <!-- #region Index -->
-        <div class="container">
-            <section>
+        <div class="container bg-light border border-2 rounded mb-3">
+            <section class="pt-3">
                 <h2>Últimas noticias</h2>
+
+                <!-- #region Noticias -->
                 <aside>
-                        <ul>
+                    <ul>
                         <li><a href="#">Nuevo servicio de cuidado de mascotas</a></li>
                         <li><a href="#">Promoción de invierno: 10% de descuento en paseos</a></li>
                         <li><a href="#">Cómo mantener a tu perro feliz y saludable durante el verano</a></li>
                     </ul>
                 </aside>
-                <h2>Nuestro objetivo</h2>
-                <!-- #region Articles -->
+                <!-- #endregion -->
+                <h2><u>Nuestro objetivo</u></h2>
+                <!-- #region Contenido -->
                 <article>
                     <h3>Compromiso con la salud y bienestar de las mascotas</h3>
                     <p>
@@ -53,6 +48,7 @@
                     </p>
                 </article>
                 <!-- #endregion -->
+
             </section>
         </div>
         <!-- #endregion -->

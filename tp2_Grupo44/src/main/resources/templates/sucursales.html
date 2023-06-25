@@ -2,26 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
     <head>
-        <!-- #region Meta -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- #endregion -->
-
-        <!-- #region Bootstrap (import) -->
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-        <!-- #endregion -->
-
-        <!-- #region Custom CSS -->
-        <link rel="stylesheet" th:href="@{/css/estilos.css}">
-        <!-- #endregion -->
-
-        <!-- #region Webpage Icon & Title -->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}" />
         <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
-        <!-- region Import CSS -->
-        <link rel="stylesheet"  type="text/css" th:href="@{/css/estilos.css}" />
         <title>Sucursales</title>
-        <!-- #endregion -->
     </head>
 
     <body>
@@ -30,8 +17,9 @@
         <!-- #endregion -->
 
         <!-- #region Sucursales -->
-        <div class="container" id="seccion">
+        <div class="container pt-3" id="seccion">
 
+            <!-- #region Navegación -->
             <div class="bg-light border border-light-subtle rounded text-center">
                 <h1 class="m-3">¡Encuentrá la sucursal más cercana!</h1>
                 <p class="text-secondary">
@@ -40,7 +28,12 @@
                         creciendo con nuevas aperturas en el Norte Argentino.
                     </em>
                 </p>
-                <a class="btn btn-primary mb-3" th:href="@{/sucursales/nuevo}">Nuevo Sucursal</a>
+                <div th:unless="${#lists.isEmpty(listaProvincias)}">
+                    <a class="btn btn-primary mb-3" th:href="@{/sucursales/formulario}">Nuevo Sucursal</a>
+                </div>
+                <div th:if="${#lists.isEmpty(listaProvincias)}">
+                    <p><em>No es posible realizar esta operación</em></p>
+                </div>
             </div>
             <hr>
             <!-- #endregion -->
@@ -49,15 +42,15 @@
                  th:each="provincia : ${listaProvincias}">
 
                 <div class="card-header fs-2 text-center"
-                     th:text="${provincia}">
+                     th:text="${provincia.nombre}">
                 </div>
-
-                <img class="img-thumbnail d-block mx-auto mt-3"
+                
+                <!-- <img class="img-thumbnail d-block mx-auto mt-3"
                      style="height: 150px;"
                      alt="..."
                      th:each="imagen : ${listaImagenes}"
                      th:if="${#strings.equals(imagen.identificador, provincia)}"
-                     th:src="${imagen.nombre}">
+                     th:src="${imagen.nombre}"> -->
 
                 <div class="card-body">
                     <h5 class="card-title text-center">Sucursales</h5>
