@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.service.imp;
+package ar.edu.unju.fi.service;
 
 import java.util.List;
 
@@ -7,18 +7,13 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.repository.ISucursalRepository;
-import ar.edu.unju.fi.service.ISucursalService;
 
-@Service("sucursalServiceImp")
-public class SucursalServiceImp implements ISucursalService {
+@Service
+public class SucursalServiceImpl implements ISucursalService {
 
     @Autowired
     private ISucursalRepository sucursalRepository;
-    
-    @Autowired
-    private Sucursal sucursal;
 
-    //#region Methods
     @Override
     public void addSucursal(Sucursal sucursal) {
         sucursalRepository.save(sucursal);
@@ -26,26 +21,21 @@ public class SucursalServiceImp implements ISucursalService {
 
     @Override
     public List<Sucursal> getAllSucursales() {
-        List<Sucursal> sucursales = sucursalRepository.findByEstado(true);
-        return sucursales;
+        return (List<Sucursal>) sucursalRepository.findAll();
     }
 
     @Override
     public Sucursal findSucursalByIdentifier(long identificador) {
-        sucursal = sucursalRepository.findById(identificador).get();
-        return sucursal;
+        return sucursalRepository.findById(identificador).orElse(null);
     }
 
     @Override
     public void deleteSucursalByIdentifier(Sucursal sucursal) {
-        sucursal.setEstado(false);
-        sucursalRepository.save(sucursal);
+        sucursalRepository.delete(sucursal);
     }
 
-    // @Override
-    // public Sucursal getSucursal() {
-    //     return sucursal;
-    // }
-    //#endregion
-
+    @Override
+    public List<Sucursal> findSucursalesByFechaInicioAndFechaFin(String fechaInicio, String fechaFin) {
+        return sucursalRepository.findByFechaInicioBetweenAndFechaFinBetween(fechaInicio, fechaFin);
+    }
 }
