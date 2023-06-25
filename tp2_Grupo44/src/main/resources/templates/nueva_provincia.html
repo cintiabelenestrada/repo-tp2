@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+        <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+        <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
+        <title>Nuevo Provincia</title>
+    </head>
+
+    <body>
+        <!-- #region Header -->
+        <header th:replace="~{layouts/header :: header}"></header>
+        <!-- #endregion -->
+
+        <!-- #region nueva_provincia.html -->
+        <div class="container">
+
+            <div class="card">
+                <!-- #region Titulo -->
+                <div class="card-header text-center">
+                    <h3 class="mb-0" th:text="${editar} ? 'Modificar Provincia' : 'Nueva Provincia'"></h3>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Formulario -->
+                <form th:action="@{/provincias/guardar}"
+                      th:object="${provincia}"
+                      method="post">
+
+                    <div class="card-body">
+                        <!-- #region Identificador -->
+                        <div>
+                            <input type="hidden"
+                                   id="identificador"
+                                   th:field="*{identificador}"
+                                   class="form-control">
+                        </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Estado -->
+                        <div>
+                            <input type="hidden"
+                                   id="estado"
+                                   th:field="*{estado}"
+                                   th:attr="value=${provincia.estado}"
+                                   class="form-control">
+                        </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Nombre -->
+                        <div class="input-group mb-3">
+                            <label for="nombre" class="input-group-text">Nombre</label>
+                            <input type="text"
+                                   id="nombre"
+                                   th:field="*{nombre}"
+                                   placeholder="Ingrese nombre de la provincia"
+                                   aria-label="Nombre"
+                                   aria-describedby="Nombre"
+                                   class="form-control">
+                        </div>
+                        <p class="text-danger mb-3"
+                           th:if="${#fields.hasErrors('nombre')}"
+                           th:errors="*{nombre}">
+                        </p>
+                        <!-- #endregion -->
+                    </div>
+
+                    <!-- #region Opciones -->
+                    <div class="card-footer d-flex gap-3 justify-content-center">
+                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/provincias/listado}">Cancelar</a>
+                        <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'"></button>
+                    </div>
+                    <!-- #endregion -->
+
+                </form>
+                <!-- #endregion -->
+            </div>
+            
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region Separator -->
+        <hr>
+        <!-- #endregion -->
+
+        <!-- #region Footer -->
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        <!-- #endregion -->
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </body>
+
+</html>

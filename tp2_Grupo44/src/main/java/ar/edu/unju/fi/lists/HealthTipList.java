@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.HealthTip;
+import ar.edu.unju.fi.entity.HealthTip;
 
 @Component
 public class HealthTipList {

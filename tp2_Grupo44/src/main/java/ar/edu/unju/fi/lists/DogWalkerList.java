@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.DogWalker;
+import ar.edu.unju.fi.entity.DogWalker;
 
 @Component
 public class DogWalkerList {

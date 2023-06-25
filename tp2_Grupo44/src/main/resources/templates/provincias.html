@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}" />
+    <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
+    <title>Provincias</title>
+</head>
+
+<body>
+    <!-- #region Header -->
+    <header th:replace="~{layouts/header :: header}"></header>
+    <!-- #endregion -->
+
+    <!-- #region Sucursales -->
+    <div class="container pt-3" id="seccion">
+
+        <!-- #region Navegación -->
+        <div class="bg-light border border-light-subtle rounded text-center">
+            <h1 class="m-3">Administración de Provincias</h1>
+            <p class="text-secondary">
+                <em>
+                    Agregar, eliminar o modificar provincia/s.
+                </em>
+            </p>
+            <a class="btn btn-primary mb-3" th:href="@{/provincias/formulario}">Nueva provincia</a>
+        </div>
+        <hr>
+        <!-- #endregion -->
+
+        <!-- #region Provincias -->
+        <div class="card mb-3">
+
+            <div class="card-header fs-2 text-center">
+                <h3 class="mb-0">Listado</h3>
+            </div>
+
+            <!-- <img class="img-thumbnail d-block mx-auto mt-3"
+                     style="height: 150px;"
+                     alt="..."
+                     th:each="imagen : ${listaImagenes}"
+                     th:if="${#strings.equals(imagen.identificador, provincia)}"
+                     th:src="${imagen.nombre}"> -->
+
+            <div class="card-body">
+                
+                <h6 class="card-title text-center mb-0">
+                    <small class="badge bg-secondary" th:text="${#lists.size(listaProvincias)}"></small>
+                </h6>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Acciones</th>
+                            <th scope="col">ObjectID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="provincia : ${listaProvincias}">
+                            <th scope="row" th:text="${provincia.identificador}"></th>
+                            <td th:text="${provincia.nombre}"></td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
+                                        th:href="@{/provincias/modificar/} + ${provincia.identificador}">Modificar</a>
+
+                                    <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
+                                        th:href="@{/provincias/eliminar/} + ${provincia.identificador}">Eliminar</a>
+                                </div>
+                            </td>
+                            <td class="table-info" th:text="${provincia}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                Footer
+            </div>
+        </div>
+        <!-- #endregion Sucursales -->
+        <p class="text-center">
+            <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
+        </p>
+    </div>
+    <!-- #region Footer -->
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
+    <!-- #endregion -->
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
