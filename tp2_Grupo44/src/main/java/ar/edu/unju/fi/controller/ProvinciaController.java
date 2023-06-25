@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/provincias")
 public class ProvinciaController {
-
+    
     @Autowired
     private ProvinciaServiceImp provinciaServiceImp;
 
@@ -30,7 +30,7 @@ public class ProvinciaController {
         ModelAndView modelAndView = new ModelAndView();
         
         modelAndView.setViewName("provincias");
-        modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
+        modelAndView.addObject("listaProvincias", provinciaServiceImp.getAllProvincias());
 
         return modelAndView;
     }
@@ -58,15 +58,14 @@ public class ProvinciaController {
 
         if (resultadoValidacion.hasErrors()) {
             modelAndView.setViewName("nueva_provincia");
-            // modelAndView.addObject("provincia", provinciaAgregar);
         } else {
-            modelAndView.setViewName("redirect:/provincias/listado");
             provinciaServiceImp.addProvincia(provinciaAgregar);
-            modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
+
+            modelAndView.setViewName("redirect:/provincias/listado");
+            modelAndView.addObject("listaProvincias", provinciaServiceImp.getAllProvincias());
         }
 
         return modelAndView;
-
     }
 
     @GetMapping("/modificar/{identificador}")

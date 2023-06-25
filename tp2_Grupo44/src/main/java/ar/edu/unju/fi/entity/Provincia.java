@@ -26,18 +26,18 @@ public class Provincia {
     @Column(name = "provincia_identificador")
     private long identificador;
 
-    @Column(name = "estado", columnDefinition = "boolean default true")
+    @Column(name = "provincia_estado", columnDefinition = "boolean default true")
     private boolean estado;
 
     @NotBlank(message = "Debes introducir un nombre")
 	@Size(min = 5, max = 15, message = "El nombre solo puede contener entre 5 y 15 caracteres")
 	@Pattern(regexp = "[a-zA-Z]+", message = "Debe contener solo letras")
-    @Column(name = "nombre")
+    @Column(name = "provincia_nombre")
     private String nombre;
 
     @OneToMany(mappedBy = "provincia")
     private List<Sucursal> listaSucursales;
-    // #endregion
+    //#endregion
 
     //#region Constructors
     public Provincia() {

@@ -19,36 +19,36 @@
         <!-- #region nueva_sucursal.html -->
         <div class="container">
 
-            <!-- #region Formulario -->
             <div class="card">
-
                 <!-- #region Titulo -->
                 <div class="card-header text-center">
                     <h3 class="mb-0" th:text="${editar} ? 'Modificar Sucursal' : 'Nuevo Sucursal'"></h3>
-                    <h6 class="badge bg-secondary"
-                        th:text="${editar} ? 'Identificador ' + ${sucursal.identificador} : 'Identificador no asignado todavia'">
-                    </h6>
                 </div>
                 <!-- #endregion -->
 
-                <!-- #region Contenido -->
-                <!-- <form th:action="${editar} ? @{/sucursales/modificar} : @{/sucursales/guardar}" -->
+                <!-- #region Formulario -->
                 <form th:action="@{/sucursales/guardar}"
                       th:object="${sucursal}"
                       method="post">
 
-                    <!-- #region Entrada de datos -->
                     <div class="card-body">
 
                         <!-- #region Identificador -->
                         <div>
-                            <input type="hidden" id="identificador" th:field="*{identificador}" class="form-control">
+                            <input type="hidden"
+                                   id="identificador"
+                                   th:field="*{identificador}"
+                                   class="form-control">
                         </div>
                         <!-- #endregion -->
 
                         <!-- #region Estado -->
                         <div>
-                            <input type="hidden" id="estado" th:field="*{estado}" th:attr="value=${sucursal.estado}" class="form-control">
+                            <input type="hidden"
+                                   id="estado"
+                                   th:field="*{estado}"
+                                   th:attr="value=${sucursal.estado}"
+                                   class="form-control">
                         </div>
                         <!-- #endregion -->
 
@@ -63,8 +63,10 @@
                                    aria-describedby="Nombre"
                                    class="form-control">
                         </div>
-                            <div class="text-danger mb-3" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
-                        </div>
+                        <p class="text-danger mb-3"
+                           th:if="${#fields.hasErrors('nombre')}"
+                           th:errors="*{nombre}">
+                        </p>
                         <!-- #endregion -->
 
                         <!-- #region Dirección -->
@@ -78,50 +80,74 @@
                                    aria-describedby="Direccion"
                                    class="form-control">
                         </div>
-                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('direccion')}"
-                             th:errors="*{direccion}">
-                        </div>
+                        <p class="text-danger mb-3"
+                           th:if="${#fields.hasErrors('direccion')}"
+                           th:errors="*{direccion}">
+                        </p>
                         <!-- #endregion -->
 
                         <!-- #region numeroDirección -->
                         <div class="input-group mb-3">
                             <label for="numeroDireccion" class="input-group-text">Número</label>
-                            <input type="text" id="numeroDireccion" th:field="*{numeroDireccion}" placeholder="000"
-                                   aria-label="Numero" aria-describedby="Numero" class="form-control">
+                            <input type="text"
+                                   id="numeroDireccion"
+                                   th:field="*{numeroDireccion}"
+                                   placeholder="000"
+                                   aria-label="Numero"
+                                   aria-describedby="Numero"
+                                   class="form-control">
                         </div>
-                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('numeroDireccion')}"
-                             th:errors="*{numeroDireccion}">
-                        </div>
+                        <p class="text-danger mb-3"
+                           th:if="${#fields.hasErrors('numeroDireccion')}"
+                           th:errors="*{numeroDireccion}">
+                        </p>
                         <!-- #endregion -->
 
                         <!-- #region Telefono -->
                         <div class="input-group mb-3">
                             <label for="telefono" class="input-group-text">Telefono</label>
                             <span class="input-group-text">#</span>
-                            <input type="text" id="telefono" th:field="*{telefono}" aria-label="Telefono"
-                                   aria-describedby="Telefono" placeholder="0388-000-0000" class="form-control">
+                            <input type="text"
+                                   id="telefono"
+                                   th:field="*{telefono}"
+                                   placeholder="0388-000-0000"
+                                   aria-label="Telefono"
+                                   aria-describedby="Telefono"
+                                   class="form-control">
                         </div>
-                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">
-                        </div>
+                        <p class="text-danger mb-3"
+                           th:if="${#fields.hasErrors('telefono')}"
+                           th:errors="*{telefono}">
+                        </p>
                         <!-- #endregion -->
 
                         <!-- #region Horario -->
                         <div class="input-group mb-3">
                             <span class="input-group-text">Horario</span>
                             <label for="horarioApertura" class="input-group-text">Apertura</label>
-                            <input type="time" id="horarioApertura" th:field="*{horarioApertura}" aria-label="Apertura"
-                                   aria-labelledby="Apertura" class="form-control">
+                            <input type="time"
+                                   id="horarioApertura"
+                                   th:field="*{horarioApertura}"
+                                   aria-label="Apertura"
+                                   aria-labelledby="Apertura"
+                                   class="form-control">
 
                             <label for="horarioCierre" class="input-group-text">Cierre</label>
-                            <input type="time" id="horarioCierre" th:field="*{horarioCierre}" aria-label="Cierre"
-                                   aria-labelledby="Cierre" class="form-control">
+                            <input type="time"
+                                   id="horarioCierre"
+                                   th:field="*{horarioCierre}"
+                                   aria-label="Cierre"
+                                   aria-labelledby="Cierre"
+                                   class="form-control">
                         </div>
-                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('horarioApertura')}"
-                             th:errors="*{horarioApertura}">
-                        </div>
-                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('horarioCierre')}"
+                        <p class="text-danger mb-3"
+                           th:if="${#fields.hasErrors('horarioApertura')}"
+                           th:errors="*{horarioApertura}">
+                        </p>
+                        <p class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('horarioCierre')}"
                              th:errors="*{horarioCierre}">
-                        </div>
+                        </p>
                         <!-- #endregion -->
 
                         <!-- #region Provincia -->
@@ -129,6 +155,7 @@
                             <label for="provincia" class="input-group-text">Provincia</label>
                             <select id="provincia"
                                     th:field="*{provincia.identificador}"
+                                    name="provincia"
                                     aria-label="Provincia"
                                     class="form-select">
                                 <option th:each="_provincia : ${listaProvincias}"
@@ -149,8 +176,7 @@
                     <!-- #region Opciones -->
                     <div class="card-footer d-flex gap-3 justify-content-center">
                         <a class="btn btn-danger text-decoration-none link-light" th:href="@{/sucursales/listado}">Cancelar</a>
-                        <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'">
-                        </button>
+                        <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'"></button>
                     </div>
                     <!-- #endregion -->
                 </form>

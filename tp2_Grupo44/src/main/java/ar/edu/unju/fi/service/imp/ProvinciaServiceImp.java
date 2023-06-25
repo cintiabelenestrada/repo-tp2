@@ -9,43 +9,43 @@ import ar.edu.unju.fi.entity.Provincia;
 import ar.edu.unju.fi.repository.IProvinciaRepository;
 import ar.edu.unju.fi.service.IProvinciaService;
 
-@Service
+@Service("provinciaServiceImp")
 public class ProvinciaServiceImp implements IProvinciaService {
 
-    //#region Components
     @Autowired
     private IProvinciaRepository provinciaRepository;
 
     @Autowired
     private Provincia provincia;
-    //#endregion
 
     //#region Methods
     @Override
-    public List<Provincia> getProvincias() {
-        return provinciaRepository.findByEstado(true);
+    public void addProvincia(Provincia provincia) {
+        provinciaRepository.save(provincia);
     }
 
     @Override
-    public void addProvincia(Provincia provinciaAgregar) {
-        provinciaRepository.save(provinciaAgregar);
+    public List<Provincia> getAllProvincias() {
+        List<Provincia> provincias = provinciaRepository.findByEstado(true);
+        return provincias;
     }
 
     @Override
     public Provincia findProvinciaByIdentifier(long identificador) {
-        return provinciaRepository.findById(identificador).get();
-    }
-
-    @Override
-    public void deleteProvinciaByIdentifier(Provincia provinciaEliminar) {
-        provinciaEliminar.setEstado(false);
-        provinciaRepository.save(provinciaEliminar);
-    }
-
-    @Override
-    public Provincia getProvincia() {
+        provincia = provinciaRepository.findById(identificador).get();
         return provincia;
     }
+
+    @Override
+    public void deleteProvinciaByIdentifier(Provincia provincia) {
+        provincia.setEstado(false);
+        provinciaRepository.save(provincia);
+    }
+
+    // @Override
+    // public Provincia getProvincia() {
+    //     return provincia;
+    // }
     //#endregion
 
 }
