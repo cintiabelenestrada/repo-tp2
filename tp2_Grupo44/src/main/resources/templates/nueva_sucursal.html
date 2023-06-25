@@ -121,32 +121,33 @@
                         </p>
                         <!-- #endregion -->
 
-                        <!-- #region Horario -->
+                        <!-- #region Fecha -->
                         <div class="input-group mb-3">
-                            <span class="input-group-text">Horario</span>
-                            <label for="horarioApertura" class="input-group-text">Apertura</label>
-                            <input type="time"
-                                   id="horarioApertura"
-                                   th:field="*{horarioApertura}"
-                                   aria-label="Apertura"
-                                   aria-labelledby="Apertura"
-                                   class="form-control">
-
-                            <label for="horarioCierre" class="input-group-text">Cierre</label>
-                            <input type="time"
-                                   id="horarioCierre"
-                                   th:field="*{horarioCierre}"
+                            <span class="input-group-text">Fecha</span>
+                            <label for="fechaInicio" class="input-group-text">Inicio</label>
+                            <input type="date"
+                                   id="fechaInicio"
+                                   th:field="*{fechaInicio}"
+                                   aria-label="Inicio"
+                                   aria-labelledby="Inicio"
+                                   class="form-control"
+                                   placeholder="dd-MM-yyyy">
+                            <label for="fechaCierre" class="input-group-text">Cierre</label>
+                            <input type="date"
+                                   id="fechaCierre"
+                                   th:field="*{fechaCierre}"
                                    aria-label="Cierre"
                                    aria-labelledby="Cierre"
-                                   class="form-control">
+                                   class="form-control"
+                                   placeholder="dd-MM-yyyy">
                         </div>
                         <p class="text-danger mb-3"
-                           th:if="${#fields.hasErrors('horarioApertura')}"
-                           th:errors="*{horarioApertura}">
+                           th:if="${#fields.hasErrors('fechaInicio')}"
+                           th:errors="*{fechaInicio}">
                         </p>
                         <p class="text-danger mb-3"
-                             th:if="${#fields.hasErrors('horarioCierre')}"
-                             th:errors="*{horarioCierre}">
+                             th:if="${#fields.hasErrors('fechaCierre')}"
+                             th:errors="*{fechaCierre}">
                         </p>
                         <!-- #endregion -->
 
