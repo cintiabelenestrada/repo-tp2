@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.entity.DogWalker;
-import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.IDogWalkerService;
 import jakarta.validation.Valid;
 
@@ -23,15 +22,12 @@ public class DogWalkingServiceController {
     @Autowired
     private IDogWalkerService dogWalkerService;
     
-    @Autowired
-    private ICommonService commonService;
 
     @GetMapping("/listado")
     public String getDogWalkingServicePage(Model model) {
 
         model.addAttribute("listaPaseadores", dogWalkerService.getPaseadores());
         model.addAttribute("listaProvincias", dogWalkerService.getProvincias());
-        model.addAttribute("listaImagenes", commonService.getImagenes());
 
         return "servicio_de_paseos";
     }

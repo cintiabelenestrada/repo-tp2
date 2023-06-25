@@ -16,62 +16,67 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 @Component
 @Entity
 @Table(name = "sucursales")
 public class Sucursal {
 
-	// #region Attributes
+	//#region Attributes
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sucursal_identificador")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long identificador;
 
 	@Column(name = "estado", columnDefinition = "boolean default true")
 	private boolean estado;
 
-	// @NotEmpty(message = "Debes introducir un nombre")
-	// @Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 30 caracteres")
 	@Column(name = "nombre")
+	@NotBlank(message = "Debes introducir un nombre")
+	@Size(min = 5, max = 15, message = "El nombre solo puede contener entre 5 y 15 caracteres")
+	@Pattern(regexp = "[a-zA-Z]+", message = "Debe contener solo letras")
 	private String nombre;
 
-	// @NotEmpty(message = "Debes introducir una dirección")
-	// @Size(min = 5, max = 30, message = "La dirección solo puede contener entre 5 y 30 caracteres")
-	// @Pattern(regexp = "[a-zA-Z]+", message = "La dirección solo puede contener letras")
 	@Column(name = "direccion")
+	@NotBlank(message = "Debes introducir una dirección")
+	@Size(min = 5, max = 30, message = "La dirección solo puede contener entre 5 y 30 caracteres")
+	@Pattern(regexp = "[a-zA-Z]+", message = "La dirección solo puede contener letras")
 	private String direccion;
 
-	// @NotNull(message = "Debes ingresar el número")
-	// @PositiveOrZero(message = "Debes ingresar un número positivo")
-	// @Pattern(regexp = "[0-9]+", message = "Debe contener solo números")
+	@NotBlank(message = "Debes ingresar el número")
+	@PositiveOrZero(message = "Debes ingresar un número positivo")
+	@Pattern(regexp = "[0-9]+", message = "Debe contener solo números")
 	@Column(name = "numero_direccion")
 	private String numeroDireccion;
 
-	// @NotEmpty(message = "Debes introducir un telefono")
-	// @Pattern(regexp = "0388-[0-9]{3}-[0-9]{4}", message = "Ingrese un número de telefono válido")
+	@NotBlank(message = "Debes introducir un telefono")
+	@Pattern(regexp = "0388-[0-9]{3}-[0-9]{4}", message = "Ingrese un número de telefono válido")
 	@Column(name = "telefono")
 	private String telefono;
 
 	@DateTimeFormat(pattern = "HH:mm")
-	// @NotNull(message = "Ingrese un horario de apertura")
+	@NotNull(message = "Ingrese un horario de apertura")
 	@Column(name = "horario_apertura")
 	private LocalTime horarioApertura;
 
 	@DateTimeFormat(pattern = "HH:mm")
-	// @NotNull(message = "Ingrese un horario de cierre")
+	@NotNull(message = "Ingrese un horario de cierre")
 	@Column(name = "horario_cierre")
 	private LocalTime horarioCierre;
 
 	@Autowired
 	@JoinColumn(name = "provincia_identificador")
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@NotNull(message = "Debe seleccionar una provincia")
 	private Provincia provincia;
-	// #endregion
+	//#endregion
 
-	// #region Constructors
+	//#region Constructors
 	/**
 	 * Constructor por defecto
 	 */
@@ -113,9 +118,9 @@ public class Sucursal {
 		this.provincia = provincia;
 
 	}
-	// #endregion
+	//#endregion
 
-	// #region Getters and Setters
+	//#region Getters and Setters
 	public long getIdentificador() {
 		return identificador;
 	}
@@ -187,9 +192,9 @@ public class Sucursal {
 	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
 	}
-	// #endregion
+	//#endregion
 
-	// #region Methods
-	// #endregion
+	//#region Methods
+	//#endregion
 
 }

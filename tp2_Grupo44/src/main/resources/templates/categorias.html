@@ -8,7 +8,7 @@
     <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}" />
     <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
-    <title>Provincias</title>
+    <title>Categorias</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                     Agregar, eliminar o modificar provincia/s.
                 </em>
             </p>
-            <a class="btn btn-primary mb-3" th:href="@{/provincias/formulario}">Nueva provincia</a>
+            <a class="btn btn-primary mb-3" th:href="@{/categorias/formulario}">Nueva categoria</a>
         </div>
         <hr>
         <!-- #endregion -->
@@ -49,7 +49,7 @@
             <div class="card-body">
                 
                 <h6 class="card-title text-center mb-0">
-                    <small class="badge bg-secondary" th:text="${#lists.size(listaProvincias)}"></small>
+                    <small class="badge bg-secondary" th:text="${#lists.size(listaCategorias)}"></small>
                 </h6>
 
                 <table class="table table-hover">
@@ -62,19 +62,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="provincia : ${listaProvincias}">
-                            <th scope="row" th:text="${provincia.identificador}"></th>
-                            <td th:text="${provincia.nombre}"></td>
+                        <tr th:each="categoria : ${listaCategorias}">
+                            <th scope="row" th:text="${categoria.identificador}"></th>
+                            <td th:text="${categoria.nombre}"></td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
-                                        th:href="@{/provincias/modificar/} + ${provincia.identificador}">Modificar</a>
+                                        th:href="@{/categorias/modificar/} + ${categoria.identificador}">Modificar</a>
 
                                     <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
-                                        th:href="@{/provincias/eliminar/} + ${provincia.identificador}">Eliminar</a>
+                                        th:href="@{/categorias/eliminar/} + ${categoria.identificador}">Eliminar</a>
                                 </div>
                             </td>
-                            <td class="table-info" th:text="${provincia}"></td>
+                            <td class="table-info" th:text="${categoria}"></td>
                         </tr>
                     </tbody>
                 </table>

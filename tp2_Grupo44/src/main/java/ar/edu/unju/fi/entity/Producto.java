@@ -2,87 +2,115 @@ package ar.edu.unju.fi.entity;
 
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
 
 @Component
-public class Product {
+@Entity
+@Table(name = "productos")
+public class Producto {
 
-	// region static Objects
+	//#region Static Objects
 	private final static Random random = new Random();
-	// endregion
+	//#endregion
 
-	// region Attributes
-	@NotEmpty(message = "Debes introducir un nombre")
-	@Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 30 caracteres")
+	//#region Attributes
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "producto_codigo")
+    private long codigo;
+
+	@Column(name = "producto_estado", columnDefinition = "boolean default true")
+    private boolean estado;
+
+	@Column(name = "producto_nombre")
+	@NotBlank(message = "Debes ingresar un nombre")
+	// @Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 30 caracteres")
 	private String nombre;
 
-	private short codigo;
-
-	@NotNull(message = "Debes ingresar el precio")
+	@Column(name = "producto_precio")
+	@NotBlank(message = "Debes ingresar el precio")
 	@PositiveOrZero(message = "Debes ingresar un número positivo")
 	@Pattern(regexp = "([0-9]*[.])?[0-9]+", message = "Debe ingresar un número valido")
 	private String precio;
 
-	@NotBlank(message = "Debe seleccionar una categoria")
-	private String categoria;
-
+	@Column(name = "producto_descuento")
 	@Max(value = 50, message = "El valor máximo permitido es 50")
 	@Min(value = 0, message = "El valor mínimo permitido es 0")
 	@NotNull(message = "Debes ingresar el descuento")
 	@Pattern(regexp = "[0-9]+", message = "Debe ingresar un número valido")
 	private String descuento;
 
+	@Column(name = "producto_imagen")
 	private String imagen;
-	// endregion
 
-	// region Constructors
-	public Product() {
+	@Autowired
+	@JoinColumn(name = "categoria_indentificador")
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@NotNull(message = "Debe seleccionar una categoria")
+	private Categoria categoria;
+	//#endregion
+
+	//#region Constructors
+	public Producto() {
+		this.estado = true;
 		this.imagen = "/images/logos/convenience_store.svg";
 	}
 
-	public Product(
-			String nombre,
-			short codigo,
-			String precio,
-			String categoria,
-			String descuento,
-			String imagen) {
-
-		this.nombre = nombre;
+	public Producto(
+		long codigo,
+		boolean estado,
+		String nombre,
+		String precio,
+		String descuento,
+		String imagen,
+		Categoria categoria) {
+		
 		this.codigo = codigo;
+		this.estado = estado;
+		this.nombre = nombre;
 		this.precio = precio;
-		this.categoria = categoria;
 		this.descuento = descuento;
 		this.imagen = imagen;
-
-	}
-
-	public Product(
-			String nombre,
-			short codigo,
-			String categoria,
-			String imagen) {
-
-		this.nombre = nombre;
-		this.codigo = codigo;
-		this.precio = Float.toString(randomPrecio());
 		this.categoria = categoria;
-		this.descuento = Byte.toString(randomDescuento());
-		this.imagen = imagen;
 
 	}
-	// endregion
+	//#endregion
 
-	// region Getters and Setters
+	//#region Getters and Setters
+	public long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -91,28 +119,12 @@ public class Product {
 		this.nombre = nombre;
 	}
 
-	public short getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(short codigo) {
-		this.codigo = codigo;
-	}
-
 	public String getPrecio() {
 		return precio;
 	}
 
 	public void setPrecio(String precio) {
 		this.precio = precio;
-	}
-
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
 	}
 
 	public String getDescuento() {
@@ -130,12 +142,20 @@ public class Product {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	// endregion
 
-	// region Methods
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	//#endregion
+
+	//#region Methods
+	
 	/**
 	 * Calcula el valor del producto de producirse un descuento o no
-	 * 
 	 * @return Valor del producto
 	 */
 	public String calcularDescuento() {
@@ -166,6 +186,6 @@ public class Product {
 		doubleRandomValue = random.nextInt(bound) + random.nextDouble();
 		return (double) Math.round(doubleRandomValue * 100d) / 100;
 	}
-	// endregion
+	//#endregion
 
 }

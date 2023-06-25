@@ -10,87 +10,88 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.entity.Provincia;
-import ar.edu.unju.fi.service.imp.ProvinciaServiceImp;
+import ar.edu.unju.fi.entity.Categoria;
+import ar.edu.unju.fi.service.imp.CategoriaServiceImp;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/provincias")
-public class ProvinciaController {
+@RequestMapping("/categorias")
+public class CategoriaController {
+    
+    //#region Components
+    @Autowired
+    private CategoriaServiceImp categoriaServiceImp;
     
     @Autowired
-    private ProvinciaServiceImp provinciaServiceImp;
-
-    @Autowired
-    private Provincia unaProvincia;
+    private Categoria unaCategoria;
 
     @GetMapping("/listado")
-    public ModelAndView getProvinciasPage() {
+    public ModelAndView getCategoriasPage() {
 
         ModelAndView modelAndView = new ModelAndView();
-        
-        modelAndView.setViewName("provincias");
-        modelAndView.addObject("listaProvincias", provinciaServiceImp.getAllProvincias());
+
+        modelAndView.setViewName("categorias");
+        modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
 
         return modelAndView;
     }
 
     @GetMapping("/formulario")
-    public ModelAndView getNewProvinciaPage() {
+    public ModelAndView getNewCategoriaPage() {
 
         ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = false;
 
-        unaProvincia = new Provincia();
-        modelAndView.setViewName("nueva_provincia");
-        modelAndView.addObject("provincia", unaProvincia);
+        unaCategoria = new Categoria();
+        modelAndView.setViewName("nueva_categoria");
+        modelAndView.addObject("categoria", unaCategoria);
         modelAndView.addObject("editar", allowEditing);
 
         return modelAndView;
     }
 
     @PostMapping("/guardar")
-    public ModelAndView saveNewProvincia(
-            @Valid @ModelAttribute(value = "provincia") Provincia provincia,
+    public ModelAndView saveNewCategoria(
+            @Valid @ModelAttribute(value = "categoria") Categoria categoria,
             BindingResult resultadoValidacion) {
 
         ModelAndView modelAndView = new ModelAndView();
 
         if (resultadoValidacion.hasErrors()) {
-            modelAndView.setViewName("nueva_provincia");
+            modelAndView.setViewName("nueva_categoria");
         } else {
-            provinciaServiceImp.addProvincia(provincia);
+            categoriaServiceImp.addCategoria(categoria);
 
-            modelAndView.setViewName("redirect:/provincias/listado");
-            modelAndView.addObject("listaProvincias", provinciaServiceImp.getAllProvincias());
+            modelAndView.setViewName("redirect:/categorias/listado");
+            modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
         }
 
         return modelAndView;
     }
 
     @GetMapping("/modificar/{identificador}")
-    public ModelAndView getModifyProvinciaPage(
+    public ModelAndView getModifyCategoriaPage(
             @PathVariable(value = "identificador") long identificador) {
 
         ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = true;
 
-        unaProvincia = provinciaServiceImp.findProvinciaByIdentifier(identificador);
-        modelAndView.setViewName("nueva_provincia");
-        modelAndView.addObject("provincia", unaProvincia);
+        unaCategoria = categoriaServiceImp.findCategoriaByIdentifier(identificador);
+        modelAndView.setViewName("nueva_categoria");
+        modelAndView.addObject("categoria", unaCategoria);
         modelAndView.addObject("editar", allowEditing);
 
         return modelAndView;
     }
 
     @GetMapping("/eliminar/{identificador}")
-    public ModelAndView deleteProvincia(
+    public ModelAndView deleteCategoria(
             @PathVariable(value = "identificador") long identificador) {
             
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.setViewName("redirect:/provincias/listado");
-        provinciaServiceImp.deleteProvinciaByIdentifier(provinciaServiceImp.findProvinciaByIdentifier(identificador));
+        modelAndView.setViewName("redirect:/categorias/listado");
+        categoriaServiceImp.deleteCategoriaByIdentifier(categoriaServiceImp.findCategoriaByIdentifier(identificador));
 
         return modelAndView;
     }
