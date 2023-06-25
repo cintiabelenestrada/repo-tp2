@@ -8,7 +8,7 @@
         <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
         <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
         <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
-        <title>Nuevo Categoria</title>
+        <title>Nuevo Categoría</title>
     </head>
 
     <body>
@@ -24,7 +24,7 @@
 
                 <!-- #region Titulo -->
                 <div class="card-header text-center">
-                    <h3 class="mb-0" th:text="${editar} ? 'Modificar Categoria' : 'Nueva Categoria'"></h3>
+                    <h3 class="mb-0" th:text="${editar} ? 'Modificar Categoría' : 'Nueva Categoría'"></h3>
                     <!-- <h6 class="badge bg-secondary"
                         th:text="${editar} ? 'Identificador ' + ${provincia.identificador} : 'Identificador no asignado todavia'">
                     </h6> -->
@@ -57,7 +57,7 @@
                             <input type="text"
                                    id="nombre"
                                    th:field="*{nombre}"
-                                   placeholder="Ingrese nombre de la categoria"
+                                   placeholder="Ingrese nombre de la categoría"
                                    aria-label="Nombre"
                                    aria-describedby="Nombre"
                                    class="form-control">
