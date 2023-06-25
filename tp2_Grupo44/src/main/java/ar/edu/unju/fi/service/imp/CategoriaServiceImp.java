@@ -9,43 +9,43 @@ import ar.edu.unju.fi.entity.Categoria;
 import ar.edu.unju.fi.repository.ICategoriaRepository;
 import ar.edu.unju.fi.service.ICategoriaService;
 
-@Service
+@Service("categoriaServiceImp")
 public class CategoriaServiceImp implements ICategoriaService {
 
-    //#region Components
     @Autowired
     private ICategoriaRepository categoriaRepository;
 
     @Autowired
     private Categoria categoria;
-    //#endregion
 
     //#region Methods
     @Override
-    public List<Categoria> getCategorias() {
-        return categoriaRepository.findByEstado(true);
+    public void addCategoria(Categoria categoria) {
+        categoriaRepository.save(categoria);
     }
 
     @Override
-    public void addCategoria(Categoria categoriaAgregar) {
-        categoriaRepository.save(categoriaAgregar);
+    public List<Categoria> getAllCategorias() {
+        List<Categoria> categorias = categoriaRepository.findByEstado(true);
+        return categorias;
     }
 
     @Override
     public Categoria findCategoriaByIdentifier(long identificador) {
-        return categoriaRepository.findById(identificador).get();
-    }
-
-    @Override
-    public void deleteCategoriaByIdentifier(Categoria categoriaEliminar) {
-        categoriaEliminar.setEstado(false);
-        categoriaRepository.save(categoriaEliminar);
-    }
-
-    @Override
-    public Categoria getCategoria() {
+        categoria = categoriaRepository.findById(identificador).get();
         return categoria;
     }
+
+    @Override
+    public void deleteCategoriaByIdentifier(Categoria categoria) {
+        categoria.setEstado(false);
+        categoriaRepository.save(categoria);
+    }
+
+    // @Override
+    // public Categoria getCategoria() {
+    //     return categoria;
+    // }
     //#endregion
     
 }

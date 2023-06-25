@@ -7,14 +7,14 @@ import ar.edu.unju.fi.entity.Categoria;
 public interface ICategoriaService {
     
     //#region Methods
-    public List<Categoria> getCategorias();
+    public void addCategoria(Categoria categoria);
 
-    public void addCategoria(Categoria categoriaAgregar);
+    public List<Categoria> getAllCategorias();
 
     public Categoria findCategoriaByIdentifier(long identificador);
 
-    public void deleteCategoriaByIdentifier(Categoria categoriaEliminar);
+    public void deleteCategoriaByIdentifier(Categoria categoria);
 
-    public Categoria getCategoria();
+    // public Categoria getCategoria();
     //#endregion
 }

@@ -9,7 +9,7 @@ import ar.edu.unju.fi.entity.Producto;
 import ar.edu.unju.fi.repository.IProductoRepository;
 import ar.edu.unju.fi.service.IProductoService;
 
-@Service
+@Service("productoServiceImp")
 public class ProductoServiceImp implements IProductoService {
 
     //#region Components
@@ -22,30 +22,32 @@ public class ProductoServiceImp implements IProductoService {
 
     //#region Methods
     @Override
-    public List<Producto> getProductos() {
-        return productoRepository.findByEstado(true);
+    public void addProducto(Producto producto) {
+        productoRepository.save(producto);
     }
 
     @Override
-    public void addProducto(Producto productoAgregar) {
-        productoRepository.save(productoAgregar);
+    public List<Producto> getAllProductos() {
+        List<Producto> productos = productoRepository.findByEstado(true);
+        return productos;
     }
 
     @Override
     public Producto findProductoByCode(long codigo) {
-        return productoRepository.findById(codigo).get();
-    }
-
-    @Override
-    public void deleteProductoByCode(Producto productoEliminar) {
-        productoEliminar.setEstado(false);
-        productoRepository.save(productoEliminar);
-    }
-
-    @Override
-    public Producto getProducto() {
+        producto = productoRepository.findById(codigo).get();
         return producto;
     }
+
+    @Override
+    public void deleteProductoByCode(Producto producto) {
+        producto.setEstado(false);
+        productoRepository.save(producto);
+    }
+
+    // @Override
+    // public Producto getProducto() {
+    //     return producto;
+    // }
     //#endregion
 
 }

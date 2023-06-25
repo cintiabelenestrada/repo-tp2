@@ -11,7 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -29,10 +29,10 @@ public class Categoria {
     @Column(name = "categoria_estado")
     private boolean estado;
 
-    @NotEmpty(message = "Debes introducir un nombre")
+    @Column(name = "categoria_nombre")
+    @NotBlank(message = "Debes introducir un nombre")
 	@Size(min = 5, max = 15, message = "El nombre solo puede contener entre 5 y 15 caracteres")
 	@Pattern(regexp = "[a-zA-Z]+", message = "Debe contener solo letras")
-    @Column(name = "categoria_nombre")
     private String nombre;
 
     @OneToMany(mappedBy = "categoria")

@@ -21,16 +21,16 @@ import jakarta.validation.Valid;
 public class SucursalController {
 
     @Autowired
-    private SucursalServiceImp sucursalServiceImp;
-
-    @Autowired
-    private ProvinciaServiceImp provinciaServiceImp;
-
-    @Autowired
     private Sucursal unaSucursal;
 
     @Autowired
     private Provincia unaProvincia;
+
+    @Autowired
+    private SucursalServiceImp sucursalServiceImp;
+
+    @Autowired
+    private ProvinciaServiceImp provinciaServiceImp;
 
     @GetMapping("/listado")
     public ModelAndView getSucursalesPage() {
@@ -38,8 +38,8 @@ public class SucursalController {
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("sucursales");
-        modelAndView.addObject("listaSucursales", sucursalServiceImp.getSucursales());
-        modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
+        modelAndView.addObject("listaSucursales", sucursalServiceImp.getAllSucursales());
+        modelAndView.addObject("listaProvincias", provinciaServiceImp.getAllProvincias());
 
         return modelAndView;
     }
@@ -53,7 +53,7 @@ public class SucursalController {
         unaSucursal = new Sucursal();
         modelAndView.setViewName("nueva_sucursal");
         modelAndView.addObject("sucursal", unaSucursal);
-        modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
+        modelAndView.addObject("listaProvincias", provinciaServiceImp.getAllProvincias());
         modelAndView.addObject("editar", allowEditing);
 
         return modelAndView;
@@ -61,50 +61,51 @@ public class SucursalController {
 
     @PostMapping("/guardar")
     public ModelAndView saveNewSucursal(
-            @Valid @ModelAttribute(value = "sucursal") Sucursal sucursalAgregar,
+            @Valid @ModelAttribute(value = "sucursal") Sucursal sucursal,
             BindingResult resultadoValidacion) {
 
         ModelAndView modelAndView = new ModelAndView();
 
         if (resultadoValidacion.hasErrors()) {
             modelAndView.setViewName("nueva_sucursal");
-            // modelAndView.addObject("sucursal", sucursalAgregar);
-            modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
+            modelAndView.addObject("listaProvincias", provinciaServiceImp.getAllProvincias());
+        } else {
+            unaProvincia = provinciaServiceImp.findProvinciaByIdentifier(sucursal.getProvincia().getIdentificador());
+            sucursal.setProvincia(unaProvincia);
+            sucursalServiceImp.addSucursal(sucursal);
+            
+            modelAndView.setViewName("redirect:/sucursales/listado");
+            modelAndView.addObject("listaSucursales", sucursalServiceImp.getAllSucursales());
+            modelAndView.addObject("listaProvincias", provinciaServiceImp.getAllProvincias());
         }
-
-        unaProvincia = provinciaServiceImp.findProvinciaByIdentifier(sucursalAgregar.getProvincia().getIdentificador());
-        sucursalAgregar.setProvincia(unaProvincia);
-        sucursalServiceImp.addSucursal(sucursalAgregar);
-        modelAndView.setViewName("redirect:/sucursales/listado");
-        modelAndView.addObject("listaSucursales", sucursalServiceImp.getSucursales());
-        modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
 
         return modelAndView;
     }
 
     @GetMapping("/modificar/{identificador}")
     public ModelAndView getModifySucursalPage(
-            @PathVariable(value = "identificador") long identificadorSucursal) {
+            @PathVariable(value = "identificador") long identificador) {
 
         ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = true;
 
-        unaSucursal = sucursalServiceImp.findSucursalByIdentifier(identificadorSucursal);
+        unaSucursal = sucursalServiceImp.findSucursalByIdentifier(identificador);
         modelAndView.setViewName("nueva_sucursal");
         modelAndView.addObject("sucursal", unaSucursal);
-        modelAndView.addObject("listaProvincias", provinciaServiceImp.getProvincias());
+        modelAndView.addObject("listaProvincias", provinciaServiceImp.getAllProvincias());
         modelAndView.addObject("editar", allowEditing);
 
         return modelAndView;
     }
 
     @GetMapping("/eliminar/{identificador}")
-    public ModelAndView deleteSucursal(@PathVariable(value = "identificador") long identificadorSucursal) {
+    public ModelAndView deleteSucursal(
+        @PathVariable(value = "identificador") long identificador) {
 
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("redirect:/sucursales/listado");
-        sucursalServiceImp.deleteSucursalByIdentifier(sucursalServiceImp.findSucursalByIdentifier(identificadorSucursal));
+        sucursalServiceImp.deleteSucursalByIdentifier(sucursalServiceImp.findSucursalByIdentifier(identificador));
 
         return modelAndView;
     }

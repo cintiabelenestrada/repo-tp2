@@ -7,15 +7,15 @@ import ar.edu.unju.fi.entity.Sucursal;
 public interface ISucursalService {
     
     //#region Methods
-    public List<Sucursal> getSucursales();
+    public void addSucursal(Sucursal sucursal);
 
-    public void addSucursal(Sucursal sucursalAgregar);
+    public List<Sucursal> getAllSucursales();
 
     public Sucursal findSucursalByIdentifier(long identificador);
 
-    public void deleteSucursalByIdentifier(Sucursal sucursalEliminar);
+    public void deleteSucursalByIdentifier(Sucursal sucursal);
 
-	public Sucursal getSucursal();
+	// public Sucursal getSucursal();
     //#endregion
 
 }

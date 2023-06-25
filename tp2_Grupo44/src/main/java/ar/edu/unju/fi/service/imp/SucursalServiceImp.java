@@ -9,43 +9,43 @@ import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.repository.ISucursalRepository;
 import ar.edu.unju.fi.service.ISucursalService;
 
-@Service
+@Service("sucursalServiceImp")
 public class SucursalServiceImp implements ISucursalService {
 
-    //#region Components
     @Autowired
     private ISucursalRepository sucursalRepository;
     
     @Autowired
     private Sucursal sucursal;
-    //#endregion
 
     //#region Methods
     @Override
-    public List<Sucursal> getSucursales() {
-        return sucursalRepository.findByEstado(true);
+    public void addSucursal(Sucursal sucursal) {
+        sucursalRepository.save(sucursal);
     }
 
     @Override
-    public void addSucursal(Sucursal sucursalAgregar) {
-        sucursalRepository.save(sucursalAgregar);
+    public List<Sucursal> getAllSucursales() {
+        List<Sucursal> sucursales = sucursalRepository.findByEstado(true);
+        return sucursales;
     }
 
     @Override
     public Sucursal findSucursalByIdentifier(long identificador) {
-        return sucursalRepository.findById(identificador).get();
-    }
-
-    @Override
-    public void deleteSucursalByIdentifier(Sucursal sucursalEliminar) {
-        sucursalEliminar.setEstado(false);
-        sucursalRepository.save(sucursalEliminar);
-    }
-
-    @Override
-    public Sucursal getSucursal() {
+        sucursal = sucursalRepository.findById(identificador).get();
         return sucursal;
     }
+
+    @Override
+    public void deleteSucursalByIdentifier(Sucursal sucursal) {
+        sucursal.setEstado(false);
+        sucursalRepository.save(sucursal);
+    }
+
+    // @Override
+    // public Sucursal getSucursal() {
+    //     return sucursal;
+    // }
     //#endregion
 
 }
