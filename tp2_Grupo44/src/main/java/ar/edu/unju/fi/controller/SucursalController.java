@@ -99,7 +99,8 @@ public class SucursalController {
     }
 
     @GetMapping("/eliminar/{identificador}")
-    public ModelAndView deleteSucursal(@PathVariable(value = "identificador") long identificador) {
+    public ModelAndView deleteSucursal(
+        @PathVariable(value = "identificador") long identificador) {
 
         ModelAndView modelAndView = new ModelAndView();
 

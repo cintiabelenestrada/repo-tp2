@@ -20,29 +20,26 @@ import jakarta.validation.Valid;
 @RequestMapping("/productos")
 public class ProductoController {
 
-	//#region Components
+	@Autowired
+	private Producto unProducto;
+
+	@Autowired
+	private Categoria unaCategoria;
+
 	@Autowired
 	private ProductoServiceImp productoServiceImp;
 
 	@Autowired
 	private CategoriaServiceImp categoriaServiceImp;
 
-	@Autowired
-	private Producto unProducto;
-
-	@Autowired
-	private Categoria unaCategoria;
-	//#endregion
-
-	//#region Methods
 	@GetMapping("/listado")
 	public ModelAndView getProductosPage() {
 
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.setViewName("productos");
-		modelAndView.addObject("listaProductos", productoServiceImp.getProductos());
-		modelAndView.addObject("listaCategorias", categoriaServiceImp.getCategorias());
+		modelAndView.addObject("listaProductos", productoServiceImp.getAllProductos());
+		modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
 
 		return modelAndView;
 	}
@@ -56,62 +53,62 @@ public class ProductoController {
 		unProducto = new Producto();
 		modelAndView.setViewName("nuevo_producto");
 		modelAndView.addObject("producto", unProducto);
-		modelAndView.addObject("listaCategorias", categoriaServiceImp.getCategorias());
+		modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
 		modelAndView.addObject("editar", allowEditing);
 
 		return modelAndView;
 	}
 
 	@PostMapping("/guardar")
-	public ModelAndView saveNewProductoInformation(
-			@Valid @ModelAttribute(value = "producto") Producto productoAgregar,
+	public ModelAndView saveNewProducto(
+			@Valid @ModelAttribute(value = "producto") Producto producto,
 			BindingResult resultadoValidacion) {
 
 		ModelAndView modelAndView = new ModelAndView();
 
 		if (resultadoValidacion.hasErrors()) {
 			modelAndView.setViewName("nuevo_producto");
-			System.out.println("asdfasdf" + resultadoValidacion.toString());
-			// modelAndView.addObject("productoo", productoAgregar);
-			// modelAndView.addObject("listaCategorias", categoriaServiceImp.getCategorias());
-		}	
+			modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
+		} else {
+			unaCategoria = categoriaServiceImp.findCategoriaByIdentifier(producto.getCategoria().getIdentificador());
+			producto.setCategoria(unaCategoria);
+			productoServiceImp.addProducto(producto);
 
-		unaCategoria = categoriaServiceImp.findCategoriaByIdentifier(productoAgregar.getCategoria().getIdentificador());
-		productoAgregar.setCategoria(unaCategoria);
-		productoServiceImp.addProducto(productoAgregar);
-		modelAndView.setViewName("redirect:/productos/listado");	
-		modelAndView.addObject("listaProductos", productoServiceImp.getProductos());
-		modelAndView.addObject("listaCategorias", categoriaServiceImp.getCategorias());
-		
+			modelAndView.setViewName("redirect:/productos/listado");	
+			modelAndView.addObject("listaProductos", productoServiceImp.getAllProductos());
+			modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
+
+		}
+
 		return modelAndView;
 	}
 
 	@GetMapping("/modificar/{codigo}")
 	public ModelAndView getModifyProductoPage(
-			@PathVariable(value = "codigo") long codigoProducto) {
+			@PathVariable(value = "codigo") long codigo) {
 
 		ModelAndView modelAndView = new ModelAndView();
 		boolean allowEditing = true;
 
-		unProducto = productoServiceImp.findProductoByCode(codigoProducto);
+		unProducto = productoServiceImp.findProductoByCode(codigo);
 		modelAndView.setViewName("nuevo_producto");
 		modelAndView.addObject("producto", unProducto);
-		modelAndView.addObject("listaCategorias", categoriaServiceImp.getCategorias());
+		modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
 		modelAndView.addObject("editar", allowEditing);
 
 		return modelAndView;
 	}
 
 	@GetMapping("/eliminar/{codigo}")
-	public ModelAndView deleteProducto(@PathVariable(value = "codigo") long codigoProducto) {
+	public ModelAndView deleteProducto(
+		@PathVariable(value = "codigo") long codigo) {
 
 		ModelAndView modelAndView = new ModelAndView();
 
 		modelAndView.setViewName("redirect:/productoos/listado");
-		productoServiceImp.deleteProductoByCode(productoServiceImp.findProductoByCode(codigoProducto));
+		productoServiceImp.deleteProductoByCode(productoServiceImp.findProductoByCode(codigo));
 
 		return modelAndView;
 	}
-	//#endregion
 
 }

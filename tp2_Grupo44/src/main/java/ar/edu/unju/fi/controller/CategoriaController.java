@@ -28,8 +28,10 @@ public class CategoriaController {
     @GetMapping("/listado")
     public ModelAndView getCategoriasPage() {
 
-        ModelAndView modelAndView = new ModelAndView("categorias");
-        modelAndView.addObject("listaCategorias", categoriaServiceImp.getCategorias());
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("categorias");
+        modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
 
         return modelAndView;
     }
@@ -50,32 +52,31 @@ public class CategoriaController {
 
     @PostMapping("/guardar")
     public ModelAndView saveNewCategoria(
-            @Valid @ModelAttribute(value = "categoria") Categoria categoriaAgregar,
+            @Valid @ModelAttribute(value = "categoria") Categoria categoria,
             BindingResult resultadoValidacion) {
 
         ModelAndView modelAndView = new ModelAndView();
 
         if (resultadoValidacion.hasErrors()) {
             modelAndView.setViewName("nueva_categoria");
-            // modelAndView.addObject("provincia", categoriaAgregar);
         } else {
+            categoriaServiceImp.addCategoria(categoria);
+
             modelAndView.setViewName("redirect:/categorias/listado");
-            categoriaServiceImp.addCategoria(categoriaAgregar);
-            modelAndView.addObject("listaCategorias", categoriaServiceImp.getCategorias());
+            modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
         }
 
         return modelAndView;
-
     }
 
     @GetMapping("/modificar/{identificador}")
     public ModelAndView getModifyCategoriaPage(
-            @PathVariable(value = "identificador") long identificadorCategoria) {
+            @PathVariable(value = "identificador") long identificador) {
 
         ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = true;
 
-        unaCategoria = categoriaServiceImp.findCategoriaByIdentifier(identificadorCategoria);
+        unaCategoria = categoriaServiceImp.findCategoriaByIdentifier(identificador);
         modelAndView.setViewName("nueva_categoria");
         modelAndView.addObject("categoria", unaCategoria);
         modelAndView.addObject("editar", allowEditing);
@@ -85,15 +86,14 @@ public class CategoriaController {
 
     @GetMapping("/eliminar/{identificador}")
     public ModelAndView deleteCategoria(
-            @PathVariable(value = "identificador") long identificadorCategoria) {
+            @PathVariable(value = "identificador") long identificador) {
             
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("redirect:/categorias/listado");
-        categoriaServiceImp.deleteCategoriaByIdentifier(categoriaServiceImp.findCategoriaByIdentifier(identificadorCategoria));
+        categoriaServiceImp.deleteCategoriaByIdentifier(categoriaServiceImp.findCategoriaByIdentifier(identificador));
 
         return modelAndView;
     }
-    //#endregion
 
 }
