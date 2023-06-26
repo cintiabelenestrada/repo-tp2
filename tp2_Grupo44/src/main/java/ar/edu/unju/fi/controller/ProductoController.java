@@ -33,17 +33,20 @@ public class ProductoController {
 	@Autowired
 	private Categoria unaCategoria;
 	//#endregion
+	String filtro="todos";
 
 	//#region Methods
 	@GetMapping("/listado")
 	public ModelAndView getProductosPage() {
 
 		ModelAndView modelAndView = new ModelAndView();
-		
 		modelAndView.setViewName("productos");
 		modelAndView.addObject("listaProductos", productoServiceImp.getProductos());
 		modelAndView.addObject("listaCategorias", categoriaServiceImp.getCategorias());
-
+		modelAndView.addObject("filtro",filtro);
+		if(filtro!="todos")
+			filtro="todos";
+		System.out.println(filtro);
 		return modelAndView;
 	}
 
@@ -107,11 +110,23 @@ public class ProductoController {
 
 		ModelAndView modelAndView = new ModelAndView();
 
-		modelAndView.setViewName("redirect:/productoos/listado");
+		modelAndView.setViewName("redirect:/productos/listado");
 		productoServiceImp.deleteProductoByCode(productoServiceImp.findProductoByCode(codigoProducto));
 
 		return modelAndView;
 	}
 	//#endregion
 
+	@GetMapping("/filtrar/{categoria}")
+	public ModelAndView deleteProducto(@PathVariable(value = "categoria") String categoria) {
+
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.setViewName("redirect:/productos/listado");
+		filtro=categoria;
+		modelAndView.addObject("filtro",filtro);
+		
+		return modelAndView;
+		
+	}
 }

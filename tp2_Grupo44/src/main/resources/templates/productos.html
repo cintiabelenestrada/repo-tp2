@@ -29,79 +29,66 @@
                 
                 <h5 class="m-3">Categoria de Productos</h5>
                 
-                <!-- <ul class="nav nav-pills nav-fill">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Alimentos">Alimentos</a>
+                <ul class="nav nav-pills nav-fill">
+                	<li class="nav-item"><a class="nav-link" th:href="@{/productos/listado}">Todos</a></li>
+                    <li class="nav-item" th:each="categoria: ${listaCategorias}">
+                        <a class="nav-link" th:text="${categoria.nombre}" th:href="@{/productos/filtrar/} + ${categoria.identificador}"></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Camas">Camas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Collares y correas">Collares y correas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Higiene">Productos de Higiene</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Juguetes">Juguetes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Prendas">Prendas</a>
-                    </li>
-                </ul> -->
+                </ul>
             </div>
             <hr>
             <!-- #endregion-->
 
             <!-- #region Lista de Productos -->
             <div class="row" th:each="categoria: ${listaCategorias}">
-                
-                <h2 class="m-3 fs-2 text-center">
-                    <a class="text-decoration-none" href="#seccion" th:text="${categoria.nombre}" th:id="${categoria}"></a>
-                </h2>
-
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3" th:each="producto: ${listaProductos}"
-                th:if="${producto.categoria} == ${categoria}">
-
-                <!-- #region Productos -->
-                <div class="card h-100 text-bg-light">
-                        <!-- #region Title -->
-                        <div class="card-header text-center">
-                            <h5 class="mb-0" th:text="${producto.nombre}"></h5>
-                        </div>
-                        <!-- #endregion -->
-                        
-                        <!-- #region Image -->
-                        <img class="card-img-top" th:src="${producto.imagen}" alt="...">
-                        <!-- #endregion -->
-
-                        <!-- #region Card Body -->
-                        <div class="card-body">
-                            <p class="card-text">Precio: <span th:text="'$' + ${producto.precio}"></span>
-                            </p>
-                            <p class="card-text">Descuento: <span th:text="${producto.descuento}+'%'"></span>
-                            </p>
-                            <p class="card-text">Precio con descuento:
-                                <!-- <span th:text="'$' + ${producto.calcularDescuento}"></span> -->
-                            </p>
-                        </div>
-                        <!-- #endregion -->
-
-                        <div class="card-footer
-                                    d-flex
-                                    justify-content-between
-                                    align-items-center">
-                                    <div class="btn-group" role="group">
-                                        
-                                <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
-                                    th:href="@{/productos/modificar/} + ${producto.codigo}">Modificar</a>
-
-                                    <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
-                                    th:href="@{/productos/eliminar/} + ${producto.codigo}">Eliminar</a>
-                                </div>
-                                <!-- <small class="text-black text-body-secondary" th:text="${producto.codigo}"></small> -->
-                            </div>
-                    </div>
+            	<div th:if="${filtro}==${categoria.nombre} or ${filtro}=='todos'" class="row">    
+	                <h2 class="m-3 fs-2 text-center">
+	                    <a class="text-decoration-none" href="#seccion" th:text="${categoria.nombre}" th:id="${categoria}"></a>
+	                </h2>
+	
+	                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3" th:each="producto: ${listaProductos}"
+	                th:if="${producto.categoria} == ${categoria}">
+	
+	                <!-- #region Productos -->
+	                <div class="card h-100 text-bg-light">
+	                        <!-- #region Title -->
+	                        <div class="card-header text-center">
+	                            <h5 class="mb-0" th:text="${producto.nombre}"></h5>
+	                        </div>
+	                        <!-- #endregion -->
+	                        
+	                        <!-- #region Image -->
+	                        <img class="card-img-top" th:src="${producto.imagen}" alt="...">
+	                        <!-- #endregion -->
+	
+	                        <!-- #region Card Body -->
+	                        <div class="card-body">
+	                            <p class="card-text">Precio: <span th:text="'$' + ${producto.precio}"></span>
+	                            </p>
+	                            <p class="card-text">Descuento: <span th:text="${producto.descuento}+'%'"></span>
+	                            </p>
+	                            <p class="card-text">Precio con descuento:
+	                                <!-- <span th:text="'$' + ${producto.calcularDescuento}"></span> -->
+	                            </p>
+	                        </div>
+	                        <!-- #endregion -->
+	
+	                        <div class="card-footer
+	                                    d-flex
+	                                    justify-content-between
+	                                    align-items-center">
+	                                    <div class="btn-group" role="group">
+	                                        
+	                                <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
+	                                    th:href="@{/productos/modificar/} + ${producto.codigo}">Modificar</a>
+	
+	                                    <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
+	                                    th:href="@{/productos/eliminar/} + ${producto.codigo}">Eliminar</a>
+	                                </div>
+	                                <!-- <small class="text-black text-body-secondary" th:text="${producto.codigo}"></small> -->
+	                            </div>
+	                    </div>
+                </div>    
                     <!-- #endregion -->
                 </div>
             </div>
