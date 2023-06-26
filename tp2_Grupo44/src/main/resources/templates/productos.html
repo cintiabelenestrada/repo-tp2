@@ -32,7 +32,7 @@
                 <ul class="nav nav-pills nav-fill">
                 	<li class="nav-item"><a class="nav-link" th:href="@{/productos/listado}">Todos</a></li>
                     <li class="nav-item" th:each="categoria: ${listaCategorias}">
-                        <a class="nav-link" th:text="${categoria.nombre}" th:href="@{/productos/filtrar/} + ${categoria.identificador}"></a>
+                        <a class="nav-link" th:text="${categoria.nombre}" th:href="@{/productos/filtrar/} + ${categoria.nombre}"></a>
                     </li>
                 </ul>
             </div>
