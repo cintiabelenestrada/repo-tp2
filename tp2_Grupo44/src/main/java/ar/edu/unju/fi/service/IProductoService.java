@@ -11,9 +11,9 @@ public interface IProductoService {
 
     public List<Producto> getAllProductos();
 
-    public Producto findProductoByCode(long codigo);
+    public Producto findProductoByCodigo(long codigo);
 
-    public void deleteProductoByCode(Producto producto);
+    public void deleteProductoByCodigo(Producto producto);
 
     // public Producto getProducto();
     //#endregion

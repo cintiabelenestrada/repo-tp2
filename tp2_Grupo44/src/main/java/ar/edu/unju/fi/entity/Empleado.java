@@ -140,4 +140,7 @@ public class Empleado {
 	}
 	//#endregion
 
+	//#region Methods
+	//#endregion
+
 }
