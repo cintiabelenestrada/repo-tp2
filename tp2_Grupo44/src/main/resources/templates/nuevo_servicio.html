@@ -32,7 +32,12 @@
                       th:object="${servicio}"
                       method="post">
 
-                    <div class="card-body">
+                    <div th:if="${#lists.isEmpty(listaEmpleados)}" class="card-body text-center">
+                        <p><strong>Crear un servicio no es posible en este momento</strong></p>
+                        <p><em>Debe agregar un empleado para realizar esta operación</em></p>
+                    </div>
+
+                    <div th:unless="${#lists.isEmpty(listaEmpleados)}" class="card-body">
 
                         <!-- #region Identificador -->
                         <div>
@@ -127,7 +132,8 @@
 
                     <!-- #region Opciones -->
                     <div class="card-footer d-flex gap-3 justify-content-center">
-                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/gestion_de_datos/listado}">Cancelar</a>
+                        <a class="btn btn-danger text-decoration-none link-light"
+                        th:href="@{/gestion_de_datos/listado}">Regresar a Gestión de datos</a>
                         <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'">
                         </button>
                     </div>

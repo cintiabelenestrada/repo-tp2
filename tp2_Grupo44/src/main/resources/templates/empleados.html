@@ -22,8 +22,7 @@
         <!-- #region Navegación -->
         <div class="bg-light border border-light-subtle rounded text-center">
             <h1 class="m-3">Administración de Empleados</h1>
-            <p class="text-secondary"><em>Agregar, eliminar o modificar empleado/s.</em></p>
-            <a class="btn btn-primary mb-3" th:href="@{/empleados/formulario}">Nueva empleado</a>
+            <p class="text-secondary"><em>Eliminar o modificar empleado/s.</em></p>
         </div>
         <hr>
         <!-- #endregion -->
@@ -34,13 +33,6 @@
             <div class="card-header fs-2 text-center">
                 <h3 class="mb-0">Listado</h3>
             </div>
-
-            <!-- <img class="img-thumbnail d-block mx-auto mt-3"
-                     style="height: 150px;"
-                     alt="..."
-                     th:each="imagen : ${listaImagenes}"
-                     th:if="${#strings.equals(imagen.identificador, provincia)}"
-                     th:src="${imagen.nombre}"> -->
 
             <div class="card-body">
                 <h5 class="card-title text-center">Cantidad de empleados: <small class="badge bg-info" th:text="${#lists.size(listaEmpleados)}"></small></h5>

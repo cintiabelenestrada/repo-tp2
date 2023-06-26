@@ -1,40 +1,14 @@
 package ar.edu.unju.fi.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.service.imp.CategoriaServiceImp;
-import ar.edu.unju.fi.service.imp.EmpleadoServiceImp;
-import ar.edu.unju.fi.service.imp.ProductoServiceImp;
-import ar.edu.unju.fi.service.imp.ProvinciaServiceImp;
-import ar.edu.unju.fi.service.imp.ServicioServiceImp;
-import ar.edu.unju.fi.service.imp.SucursalServiceImp;
-
 @Controller
 @RequestMapping("/gestion_de_datos")
 public class GestionController {
-
-    @Autowired
-    private CategoriaServiceImp categoriaServiceImp;
-    
-    @Autowired
-    private ProvinciaServiceImp provinciaServiceImp;
-    
-    @Autowired
-    private SucursalServiceImp sucursalServiceImp;
-    
-    @Autowired
-    private EmpleadoServiceImp empleadoServiceImp;
-
-    @Autowired
-    private ProductoServiceImp productoServiceImp;
-    
-    @Autowired
-    private ServicioServiceImp servicioServiceImp;
 
     @GetMapping("listado")
     public ModelAndView getGestionPage() {
@@ -43,7 +17,7 @@ public class GestionController {
     }
 
     @GetMapping("/categoria/{seleccion}")
-    public ModelAndView getNewCategoriaPage(
+    public ModelAndView getCategoriaPage(
         @PathVariable(value = "seleccion") String seleccion) {
         
         ModelAndView modelAndView = new ModelAndView();
@@ -60,7 +34,7 @@ public class GestionController {
     }
 
     @GetMapping("/provincia/{seleccion}")
-    public ModelAndView getNewProvinciaPage(
+    public ModelAndView getProvinciaPage(
         @PathVariable(value = "seleccion") String seleccion) {
         
         ModelAndView modelAndView = new ModelAndView();
@@ -77,7 +51,7 @@ public class GestionController {
     }
 
     @GetMapping("/sucursal/{seleccion}")
-    public ModelAndView getNewSucursalPage(
+    public ModelAndView getSucursalPage(
         @PathVariable(value = "seleccion") String seleccion) {
         
         ModelAndView modelAndView = new ModelAndView();
@@ -94,7 +68,7 @@ public class GestionController {
     }
 
     @GetMapping("/empleado/{seleccion}")
-    public ModelAndView getNewEmpleadoPage(
+    public ModelAndView getEmpleadoPage(
         @PathVariable(value = "seleccion") String seleccion) {
         
         ModelAndView modelAndView = new ModelAndView();
@@ -111,7 +85,7 @@ public class GestionController {
     }
 
     @GetMapping("/producto/{seleccion}")
-    public ModelAndView getNewProductoPage(
+    public ModelAndView getProductoPage(
         @PathVariable(value = "seleccion") String seleccion) {
         
         ModelAndView modelAndView = new ModelAndView();
@@ -128,7 +102,7 @@ public class GestionController {
     }
 
     @GetMapping("/servicio/{seleccion}")
-    public ModelAndView getNewServicioPage(
+    public ModelAndView getServicioPage(
         @PathVariable(value = "seleccion") String seleccion) {
         
         ModelAndView modelAndView = new ModelAndView();

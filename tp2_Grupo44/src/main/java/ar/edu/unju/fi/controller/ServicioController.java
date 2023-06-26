@@ -18,7 +18,7 @@ import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/servicios")
-public class ServicioServiceController {
+public class ServicioController {
 
     @Autowired
     private Servicio unServicio;

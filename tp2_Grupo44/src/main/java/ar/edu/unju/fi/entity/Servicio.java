@@ -19,6 +19,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Component
@@ -38,11 +39,13 @@ public class Servicio {
     @Column(name = "servicio_nombre")
     @NotBlank(message = "Debes ingresar un nombre")
 	@Size(min = 5, max = 15, message = "El nombre del producto solo puede contener entre 5 y 15 caracteres")
+	@Pattern(regexp = "[a-z A-Z]+", message = "Debe contener solo letras")
     private String nombre;
 
     @Column(name = "servicio_tipo")
     @NotBlank(message = "Debes ingresar un tipo de servicio")
 	@Size(min = 5, max = 15, message = "El nombre del servicio solo puede contener entre 5 y 15 caracteres")
+	@Pattern(regexp = "[a-z A-Z]+", message = "Debe contener solo letras")
     private String tipo;
 
     @Column(name = "servicio_dia_disponible")

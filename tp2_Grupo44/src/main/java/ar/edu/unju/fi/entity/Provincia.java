@@ -80,7 +80,6 @@ public class Provincia {
     }
 
     public void setNombre(String nombre) {
-        nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1).toLowerCase();
         this.nombre = nombre;
     }
 

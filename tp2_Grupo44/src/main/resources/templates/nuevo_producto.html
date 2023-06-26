@@ -31,8 +31,13 @@
                 <form th:action="@{/productos/guardar}"
                       th:object="${producto}"
                       method="post">
+                    
+                    <div th:if="${#lists.isEmpty(listaCategorias)}" class="card-body text-center">
+                        <p><strong>Crear un producto no es posible en este momento</strong></p>
+                        <p><em>Debe agregar una categoria para realizar esta operación</em></p>
+                    </div>
 
-                    <div class="card-body">
+                    <div th:unless="${#lists.isEmpty(listaCategorias)}" class="card-body">
 
                         <!-- #region Código -->
                         <div>
@@ -144,7 +149,8 @@
 
                     <!-- #region Opciones -->
                     <div class="card-footer d-flex gap-3 justify-content-center">
-                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/gestion_de_datos/listado}">Cancelar</a>
+                        <a class="btn btn-danger text-decoration-none link-light"
+                           th:href="@{/gestion_de_datos/listado}">Regresar a Gestión de datos</a>
                         <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'">
                         </button>
                     </div>
