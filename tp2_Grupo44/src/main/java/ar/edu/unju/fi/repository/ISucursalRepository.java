@@ -13,3 +13,7 @@ public interface ISucursalRepository extends CrudRepository<Sucursal, Long> {
     public List<Sucursal> findByEstado(boolean estado);
 
 }
+@Repository
+public interface ISucursalRepository extends JpaRepository<Sucursal, Long> {
+    List<Sucursal> findByNombre(String nombre);
+}
