@@ -12,13 +12,11 @@ import ar.edu.unju.fi.service.IProductoService;
 @Service("productoServiceImp")
 public class ProductoServiceImp implements IProductoService {
 
-    //#region Components
     @Autowired
 	private IProductoRepository productoRepository;
 
     @Autowired
 	private Producto producto;
-    //#endregion
 
     //#region Methods
     @Override
@@ -33,21 +31,16 @@ public class ProductoServiceImp implements IProductoService {
     }
 
     @Override
-    public Producto findProductoByCode(long codigo) {
+    public Producto findProductoByCodigo(long codigo) {
         producto = productoRepository.findById(codigo).get();
         return producto;
     }
 
     @Override
-    public void deleteProductoByCode(Producto producto) {
+    public void deleteProductoByCodigo(Producto producto) {
         producto.setEstado(false);
         productoRepository.save(producto);
     }
-
-    // @Override
-    // public Producto getProducto() {
-    //     return producto;
-    // }
     //#endregion
 
 }

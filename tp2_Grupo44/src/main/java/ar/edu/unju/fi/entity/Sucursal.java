@@ -21,7 +21,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 @Component
@@ -35,45 +34,36 @@ public class Sucursal {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long identificador;
 
-	@Column(name = "estado", columnDefinition = "boolean default true")
+	@Column(name = "sucursal_estado", columnDefinition = "boolean default true")
 	private boolean estado;
 
-	@Column(name = "nombre")
-	@NotBlank(message = "Debes introducir el nombre de la Nueva Sucursal")
-	@Size(min = 3, max = 15, message = "El nombre solo puede contener entre 3 y 15 letras")
-	@Pattern(regexp = "[a-zA-Z]+", message = "El nombre solo debe contener letras")
+	@Column(name = "sucursal_nombre")
+	@NotBlank(message = "Debes introducir un nombre")
+	@Size(min = 5, max = 15, message = "El nombre de la sucursal solo puede contener entre 5 y 15 caracteres")
+	@Pattern(regexp = "[a-z A-Z 0-9]+", message = "El nombre puede contener letras y/o numeros")
 	private String nombre;
 
-	@Column(name = "direccion")
-	@NotBlank(message = "Debes introducir la dirección de la Nueva Sucursal")
-	@Size(min = 5, max = 30, message = "La dirección debe tener entre 5 y 30 letras")
-	@Pattern(regexp = "[a-zA-Z]+", message = "La dirección solo debe tener letras, abajo ingrese la numeracion")
+	@Column(name = "sucursal_direccion")
+	@NotBlank(message = "Debes introducir una dirección")
+	@Size(min = 5, max = 30, message = "La dirección solo puede contener entre 5 y 30 caracteres")
+	@Pattern(regexp = "[a-z A-Z]+", message = "La dirección solo puede contener letras")
 	private String direccion;
 
-	@NotBlank(message = "Debes ingresar el número de la direccion")
-	@PositiveOrZero(message = "Debes ingresar un número positivo")
-	@Pattern(regexp = "[0-9]+", message = "Debe ingresar solo números en esta seccion")
-	@Column(name = "numero_direccion")
+	@Column(name = "sucursal_numero_direccion")
+	@NotBlank(message = "Debes ingresar el número de la dirección")
+	@Pattern(regexp = "[0-9]+", message = "Debe contener solo números")
 	private String numeroDireccion;
 
-	@NotBlank(message = "Debes ingresar el numero de telefono de la sucursal")
-	@Pattern(regexp = "0\\d{2}-\\d{7}|\\d{10}", message = "Ingrese un número de teléfono válido, números de teléfono fijo que comienzan con 0 y tienen un código de área de 3 dígitos seguido de un número de 7 dígitos")
-	@Column(name = "telefono")
+	@Column(name = "sucursal_telefono")
+	@NotBlank(message = "Debes introducir un número de telefono")
+	@Pattern(regexp = "0388-[0-9]{3}-[0-9]{4}", message = "Ingrese un número de telefono válido")
 	private String telefono;
 
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	@NotNull(message = "La fecha una fecha de Inicio")
-	@Past(message = "La fecha de inicio debe pasada a la fecha actual")
-	@Column(name = "fecha_inicio")
-	private LocalDate fechaInicio;
-
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	@NotNull(message = "Ingrese una fecha de cierre")
-	@FutureOrPresent(message = "La fecha de cierre debe ser presente o futura")
-	@Column(name = "fecha_cierre")
-	private LocalDate fechaCierre;
-
-
+	@Column(name = "sucursal_fecha_apertura")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Debes ingresar una fecha")
+	@Past(message = "Fecha incorrecta")
+	private LocalDate fechaApertura;
 
 	@Autowired
 	@JoinColumn(name = "provincia_identificador")
@@ -83,25 +73,10 @@ public class Sucursal {
 	//#endregion
 
 	//#region Constructors
-	/**
-	 * Constructor por defecto
-	 */
 	public Sucursal() {
 		this.estado = true;
 	}
 
-	/**
-	 * Constructor parametrizado
-	 * @param identificador es el ID de la sucursal
-	 * @param estado representa si es VISIBLE o no en el listado
-	 * @param nombre
-	 * @param direccion
-	 * @param numeroDireccion
-	 * @param telefono
-	 * @param fechaInicio
-	 * @param fechaCierre
-	 * @param provincia representa la ubicación de la sucursal
-	 */
 	public Sucursal(
 			long identificador,
 			boolean estado,
@@ -109,8 +84,7 @@ public class Sucursal {
 			String direccion,
 			String numeroDireccion,
 			String telefono,
-			@NotNull(message = "La fecha una fecha de Inicio") @Past(message = "La fecha de inicio debe pasada a la fecha actual") LocalDate fechaInicio,
-			LocalDate fechaCierre,
+			LocalDate fechaApertura,
 			Provincia provincia) {
 
 		this.identificador = identificador;
@@ -119,8 +93,7 @@ public class Sucursal {
 		this.direccion = direccion;
 		this.numeroDireccion = numeroDireccion;
 		this.telefono = telefono;
-		this.fechaInicio = fechaInicio;
-		this.fechaCierre = fechaCierre;
+		this.fechaApertura = fechaApertura;
 		this.provincia = provincia;
 
 	}
@@ -175,22 +148,14 @@ public class Sucursal {
 		this.telefono = telefono;
 	}
 
-	public LocalDate getFechaInicio() {
-		return fechaInicio;
+	public LocalDate getFechaApertura() {
+		return fechaApertura;
 	}
 
-	public void setFechaInicio(LocalDate fechaInicio) {
-		this.fechaInicio = fechaInicio;
+	public void setFechaApertura(LocalDate fechaApertura) {
+		this.fechaApertura = fechaApertura;
 	}
-
-	public LocalDate getFechaCierre() {
-		return fechaCierre;
-	}
-
-	public void setFechaCierre(LocalDate fechaCierre) {
-		this.fechaCierre = fechaCierre;
-	}
-
+	
 	public Provincia getProvincia() {
 		return provincia;
 	}

@@ -6,22 +6,22 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.entity.HealthTip;
+import ar.edu.unju.fi.entity.Consejo;
 
 @Component
-public class HealthTipList {
+public class ConsejoList {
 
     // region Attributes
-    private List<HealthTip> consejos;
+    private List<Consejo> consejos;
     // endregion
 
     // region Constructors
-    public HealthTipList() {
+    public ConsejoList() {
 
-        this.consejos = new ArrayList<HealthTip>();
+        this.consejos = new ArrayList<Consejo>();
 
         this.consejos.add(
-                new HealthTip(
+                new Consejo(
                         "Cómo cuidar a nuestras mascotas",
                         "Tener una mascota en casa requiere de compromiso y responsabilidad por parte de toda la familia.",
                         LocalDate.of(2020, 4, 6),
@@ -29,7 +29,7 @@ public class HealthTipList {
                         (short) 0));
 
         this.consejos.add(
-            new HealthTip(
+            new Consejo(
                 "Cuidado del ambiente y su higiene",
                 "Al momento de tener una mascota es necesario que cuenten con un lugar seguro donde puedan estar " +
                 "comodos y poder resguardarse de los diferentes cambios climáticos como ser el frio, el calor, entre " +
@@ -44,7 +44,7 @@ public class HealthTipList {
                 (short) 1));
 
         this.consejos.add(
-            new HealthTip(
+            new Consejo(
                 "Alimentación",
                 "\nDarles una alimentación diaria, que sea sano y balanceado." +
                 "\nEs fundamental que siempre tengan agua fresca y limpia ya que esto les ayuda a mantenerse hidratados " +
@@ -56,7 +56,7 @@ public class HealthTipList {
                 (short) 2));
 
         this.consejos.add(
-            new HealthTip(
+            new Consejo(
                 "Ejercicios",
                 "\nLos perros y gatos necesitas necesitan ejercicio ya que esto les ayuda a desestrarse y gastar su " +
                 "energía." +
@@ -69,11 +69,11 @@ public class HealthTipList {
     // endregion
 
     // region Getters and Setters
-    public List<HealthTip> getConsejos() {
+    public List<Consejo> getConsejos() {
         return consejos;
     }
 
-    public void setConsejos(List<HealthTip> consejos) {
+    public void setConsejos(List<Consejo> consejos) {
         this.consejos = consejos;
     }
     // endregion

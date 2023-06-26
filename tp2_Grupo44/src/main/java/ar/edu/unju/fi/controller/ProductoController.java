@@ -90,7 +90,7 @@ public class ProductoController {
 		ModelAndView modelAndView = new ModelAndView();
 		boolean allowEditing = true;
 
-		unProducto = productoServiceImp.findProductoByCode(codigo);
+		unProducto = productoServiceImp.findProductoByCodigo(codigo);
 		modelAndView.setViewName("nuevo_producto");
 		modelAndView.addObject("producto", unProducto);
 		modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
@@ -100,13 +100,12 @@ public class ProductoController {
 	}
 
 	@GetMapping("/eliminar/{codigo}")
-	public ModelAndView deleteProducto(
-		@PathVariable(value = "codigo") long codigo) {
+	public ModelAndView deleteProducto(@PathVariable(value = "codigo") long codigo) {
 
 		ModelAndView modelAndView = new ModelAndView();
 
-		modelAndView.setViewName("redirect:/productoos/listado");
-		productoServiceImp.deleteProductoByCode(productoServiceImp.findProductoByCode(codigo));
+		modelAndView.setViewName("redirect:/productos/listado");
+		productoServiceImp.deleteProductoByCodigo(productoServiceImp.findProductoByCodigo(codigo));
 
 		return modelAndView;
 	}
