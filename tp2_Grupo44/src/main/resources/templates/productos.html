@@ -22,33 +22,12 @@
             <!-- #region Navegación -->
             <div class="bg-light border border-light-subtle rounded text-center">
                 <h1 class="m-3">¡Los productos que buscas estan aquí!</h1>
-                    <p class="text-secondary">
-                        <em>Poseemos una variedad de artículos para todos los gustos</em>
-                    </p>
-                    <a class="btn btn-primary" th:href="@{/productos/formulario}">Nuevo producto</a>
-                
-                <h5 class="m-3">Categoria de Productos</h5>
-                
-                <!-- <ul class="nav nav-pills nav-fill">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Alimentos">Alimentos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Camas">Camas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Collares y correas">Collares y correas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Higiene">Productos de Higiene</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Juguetes">Juguetes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Prendas">Prendas</a>
-                    </li>
-                </ul> -->
+                <p class="text-secondary">
+                    <em>Poseemos una variedad de artículos para todos los gustos</em>
+                </p>
+                <div th:if="${#lists.isEmpty(listaCategorias)}">
+                    <p><strong>Actualmente la lista se encuentra vacía</strong></p>
+                </div>
             </div>
             <hr>
             <!-- #endregion-->
@@ -82,7 +61,7 @@
                             <p class="card-text">Descuento: <span th:text="${producto.descuento}+'%'"></span>
                             </p>
                             <p class="card-text">Precio con descuento:
-                                <!-- <span th:text="'$' + ${producto.calcularDescuento}"></span> -->
+                                <span th:text="'$' + ${producto.calcularDescuento}"></span>
                             </p>
                         </div>
                         <!-- #endregion -->
@@ -91,23 +70,29 @@
                                     d-flex
                                     justify-content-between
                                     align-items-center">
-                                    <div class="btn-group" role="group">
-                                        
-                                <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-sm btn-outline-primary text-decoration-none"
+                                    role="button"
                                     th:href="@{/productos/modificar/} + ${producto.codigo}">Modificar</a>
-
-                                    <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
+                                <a class="btn btn-sm btn-outline-danger text-decoration-none"
+                                    role="button"
                                     th:href="@{/productos/eliminar/} + ${producto.codigo}">Eliminar</a>
-                                </div>
-                                <!-- <small class="text-black text-body-secondary" th:text="${producto.codigo}"></small> -->
                             </div>
+                        </div>
                     </div>
                     <!-- #endregion -->
                 </div>
             </div>
-            <p class="text-center">
-                <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
-            </p>
+            <!-- #region Opciones -->
+            <div class="card-footer d-flex gap-3 justify-content-center mb-3">
+                <a class="btn btn-danger text-decoration-none"
+                    role="button"
+                    th:href="@{/gestion_de_datos/listado}">Regresar a Gestión de datos</a>
+                <a class="btn btn-primary"
+                   role="button"
+                   href="#seccion">Volver al índice</a>
+            </div>
+            <!-- #endregion -->
         </div>
     <!-- #endregion -->
         <!-- #region Footer -->

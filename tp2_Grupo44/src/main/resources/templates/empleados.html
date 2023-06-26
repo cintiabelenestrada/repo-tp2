@@ -8,7 +8,7 @@
     <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}" />
     <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
-    <title>Categorias</title>
+    <title>Empleados</title>
 </head>
 
 <body>
@@ -16,18 +16,18 @@
     <header th:replace="~{layouts/header :: header}"></header>
     <!-- #endregion -->
 
-    <!-- #region Sucursales -->
+    <!-- #region empleados.html -->
     <div class="container pt-3" id="seccion">
 
         <!-- #region Navegación -->
         <div class="bg-light border border-light-subtle rounded text-center">
-            <h1 class="m-3">Administración de Categorias</h1>
-            <p class="text-secondary"><em>Eliminar o modificar categoria/s.</em></p>
+            <h1 class="m-3">Administración de Empleados</h1>
+            <p class="text-secondary"><em>Eliminar o modificar empleado/s.</em></p>
         </div>
         <hr>
         <!-- #endregion -->
 
-        <!-- #region Provincias -->
+        <!-- #region Empleados -->
         <div class="card mb-3">
 
             <div class="card-header fs-2 text-center">
@@ -35,27 +35,35 @@
             </div>
 
             <div class="card-body">
-                <h5 class="card-title text-center">Cantidad de categorias: <small class="badge bg-info" th:text="${#lists.size(listaCategorias)}"></small></h5>
-
+                <h5 class="card-title text-center">Cantidad de empleados: <small class="badge bg-info" th:text="${#lists.size(listaEmpleados)}"></small></h5>
+                
                 <table class="table table-hover">
                     <thead class="align-middle text-center">
                         <tr>
-                            <th class="text-center" scope="col">Identificador</th>
-                            <th class="text-center" scope="col">Nombre</th>
-                            <th class="text-center" scope="col">Acciones</th>
+                            <th scope="col">Identificador</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Horario</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle text-center">
-                        <tr th:each="categoria : ${listaCategorias}">
-                            <th class="text-center" scope="row" th:text="${categoria.identificador}"></th>
-                            <td class="text-center" th:text="${categoria.nombre}"></td>
-                            <td class="text-center">
+                        <tr th:each="empleado : ${listaEmpleados}">
+                            <th scope="row" th:text="${empleado.identificador}"></th>
+                            <td th:text="${empleado.nombre}"></td>
+                            <td th:text="${empleado.apellido}"></td>
+                            <td
+                                th:text="${#temporals.format(empleado.horarioDisponibleDesde, 'HH:mm a')} + ' - ' + ${#temporals.format(empleado.horarioDisponibleHasta, 'HH:mm a')}">
+                            </td>
+                            <td>
                                 <div class="btn-group" role="group">
-                                    <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
-                                        th:href="@{/categorias/modificar/} + ${categoria.identificador}">Modificar</a>
+                                    <a class="btn btn-sm btn-outline-primary text-decoration-none"
+                                       role="button"
+                                       th:href="@{/empleados/modificar/} + ${empleado.identificador}">Modificar</a>
 
-                                    <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
-                                        th:href="@{/categorias/eliminar/} + ${categoria.identificador}">Eliminar</a>
+                                    <a class="btn btn-sm btn-outline-danger text-decoration-none"
+                                       role="button"
+                                       th:href="@{/empleados/eliminar/} + ${empleado.identificador}">Eliminar</a>
                                 </div>
                             </td>
                         </tr>
@@ -74,7 +82,6 @@
             </div>
             <!-- #endregion -->
         </div>
-        <!-- #endregion Sucursales -->
     </div>
     <!-- #region Footer -->
     <footer th:replace="~{layouts/footer :: footer}"></footer>

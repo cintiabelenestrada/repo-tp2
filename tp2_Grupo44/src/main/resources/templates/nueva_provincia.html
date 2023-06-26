@@ -61,6 +61,7 @@
                                    aria-label="Nombre"
                                    aria-describedby="Nombre"
                                    class="form-control">
+                                   
                         </div>
                         <p class="text-danger mb-3"
                            th:if="${#fields.hasErrors('nombre')}"
@@ -71,15 +72,14 @@
 
                     <!-- #region Opciones -->
                     <div class="card-footer d-flex gap-3 justify-content-center">
-                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/provincias/listado}">Cancelar</a>
+                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/gestion_de_datos/listado}">Cancelar</a>
                         <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'"></button>
                     </div>
                     <!-- #endregion -->
-
                 </form>
                 <!-- #endregion -->
             </div>
-            
+            <!-- #endregion -->
         </div>
         <!-- #endregion -->
 

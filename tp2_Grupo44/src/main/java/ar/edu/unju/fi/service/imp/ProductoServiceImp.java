@@ -12,13 +12,11 @@ import ar.edu.unju.fi.service.IProductoService;
 @Service("productoServiceImp")
 public class ProductoServiceImp implements IProductoService {
 
-    //#region Components
     @Autowired
 	private IProductoRepository productoRepository;
 
     @Autowired
 	private Producto producto;
-    //#endregion
 
     //#region Methods
     @Override

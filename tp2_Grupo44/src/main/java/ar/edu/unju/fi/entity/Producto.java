@@ -21,6 +21,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 @Component
 @Entity
@@ -33,8 +34,8 @@ public class Producto {
 
 	//#region Attributes
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "producto_codigo")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
 
 	@Column(name = "producto_estado", columnDefinition = "boolean default true")
@@ -42,7 +43,7 @@ public class Producto {
 
 	@Column(name = "producto_nombre")
 	@NotBlank(message = "Debes ingresar un nombre")
-	// @Size(min = 5, max = 30, message = "El nombre solo puede contener entre 5 y 30 caracteres")
+	@Size(min = 5, max = 15, message = "El nombre del producto solo puede contener entre 5 y 15 caracteres")
 	private String nombre;
 
 	@Column(name = "producto_precio")

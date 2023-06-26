@@ -28,11 +28,8 @@
                         creciendo con nuevas aperturas en el Norte Argentino.
                     </em>
                 </p>
-                <div th:unless="${#lists.isEmpty(listaProvincias)}">
-                    <a class="btn btn-primary mb-3" th:href="@{/sucursales/formulario}">Nuevo Sucursal</a>
-                </div>
                 <div th:if="${#lists.isEmpty(listaProvincias)}">
-                    <p><em>No es posible realizar esta operación</em></p>
+                    <p><strong>Actualmente la lista se encuentra vacía</strong></p>
                 </div>
             </div>
             <hr>
@@ -44,13 +41,6 @@
                 <div class="card-header fs-2 text-center"
                      th:text="${provincia.nombre}">
                 </div>
-                
-                <!-- <img class="img-thumbnail d-block mx-auto mt-3"
-                     style="height: 150px;"
-                     alt="..."
-                     th:each="imagen : ${listaImagenes}"
-                     th:if="${#strings.equals(imagen.identificador, provincia)}"
-                     th:src="${imagen.nombre}"> -->
 
                 <div class="card-body">
                     <h5 class="card-title text-center">Sucursales</h5>
@@ -83,12 +73,8 @@
                                     <p><strong>Telefono:</strong>
                                         <span th:text="${sucursal.telefono}"></span>
                                     </p>
-                                    <p><strong>Horario de apertura:</strong>
-                                        <span th:text="${#temporals.format(sucursal.horarioApertura, 'HH:mm a')}">
-                                        </span>
-                                    </p>
-                                    <p><strong>Horario de cierre:</strong>
-                                        <span th:text="${#temporals.format(sucursal.horarioCierre, 'HH:mm a')}">
+                                    <p><strong>Fecha de apertura:</strong>
+                                        <span th:text="${#temporals.format(sucursal.fechaApertura, 'dd/MM/yyyy')}">
                                         </span>
                                     </p>
                                 </div>
@@ -111,9 +97,16 @@
                     <!-- #endregion Sucursales -->
                 </div>
             </div>
-            <p class="text-center">
-                <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
-            </p>
+            <!-- #region Opciones -->
+            <div class="card-footer d-flex gap-3 justify-content-center mb-3">
+                <a class="btn btn-danger text-decoration-none"
+                    role="button"
+                    th:href="@{/gestion_de_datos/listado}">Regresar a Gestión de datos</a>
+                <a class="btn btn-primary"
+                   role="button"
+                   href="#seccion">Volver al índice</a>
+            </div>
+            <!-- #endregion -->
         </div>
         <!-- #region Footer -->
         <footer th:replace="~{layouts/footer :: footer}"></footer>
