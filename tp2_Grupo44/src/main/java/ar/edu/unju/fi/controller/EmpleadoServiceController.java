@@ -10,87 +10,87 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.entity.Categoria;
-import ar.edu.unju.fi.service.imp.CategoriaServiceImp;
+import ar.edu.unju.fi.entity.Empleado;
+import ar.edu.unju.fi.service.imp.EmpleadoServiceImp;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/categorias")
-public class CategoriaController {
+@RequestMapping("/empleados")
+public class EmpleadoServiceController {
     
     @Autowired
-    private CategoriaServiceImp categoriaServiceImp;
+    private EmpleadoServiceImp empleadoServiceImp;
     
     @Autowired
-    private Categoria unaCategoria;
+    private Empleado unEmpleado;
 
     @GetMapping("/listado")
-    public ModelAndView getCategoriasPage() {
+    public ModelAndView getEmpleadosPage() {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.setViewName("categorias");
-        modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
+        modelAndView.setViewName("empleados");
+        modelAndView.addObject("listaEmpleados", empleadoServiceImp.getAllEmpleados());
 
         return modelAndView;
     }
 
     @GetMapping("/formulario")
-    public ModelAndView getNewCategoriaPage() {
+    public ModelAndView getNewEmpleadoPage() {
 
         ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = false;
 
-        unaCategoria = new Categoria();
-        modelAndView.setViewName("nueva_categoria");
-        modelAndView.addObject("categoria", unaCategoria);
+        unEmpleado = new Empleado();
+        modelAndView.setViewName("nuevo_empleado");
+        modelAndView.addObject("empleado", unEmpleado);
         modelAndView.addObject("editar", allowEditing);
 
         return modelAndView;
     }
 
     @PostMapping("/guardar")
-    public ModelAndView saveNewCategoria(
-            @Valid @ModelAttribute(value = "categoria") Categoria categoria,
+    public ModelAndView saveNewEmpleado(
+            @Valid @ModelAttribute(value = "empleado") Empleado empleado,
             BindingResult resultadoValidacion) {
 
         ModelAndView modelAndView = new ModelAndView();
 
         if (resultadoValidacion.hasErrors()) {
-            modelAndView.setViewName("nueva_categoria");
+            modelAndView.setViewName("nuevo_empleado");
         } else {
-            categoriaServiceImp.addCategoria(categoria);
+            empleadoServiceImp.addEmpleado(empleado);
 
-            modelAndView.setViewName("redirect:/categorias/listado");
-            modelAndView.addObject("listaCategorias", categoriaServiceImp.getAllCategorias());
+            modelAndView.setViewName("redirect:/empleados/listado");
+            modelAndView.addObject("listaEmpleados", empleadoServiceImp.getAllEmpleados());
         }
 
         return modelAndView;
     }
 
     @GetMapping("/modificar/{identificador}")
-    public ModelAndView getModifyCategoriaPage(
+    public ModelAndView getModifyEmpleadoPage(
             @PathVariable(value = "identificador") long identificador) {
 
         ModelAndView modelAndView = new ModelAndView();
         boolean allowEditing = true;
 
-        unaCategoria = categoriaServiceImp.findCategoriaByIdentifier(identificador);
-        modelAndView.setViewName("nueva_categoria");
-        modelAndView.addObject("categoria", unaCategoria);
+        unEmpleado = empleadoServiceImp.findEmpleadoByIdentifier(identificador);
+        modelAndView.setViewName("nuevo_empleado");
+        modelAndView.addObject("empleado", unEmpleado);
         modelAndView.addObject("editar", allowEditing);
 
         return modelAndView;
     }
 
     @GetMapping("/eliminar/{identificador}")
-    public ModelAndView deleteCategoria(
+    public ModelAndView deleteEmpleado(
             @PathVariable(value = "identificador") long identificador) {
             
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.setViewName("redirect:/categorias/listado");
-        categoriaServiceImp.deleteCategoriaByIdentifier(categoriaServiceImp.findCategoriaByIdentifier(identificador));
+        modelAndView.setViewName("redirect:/empleados/listado");
+        empleadoServiceImp.deleteEmpleadoByIdentifier(empleadoServiceImp.findEmpleadoByIdentifier(identificador));
 
         return modelAndView;
     }

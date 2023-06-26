@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+        <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+        <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
+        <title>Servicio de paseos</title>
+    </head>
+
+    <body>
+        <!-- #region Header -->
+        <header th:replace="~{layouts/header :: header}"></header>
+        <!-- #endregion -->
+
+        <div class="container pt-3" id="seccion">
+            <div class="bg-light border border-light-subtle rounded text-center mb-3">
+                <h1 class="m-3">¡Encontrá servicio más cercano!</h1>
+                <p class="text-secondary">
+                    <em>Disponemos de varios voluntarios capacitados, en varias regiones del NOA.</em>
+                </p>
+                <div th:if="${#lists.isEmpty(listaEmpleados)}">
+                    <p><strong>Actualmente la lista se encuentra vacía</strong></p>
+                    <p><em>No existen empleados disponibles</em></p>
+                </div>
+            </div>
+
+                <table class="table table-hover">
+                    <thead class="align-middle text-center">
+                        <tr>
+                            <th scope="col">Identificador</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Día disponible</th>
+                            <th scope="col">Empleado</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle text-center">
+                        <tr th:each="servicio: ${listaServicios}">
+                            <th scope="row" th:text="${servicio.identificador}"></th>
+                            <td th:text="${servicio.nombre}"></td>
+                            <td th:text="${servicio.tipo}"></td>
+                            <td
+                                th:text="${#temporals.format(servicio.diaDisponible, 'yyyy-MM-dd')}">
+                            </td>
+                            <td th:text="${servicio.empleado.apellido} + ' ' + ${servicio.empleado.nombre}">
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-sm btn-outline-primary text-decoration-none"
+                                       role="button"
+                                       th:href="@{/servicios/modificar/} + ${servicio.identificador}">Modificar</a>
+
+                                    <a class="btn btn-sm btn-outline-danger text-decoration-none"
+                                       role="button"
+                                       th:href="@{/servicios/eliminar/} + ${servicio.identificador}">Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <!-- </div> -->
+            <!-- #region Opciones -->
+            <div class="card-footer d-flex gap-3 justify-content-center mb-3">
+                <a class="btn btn-danger text-decoration-none"
+                    role="button"
+                    th:href="@{/gestion_de_datos/listado}">Regresar a Gestión de datos</a>
+                <a class="btn btn-primary"
+                   role="button"
+                   href="#seccion">Volver al índice</a>
+            </div>
+            <!-- #endregion -->
+        </div>
+
+        <!-- #region Footer -->
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        <!-- #endregion -->
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </body>
+
+</html>

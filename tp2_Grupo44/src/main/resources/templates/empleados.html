@@ -8,7 +8,7 @@
     <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}" />
     <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
-    <title>Provincias</title>
+    <title>Empleados</title>
 </head>
 
 <body>
@@ -16,18 +16,19 @@
     <header th:replace="~{layouts/header :: header}"></header>
     <!-- #endregion -->
 
-    <!-- #region provincias.html -->
+    <!-- #region empleados.html -->
     <div class="container pt-3" id="seccion">
 
         <!-- #region Navegación -->
         <div class="bg-light border border-light-subtle rounded text-center">
-            <h1 class="m-3">Administración de Provincias</h1>
-            <p class="text-secondary"><em>Agregar, eliminar o modificar provincia/s.</em></p>
+            <h1 class="m-3">Administración de Empleados</h1>
+            <p class="text-secondary"><em>Agregar, eliminar o modificar empleado/s.</em></p>
+            <a class="btn btn-primary mb-3" th:href="@{/empleados/formulario}">Nueva empleado</a>
         </div>
         <hr>
         <!-- #endregion -->
 
-        <!-- #region Provincias -->
+        <!-- #region Empleados -->
         <div class="card mb-3">
 
             <div class="card-header fs-2 text-center">
@@ -42,35 +43,42 @@
                      th:src="${imagen.nombre}"> -->
 
             <div class="card-body">
-                <h5 class="card-title text-center">Cantidad de provincias: <small class="badge bg-info" th:text="${#lists.size(listaProvincias)}"></small></h5>
+                <h5 class="card-title text-center">Cantidad de empleados: <small class="badge bg-info" th:text="${#lists.size(listaEmpleados)}"></small></h5>
                 
                 <table class="table table-hover">
                     <thead class="align-middle text-center">
                         <tr>
                             <th scope="col">Identificador</th>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Horario</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle text-center">
-                        <tr th:each="provincia : ${listaProvincias}">
-                            <th scope="row" th:text="${provincia.identificador}"></th>
-                            <td th:text="${provincia.nombre}"></td>
+                        <tr th:each="empleado : ${listaEmpleados}">
+                            <th scope="row" th:text="${empleado.identificador}"></th>
+                            <td th:text="${empleado.nombre}"></td>
+                            <td th:text="${empleado.apellido}"></td>
+                            <td
+                                th:text="${#temporals.format(empleado.horarioDisponibleDesde, 'HH:mm a')} + ' - ' + ${#temporals.format(empleado.horarioDisponibleHasta, 'HH:mm a')}">
+                            </td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-sm btn-outline-primary text-decoration-none"
                                        role="button"
-                                       th:href="@{/provincias/modificar/} + ${provincia.identificador}">Modificar</a>
+                                       th:href="@{/empleados/modificar/} + ${empleado.identificador}">Modificar</a>
 
                                     <a class="btn btn-sm btn-outline-danger text-decoration-none"
                                        role="button"
-                                       th:href="@{/provincias/eliminar/} + ${provincia.identificador}">Eliminar</a>
+                                       th:href="@{/empleados/eliminar/} + ${empleado.identificador}">Eliminar</a>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
             <!-- #region Opciones -->
             <div class="card-footer d-flex gap-3 justify-content-center">
                 <a class="btn btn-danger text-decoration-none"

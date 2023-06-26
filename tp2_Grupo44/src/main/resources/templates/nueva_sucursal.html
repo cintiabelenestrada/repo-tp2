@@ -22,7 +22,7 @@
             <div class="card">
                 <!-- #region Titulo -->
                 <div class="card-header text-center">
-                    <h3 class="mb-0" th:text="${editar} ? 'Modificar Sucursal' : 'Nuevo Sucursal'"></h3>
+                    <h3 class="mb-0" th:text="${editar} ? 'Modificar Sucursal' : 'Nueva Sucursal'"></h3>
                 </div>
                 <!-- #endregion -->
 
@@ -121,32 +121,19 @@
                         </p>
                         <!-- #endregion -->
 
-                        <!-- #region Horario -->
+                        <!-- #region Fecha de apertura -->
                         <div class="input-group mb-3">
-                            <span class="input-group-text">Horario</span>
-                            <label for="horarioApertura" class="input-group-text">Apertura</label>
-                            <input type="time"
-                                   id="horarioApertura"
-                                   th:field="*{horarioApertura}"
-                                   aria-label="Apertura"
-                                   aria-labelledby="Apertura"
-                                   class="form-control">
-
-                            <label for="horarioCierre" class="input-group-text">Cierre</label>
-                            <input type="time"
-                                   id="horarioCierre"
-                                   th:field="*{horarioCierre}"
-                                   aria-label="Cierre"
-                                   aria-labelledby="Cierre"
+                            <label for="fechaApertura" class="input-group-text">Fecha de apertura</label>
+                            <input type="date"
+                                   id="fechaApertura"
+                                   th:field="*{fechaApertura}"
+                                   aria-label="FechaApertura"
+                                   aria-labelledby="FechaApertura"
                                    class="form-control">
                         </div>
                         <p class="text-danger mb-3"
-                           th:if="${#fields.hasErrors('horarioApertura')}"
-                           th:errors="*{horarioApertura}">
-                        </p>
-                        <p class="text-danger mb-3"
-                             th:if="${#fields.hasErrors('horarioCierre')}"
-                             th:errors="*{horarioCierre}">
+                             th:if="${#fields.hasErrors('fechaApertura')}"
+                             th:errors="*{fechaApertura}">
                         </p>
                         <!-- #endregion -->
 
@@ -155,7 +142,6 @@
                             <label for="provincia" class="input-group-text">Provincia</label>
                             <select id="provincia"
                                     th:field="*{provincia.identificador}"
-                                    name="provincia"
                                     aria-label="Provincia"
                                     class="form-select">
                                 <option th:each="_provincia : ${listaProvincias}"
@@ -175,7 +161,7 @@
 
                     <!-- #region Opciones -->
                     <div class="card-footer d-flex gap-3 justify-content-center">
-                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/sucursales/listado}">Cancelar</a>
+                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/gestion_de_datos/listado}">Cancelar</a>
                         <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'"></button>
                     </div>
                     <!-- #endregion -->

@@ -1,6 +1,6 @@
 package ar.edu.unju.fi.entity;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,8 +18,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 @Component
@@ -33,41 +33,36 @@ public class Sucursal {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long identificador;
 
-	@Column(name = "estado", columnDefinition = "boolean default true")
+	@Column(name = "sucursal_estado", columnDefinition = "boolean default true")
 	private boolean estado;
 
-	@Column(name = "nombre")
+	@Column(name = "sucursal_nombre")
 	@NotBlank(message = "Debes introducir un nombre")
-	@Size(min = 5, max = 15, message = "El nombre solo puede contener entre 5 y 15 caracteres")
-	@Pattern(regexp = "[a-zA-Z]+", message = "Debe contener solo letras")
+	@Size(min = 5, max = 15, message = "El nombre de la sucursal solo puede contener entre 5 y 15 caracteres")
+	@Pattern(regexp = "[a-z A-Z 0-9]+", message = "El nombre puede contener letras y/o numeros")
 	private String nombre;
 
-	@Column(name = "direccion")
+	@Column(name = "sucursal_direccion")
 	@NotBlank(message = "Debes introducir una dirección")
 	@Size(min = 5, max = 30, message = "La dirección solo puede contener entre 5 y 30 caracteres")
-	@Pattern(regexp = "[a-zA-Z]+", message = "La dirección solo puede contener letras")
+	@Pattern(regexp = "[a-z A-Z]+", message = "La dirección solo puede contener letras")
 	private String direccion;
 
-	@NotBlank(message = "Debes ingresar el número")
-	@PositiveOrZero(message = "Debes ingresar un número positivo")
+	@Column(name = "sucursal_numero_direccion")
+	@NotBlank(message = "Debes ingresar el número de la dirección")
 	@Pattern(regexp = "[0-9]+", message = "Debe contener solo números")
-	@Column(name = "numero_direccion")
 	private String numeroDireccion;
 
-	@NotBlank(message = "Debes introducir un telefono")
+	@Column(name = "sucursal_telefono")
+	@NotBlank(message = "Debes introducir un número de telefono")
 	@Pattern(regexp = "0388-[0-9]{3}-[0-9]{4}", message = "Ingrese un número de telefono válido")
-	@Column(name = "telefono")
 	private String telefono;
 
-	@DateTimeFormat(pattern = "HH:mm")
-	@NotNull(message = "Ingrese un horario de apertura")
-	@Column(name = "horario_apertura")
-	private LocalTime horarioApertura;
-
-	@DateTimeFormat(pattern = "HH:mm")
-	@NotNull(message = "Ingrese un horario de cierre")
-	@Column(name = "horario_cierre")
-	private LocalTime horarioCierre;
+	@Column(name = "sucursal_fecha_apertura")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Debes ingresar una fecha")
+	@Past(message = "Fecha incorrecta")
+	private LocalDate fechaApertura;
 
 	@Autowired
 	@JoinColumn(name = "provincia_identificador")
@@ -77,25 +72,10 @@ public class Sucursal {
 	//#endregion
 
 	//#region Constructors
-	/**
-	 * Constructor por defecto
-	 */
 	public Sucursal() {
 		this.estado = true;
 	}
 
-	/**
-	 * Constructor parametrizado
-	 * @param identificador es el ID de la sucursal
-	 * @param estado representa si es VISIBLE o no en el listado
-	 * @param nombre
-	 * @param direccion
-	 * @param numeroDireccion
-	 * @param telefono
-	 * @param horarioApertura
-	 * @param horarioCierre
-	 * @param provincia representa la ubicación de la sucursal
-	 */
 	public Sucursal(
 			long identificador,
 			boolean estado,
@@ -103,8 +83,7 @@ public class Sucursal {
 			String direccion,
 			String numeroDireccion,
 			String telefono,
-			LocalTime horarioApertura,
-			LocalTime horarioCierre,
+			LocalDate fechaApertura,
 			Provincia provincia) {
 
 		this.identificador = identificador;
@@ -113,8 +92,7 @@ public class Sucursal {
 		this.direccion = direccion;
 		this.numeroDireccion = numeroDireccion;
 		this.telefono = telefono;
-		this.horarioApertura = horarioApertura;
-		this.horarioCierre = horarioCierre;
+		this.fechaApertura = fechaApertura;
 		this.provincia = provincia;
 
 	}
@@ -169,22 +147,14 @@ public class Sucursal {
 		this.telefono = telefono;
 	}
 
-	public LocalTime getHorarioApertura() {
-		return horarioApertura;
+	public LocalDate getFechaApertura() {
+		return fechaApertura;
 	}
 
-	public void setHorarioApertura(LocalTime horarioApertura) {
-		this.horarioApertura = horarioApertura;
+	public void setFechaApertura(LocalDate fechaApertura) {
+		this.fechaApertura = fechaApertura;
 	}
-
-	public LocalTime getHorarioCierre() {
-		return horarioCierre;
-	}
-
-	public void setHorarioCierre(LocalTime horarioCierre) {
-		this.horarioCierre = horarioCierre;
-	}
-
+	
 	public Provincia getProvincia() {
 		return provincia;
 	}

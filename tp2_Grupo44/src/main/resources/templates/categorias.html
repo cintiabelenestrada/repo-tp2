@@ -21,13 +21,8 @@
 
         <!-- #region Navegación -->
         <div class="bg-light border border-light-subtle rounded text-center">
-            <h1 class="m-3">Administración de Provincias</h1>
-            <p class="text-secondary">
-                <em>
-                    Agregar, eliminar o modificar provincia/s.
-                </em>
-            </p>
-            <a class="btn btn-primary mb-3" th:href="@{/categorias/formulario}">Nueva categoria</a>
+            <h1 class="m-3">Administración de Categorias</h1>
+            <p class="text-secondary"><em>Agregar, eliminar o modificar categoria/s.</em></p>
         </div>
         <hr>
         <!-- #endregion -->
@@ -39,33 +34,22 @@
                 <h3 class="mb-0">Listado</h3>
             </div>
 
-            <!-- <img class="img-thumbnail d-block mx-auto mt-3"
-                     style="height: 150px;"
-                     alt="..."
-                     th:each="imagen : ${listaImagenes}"
-                     th:if="${#strings.equals(imagen.identificador, provincia)}"
-                     th:src="${imagen.nombre}"> -->
-
             <div class="card-body">
-                
-                <h6 class="card-title text-center mb-0">
-                    <small class="badge bg-secondary" th:text="${#lists.size(listaCategorias)}"></small>
-                </h6>
+                <h5 class="card-title text-center">Cantidad de categorias: <small class="badge bg-info" th:text="${#lists.size(listaCategorias)}"></small></h5>
 
                 <table class="table table-hover">
-                    <thead>
+                    <thead class="align-middle text-center">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Acciones</th>
-                            <th scope="col">ObjectID</th>
+                            <th class="text-center" scope="col">Identificador</th>
+                            <th class="text-center" scope="col">Nombre</th>
+                            <th class="text-center" scope="col">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="align-middle text-center">
                         <tr th:each="categoria : ${listaCategorias}">
-                            <th scope="row" th:text="${categoria.identificador}"></th>
-                            <td th:text="${categoria.nombre}"></td>
-                            <td>
+                            <th class="text-center" scope="row" th:text="${categoria.identificador}"></th>
+                            <td class="text-center" th:text="${categoria.nombre}"></td>
+                            <td class="text-center">
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
                                         th:href="@{/categorias/modificar/} + ${categoria.identificador}">Modificar</a>
@@ -74,19 +58,23 @@
                                         th:href="@{/categorias/eliminar/} + ${categoria.identificador}">Eliminar</a>
                                 </div>
                             </td>
-                            <td class="table-info" th:text="${categoria}"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-                Footer
+
+            <!-- #region Opciones -->
+            <div class="card-footer d-flex gap-3 justify-content-center">
+                <a class="btn btn-danger text-decoration-none"
+                    role="button"
+                    th:href="@{/gestion_de_datos/listado}">Regresar</a>
+                <a class="btn btn-primary"
+                   role="button"
+                   href="#seccion">Volver al índice</a>
             </div>
+            <!-- #endregion -->
         </div>
         <!-- #endregion Sucursales -->
-        <p class="text-center">
-            <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
-        </p>
     </div>
     <!-- #region Footer -->
     <footer th:replace="~{layouts/footer :: footer}"></footer>

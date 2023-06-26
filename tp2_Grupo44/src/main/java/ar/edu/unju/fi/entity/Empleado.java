@@ -5,68 +5,100 @@ import java.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Component
-public class DogWalker {
+@Entity
+@Table(name = "empleados")
+public class Empleado {
 
-	// region Attributes
+	//#region Attributes
+	@Id
+    @Column(name = "empleado_identificador")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long identificador;
+
+	@Column(name = "empleado_estado", columnDefinition = "boolean default true")
+    private boolean estado;
+
+	@Column(name = "empleado_nombre")
 	@NotEmpty(message = "Debes introducir un nombre")
 	@Size(min = 3, max = 30, message = "El nombre solo puede contener entre 3 y 30 caracteres")
 	@Pattern(regexp = "[a-z A-Z]+", message = "Debe contener solo letras")
 	private String nombre;
 
-	@NotEmpty(message = "Debes introducir un apelldio")
+	@Column(name = "empleado_apellido")
+	@NotEmpty(message = "Debes introducir un apellido")
 	@Size(min = 4, max = 30, message = "El apellido solo puede contener entre 4 y 30 caracteres")
 	@Pattern(regexp = "[a-z A-Z]+", message = "Debe contener solo letras")
 	private String apellido;
 
-	@NotBlank(message = "Debe seleccionar un día")
-	private String diaDisponible;
-
+	@Column(name = "empleado_horario_disponible_desde")
 	@DateTimeFormat(pattern = "HH:mm")
 	@NotNull(message = "Ingrese un horario inicial")
 	private LocalTime horarioDisponibleDesde;
 
+	@Column(name = "empleado_horario_disponible_hasta")
 	@DateTimeFormat(pattern = "HH:mm")
 	@NotNull(message = "Ingrese un horario final")
 	private LocalTime horarioDisponibleHasta;
 
-	@NotBlank(message = "Debe seleccionar una provincia")
-	private String provincia;
+	@OneToOne(mappedBy = "empleado")
+	private Servicio servicio;
+	//#endregion
 
-	private short identificador;
-	// endregion
-
-	// region Constructors
-	public DogWalker() {
+	//#region Constructors
+	public Empleado() {
+		this.estado = true;
 	}
 
-	public DogWalker(
-			String nombre,
-			String apellido,
-			String diaDisponible,
-			LocalTime horarioDisponibleDesde,
-			LocalTime horarioDisponibleHasta,
-			String provincia,
-			short identificador) {
+	public Empleado(
+		long identificador,
+		boolean estado,
+		String nombre,
+		String apellido,
+		LocalTime horarioDisponibleDesde,
+		LocalTime horarioDisponibleHasta,
+		Servicio servicio) {
 
+		this.identificador = identificador;
+		this.estado = estado;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.diaDisponible = diaDisponible;
 		this.horarioDisponibleDesde = horarioDisponibleDesde;
 		this.horarioDisponibleHasta = horarioDisponibleHasta;
-		this.provincia = provincia;
-		this.identificador = identificador;
+		this.servicio = servicio;
 
 	}
-	// endregion
+	//#endregion
 
-	// region Getters and Setters
+	//#region Getters and Setters
+	public long getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(long identificador) {
+		this.identificador = identificador;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -81,14 +113,6 @@ public class DogWalker {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-
-	public String getDiaDisponible() {
-		return diaDisponible;
-	}
-
-	public void setDiaDisponible(String diaDisponible) {
-		this.diaDisponible = diaDisponible;
 	}
 
 	public LocalTime getHorarioDisponibleDesde() {
@@ -107,21 +131,13 @@ public class DogWalker {
 		this.horarioDisponibleHasta = horarioDisponibleHasta;
 	}
 
-	public String getProvincia() {
-		return provincia;
+	public Servicio getServicio() {
+		return servicio;
 	}
 
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
 	}
-
-	public short getIdentificador() {
-		return identificador;
-	}
-
-	public void setIdentificador(short identificador) {
-		this.identificador = identificador;
-	}
-	// endregion
+	//#endregion
 
 }

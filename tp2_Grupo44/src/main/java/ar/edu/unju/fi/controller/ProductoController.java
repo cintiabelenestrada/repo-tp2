@@ -100,12 +100,11 @@ public class ProductoController {
 	}
 
 	@GetMapping("/eliminar/{codigo}")
-	public ModelAndView deleteProducto(
-		@PathVariable(value = "codigo") long codigo) {
+	public ModelAndView deleteProducto(@PathVariable(value = "codigo") long codigo) {
 
 		ModelAndView modelAndView = new ModelAndView();
 
-		modelAndView.setViewName("redirect:/productoos/listado");
+		modelAndView.setViewName("redirect:/productos/listado");
 		productoServiceImp.deleteProductoByCode(productoServiceImp.findProductoByCode(codigo));
 
 		return modelAndView;

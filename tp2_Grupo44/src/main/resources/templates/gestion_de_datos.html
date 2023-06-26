@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+        <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+        <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
+        <title>Gestión de datos</title>
+    </head>
+</head>
+
+<body>
+    <!-- #region Header -->
+    <header th:replace="~{layouts/header :: header}"></header>
+    <!-- #endregion -->
+
+    <div class="container pt-3" id="seccion">
+        <div class="bg-light border border-light-subtle rounded text-center mb-3">
+            <h1 class="m-3">Gestion de los ABM</h1>
+            <p class="text-secondary"><em>Administra los distintos ABMs.</em></p>
+        </div>
+
+        <table class="table">
+            <thead class="align-middle text-center">
+                <tr>
+                    <th scope="col">Sección</th>
+                    <th scope="col">Formulario</th>
+                    <th scope="col">Listado</th>
+                </tr>
+            </thead>
+            <tbody class="align-middle text-center table-group-divider">
+                <tr class="table-light">
+                    <th scope="row">Producto</th>
+                    <td><a class="btn btn-outline-primary" th:href="@{producto/formulario}">Agregar</a></td>
+                    <td><a class="btn btn-outline-info" th:href="@{producto/listado}">Ver</a></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Categoria</th>
+                    <td><a class="btn btn-outline-primary" th:href="@{categoria/formulario}">Agregar</a></td>
+                    <td><a class="btn btn-outline-info" th:href="@{categoria/listado}">Ver</a></td>
+                </tr>
+
+                <tr class="table-light">
+                    <th scope="row">Servicio</th>
+                    <td><a class="btn btn-outline-primary" th:href="@{servicio/formulario}">Agregar</a></td>
+                    <td><a class="btn btn-outline-info" th:href="@{servicio/listado}">Ver</a></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Empleado</th>
+                    <td><a class="btn btn-outline-primary" th:href="@{empleado/formulario}">Agregar</a></td>
+                    <td><a class="btn btn-outline-info" th:href="@{empleado/listado}">Ver</a></td>
+                </tr>
+
+                <tr class="table-light">
+                    <th scope="row">Sucursal</th>
+                    <td><a class="btn btn-outline-primary" th:href="@{sucursal/formulario}">Agregar</a></td>
+                    <td><a class="btn btn-outline-info" th:href="@{sucursal/listado}">Ver</a></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Provincia</th>
+                    <td><a class="btn btn-outline-primary" th:href="@{provincia/formulario}">Agregar</a></td>
+                    <td><a class="btn btn-outline-info" th:href="@{provincia/listado}">Ver</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <p class="text-center">
+            <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
+        </p> -->
+    </div>
+
+    <!-- #region Separator -->
+    <hr>
+    <!-- #endregion -->
+
+    <!-- #region Footer -->
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
+    <!-- #endregion -->
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

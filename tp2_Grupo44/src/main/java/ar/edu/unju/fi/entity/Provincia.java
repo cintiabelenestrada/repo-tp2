@@ -22,17 +22,17 @@ public class Provincia {
 
     //#region Attributes
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "provincia_identificador")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long identificador;
 
     @Column(name = "provincia_estado", columnDefinition = "boolean default true")
     private boolean estado;
 
+    @Column(name = "provincia_nombre")
     @NotBlank(message = "Debes introducir un nombre")
 	@Size(min = 5, max = 15, message = "El nombre solo puede contener entre 5 y 15 caracteres")
-	@Pattern(regexp = "[a-zA-Z]+", message = "Debe contener solo letras")
-    @Column(name = "provincia_nombre")
+	@Pattern(regexp = "[a-z A-Z]+", message = "El nombre debe contener solo letras")
     private String nombre;
 
     @OneToMany(mappedBy = "provincia")
@@ -80,6 +80,7 @@ public class Provincia {
     }
 
     public void setNombre(String nombre) {
+        nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1).toLowerCase();
         this.nombre = nombre;
     }
 
