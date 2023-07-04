@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.entity.Provincia;
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.service.imp.ProvinciaServiceImp;
-import ar.edu.unju.fi.service.imp.SucursalServiceImp;
+import ar.edu.unju.fi.service.SucursalServiceImpl;
 import jakarta.validation.Valid;
 
 @Controller
@@ -27,7 +27,7 @@ public class SucursalController {
     private Provincia unaProvincia;
 
     @Autowired
-    private SucursalServiceImp sucursalServiceImp;
+    private SucursalServiceImpl sucursalServiceImp;
 
     @Autowired
     private ProvinciaServiceImp provinciaServiceImp;
