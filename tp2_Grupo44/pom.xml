@@ -20,10 +20,14 @@
 	
 	<!-- Dependencies -->
 	<dependencies>
+
+		<!-- https://mvnrepository.com/org.springframework.boot/spring-boot-starter-thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<!-- <version>3.1.1</version> -->
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -35,14 +39,18 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+				
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>3.1.1</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
@@ -63,7 +71,7 @@
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-data-jpa</artifactId>
-		    <version>3.1.0</version>
+		    <version>3.1.1</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
@@ -72,6 +80,13 @@
 		    <artifactId>mysql-connector-j</artifactId>
 		    <version>8.0.33</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<!-- <dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>3.1.4</version>
+		</dependency> -->
 
 	</dependencies>
 

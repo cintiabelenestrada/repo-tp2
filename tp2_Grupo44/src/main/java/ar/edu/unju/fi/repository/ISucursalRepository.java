@@ -12,4 +12,10 @@ public interface ISucursalRepository extends CrudRepository<Sucursal, Long> {
 
     public List<Sucursal> findByEstado(boolean estado);
 
+	public List<Sucursal> findByFechaInicioBetweenAndFechaFinBetween(String fechaInicio, String fechaFin);
+
 }
+/*@Repository
+public interface ISucursalRepository extends JpaRepository<Sucursal, Long> {
+    List<Sucursal> findByNombre(String nombre);
+}*/

@@ -6,16 +6,14 @@ import ar.edu.unju.fi.entity.Sucursal;
 
 public interface ISucursalService {
     
-    //#region Methods
-    public List<Sucursal> getSucursales();
+    void addSucursal(Sucursal sucursal);
 
-    public void addSucursal(Sucursal sucursalAgregar);
+    List<Sucursal> getAllSucursales();
 
-    public Sucursal findSucursalByIdentifier(long identificador);
+    Sucursal findSucursalByIdentifier(long identificador);
 
-    public void deleteSucursalByIdentifier(Sucursal sucursalEliminar);
+    void deleteSucursalByIdentifier(Sucursal sucursal);
 
-	public Sucursal getSucursal();
-    //#endregion
-
+    List<Sucursal> findSucursalesByFechaInicioAndFechaFin(String fechaInicio, String fechaFin);
 }
+

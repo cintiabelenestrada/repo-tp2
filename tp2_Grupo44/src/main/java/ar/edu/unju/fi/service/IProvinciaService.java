@@ -7,15 +7,15 @@ import ar.edu.unju.fi.entity.Provincia;
 public interface IProvinciaService {
 
     //#region Methods
-    public List<Provincia> getProvincias();
+    public void addProvincia(Provincia provincia);
 
-    public void addProvincia(Provincia provinciaAgregar);
+    public List<Provincia> getAllProvincias();
 
     public Provincia findProvinciaByIdentifier(long identificador);
 
-    public void deleteProvinciaByIdentifier(Provincia provinciaEliminar);
+    public void deleteProvinciaByIdentifier(Provincia provincia);
     
-    public Provincia getProvincia();
+    // public Provincia getProvincia();
     //#endregion
 
 }

@@ -22,22 +22,22 @@ public class Provincia {
 
     //#region Attributes
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "provincia_identificador")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long identificador;
 
-    @Column(name = "estado", columnDefinition = "boolean default true")
+    @Column(name = "provincia_estado", columnDefinition = "boolean default true")
     private boolean estado;
 
+    @Column(name = "provincia_nombre")
     @NotBlank(message = "Debes introducir un nombre")
 	@Size(min = 5, max = 15, message = "El nombre solo puede contener entre 5 y 15 caracteres")
-	@Pattern(regexp = "[a-zA-Z]+", message = "Debe contener solo letras")
-    @Column(name = "nombre")
+	@Pattern(regexp = "[a-z A-Z]+", message = "El nombre debe contener solo letras")
     private String nombre;
 
     @OneToMany(mappedBy = "provincia")
     private List<Sucursal> listaSucursales;
-    // #endregion
+    //#endregion
 
     //#region Constructors
     public Provincia() {

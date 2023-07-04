@@ -16,18 +16,13 @@
     <header th:replace="~{layouts/header :: header}"></header>
     <!-- #endregion -->
 
-    <!-- #region Sucursales -->
+    <!-- #region provincias.html -->
     <div class="container pt-3" id="seccion">
 
         <!-- #region Navegación -->
         <div class="bg-light border border-light-subtle rounded text-center">
             <h1 class="m-3">Administración de Provincias</h1>
-            <p class="text-secondary">
-                <em>
-                    Agregar, eliminar o modificar provincia/s.
-                </em>
-            </p>
-            <a class="btn btn-primary mb-3" th:href="@{/provincias/formulario}">Nueva provincia</a>
+            <p class="text-secondary"><em>Eliminar o modificar provincia/s.</em></p>
         </div>
         <hr>
         <!-- #endregion -->
@@ -47,46 +42,46 @@
                      th:src="${imagen.nombre}"> -->
 
             <div class="card-body">
+                <h5 class="card-title text-center">Cantidad de provincias: <small class="badge bg-info" th:text="${#lists.size(listaProvincias)}"></small></h5>
                 
-                <h6 class="card-title text-center mb-0">
-                    <small class="badge bg-secondary" th:text="${#lists.size(listaProvincias)}"></small>
-                </h6>
-
                 <table class="table table-hover">
-                    <thead>
+                    <thead class="align-middle text-center">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Identificador</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Acciones</th>
-                            <th scope="col">ObjectID</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="align-middle text-center">
                         <tr th:each="provincia : ${listaProvincias}">
                             <th scope="row" th:text="${provincia.identificador}"></th>
                             <td th:text="${provincia.nombre}"></td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a class="btn btn-sm btn-outline-primary text-decoration-none" role="button"
-                                        th:href="@{/provincias/modificar/} + ${provincia.identificador}">Modificar</a>
+                                    <a class="btn btn-sm btn-outline-primary text-decoration-none"
+                                       role="button"
+                                       th:href="@{/provincias/modificar/} + ${provincia.identificador}">Modificar</a>
 
-                                    <a class="btn btn-sm btn-outline-danger text-decoration-none" role="button"
-                                        th:href="@{/provincias/eliminar/} + ${provincia.identificador}">Eliminar</a>
+                                    <a class="btn btn-sm btn-outline-danger text-decoration-none"
+                                       role="button"
+                                       th:href="@{/provincias/eliminar/} + ${provincia.identificador}">Eliminar</a>
                                 </div>
                             </td>
-                            <td class="table-info" th:text="${provincia}"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-                Footer
+            <!-- #region Opciones -->
+            <div class="card-footer d-flex gap-3 justify-content-center">
+                <a class="btn btn-danger text-decoration-none"
+                    role="button"
+                    th:href="@{/gestion_de_datos/listado}">Regresar</a>
+                <a class="btn btn-primary"
+                   role="button"
+                   href="#seccion">Volver al índice</a>
             </div>
+            <!-- #endregion -->
         </div>
-        <!-- #endregion Sucursales -->
-        <p class="text-center">
-            <a class="btn btn-primary" href="#seccion"> Volver al índice</a>
-        </p>
     </div>
     <!-- #region Footer -->
     <footer th:replace="~{layouts/footer :: footer}"></footer>

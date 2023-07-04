@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Component
-public class HealthTip {
+public class Consejo {
 
     // region Attributes
     @NotEmpty(message = "Debes introducir un título")
@@ -32,9 +32,9 @@ public class HealthTip {
     // endregion
 
     // region Constructors
-    public HealthTip() {};
+    public Consejo() {};
 
-    public HealthTip(
+    public Consejo(
             String titulo,
             String contenido,
             LocalDate fechaPublicacion,

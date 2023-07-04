@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.entity.HealthTip;
-import ar.edu.unju.fi.service.IHealthTipService;
+import ar.edu.unju.fi.entity.Consejo;
+import ar.edu.unju.fi.service.IConsejoService;
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/consejos_de_salud")
-public class HealthTipController {
+public class ConsejoController {
 
     @Autowired
-    private IHealthTipService healthTipService;
+    private IConsejoService healthTipService;
 
     @GetMapping("/listado")
     public String getHealthTipPage(Model model) {
@@ -43,7 +43,7 @@ public class HealthTipController {
 
     @PostMapping("/guardar")
     public ModelAndView saveHealthTipInformation(
-            @Valid @ModelAttribute(value = "consejo") HealthTip consejoAgregar,
+            @Valid @ModelAttribute(value = "consejo") Consejo consejoAgregar,
             BindingResult resultadoValidacion) {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/consejos_de_salud/listado");
@@ -67,7 +67,7 @@ public class HealthTipController {
             Model model,
             @PathVariable(value = "identificador") short identificadorConsejo) {
 
-        HealthTip healthTipFound = healthTipService.findHealthTipByIdentifier(identificadorConsejo);
+        Consejo healthTipFound = healthTipService.findHealthTipByIdentifier(identificadorConsejo);
         boolean allowEditing = true;
 
         model.addAttribute("consejo", healthTipFound);
@@ -78,7 +78,7 @@ public class HealthTipController {
 
     @PostMapping("/modificar")
     public ModelAndView modifyHealthTip(
-            @Valid @ModelAttribute(value = "consejo") HealthTip consejoModificar,
+            @Valid @ModelAttribute(value = "consejo") Consejo consejoModificar,
             BindingResult resultadoValidacion) {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/consejos_de_salud/listado");

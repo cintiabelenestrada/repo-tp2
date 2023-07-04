@@ -7,14 +7,14 @@ import ar.edu.unju.fi.entity.Producto;
 public interface IProductoService {
     
     //#region Methods
-    public List<Producto> getProductos();
+    public void addProducto(Producto producto);
 
-    public void addProducto(Producto productoAgregar);
+    public List<Producto> getAllProductos();
 
-    public Producto findProductoByCode(long codigo);
+    public Producto findProductoByCodigo(long codigo);
 
-    public void deleteProductoByCode(Producto productoEliminar);
+    public void deleteProductoByCodigo(Producto producto);
 
-    public Producto getProducto();
+    // public Producto getProducto();
     //#endregion
 }

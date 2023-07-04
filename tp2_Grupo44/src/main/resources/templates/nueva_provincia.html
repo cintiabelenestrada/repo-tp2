@@ -19,35 +19,35 @@
         <!-- #region nueva_provincia.html -->
         <div class="container">
 
-            <!-- #region Formulario -->
             <div class="card">
-
                 <!-- #region Titulo -->
                 <div class="card-header text-center">
                     <h3 class="mb-0" th:text="${editar} ? 'Modificar Provincia' : 'Nueva Provincia'"></h3>
-                    <!-- <h6 class="badge bg-secondary"
-                        th:text="${editar} ? 'Identificador ' + ${provincia.identificador} : 'Identificador no asignado todavia'">
-                    </h6> -->
                 </div>
                 <!-- #endregion -->
 
-                <!-- #region Contenido -->
+                <!-- #region Formulario -->
                 <form th:action="@{/provincias/guardar}"
                       th:object="${provincia}"
                       method="post">
 
-                    <!-- #region Entrada de datos -->
                     <div class="card-body">
-
                         <!-- #region Identificador -->
                         <div>
-                            <input type="hidden" id="identificador" th:field="*{identificador}" class="form-control">
+                            <input type="hidden"
+                                   id="identificador"
+                                   th:field="*{identificador}"
+                                   class="form-control">
                         </div>
                         <!-- #endregion -->
 
                         <!-- #region Estado -->
                         <div>
-                            <input type="hidden" id="estado" th:field="*{estado}" th:attr="value=${provincia.estado}" class="form-control">
+                            <input type="hidden"
+                                   id="estado"
+                                   th:field="*{estado}"
+                                   th:attr="value=${provincia.estado}"
+                                   class="form-control">
                         </div>
                         <!-- #endregion -->
 
@@ -61,17 +61,19 @@
                                    aria-label="Nombre"
                                    aria-describedby="Nombre"
                                    class="form-control">
+                                   
                         </div>
-                        <div class="text-danger mb-3" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                        <p class="text-danger mb-3"
+                           th:if="${#fields.hasErrors('nombre')}"
+                           th:errors="*{nombre}">
+                        </p>
                         <!-- #endregion -->
                     </div>
-                    <!-- #endregion -->
 
                     <!-- #region Opciones -->
                     <div class="card-footer d-flex gap-3 justify-content-center">
-                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/provincias/listado}">Cancelar</a>
-                        <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'">
-                        </button>
+                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/gestion_de_datos/listado}">Cancelar</a>
+                        <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'"></button>
                     </div>
                     <!-- #endregion -->
                 </form>
