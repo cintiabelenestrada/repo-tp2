@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+        <link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+        <link rel="shortcut icon" type="image/svg" th:href="@{/images/logos/pet_shop_favicon.svg}">
+        <title>Nuevo Empleado</title>
+    </head>
+
+    <body>
+        <!-- #region Header -->
+        <header th:replace="~{layouts/header :: header}"></header>
+        <!-- #endregion -->
+
+        <!-- #region nuevo_empleado.html -->
+        <div class="container">
+
+            <!-- #region Formulario -->
+            <div class="card">
+
+                <!-- #region Titulo -->
+                <div class="card-header text-center">
+                    <h3 class="mb-0" th:text="${editar} ? 'Modificar Empleado' : 'Nuevo Empleado'"></h3>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Formulario -->
+                <form th:action="@{/empleados/guardar}"
+                      th:object="${empleado}"
+                      method="post">
+
+                    <div class="card-body">
+
+                        <!-- #region Identificador -->
+                        <div>
+                            <input type="hidden"
+                                    id="identificador"
+                                    th:field="*{identificador}"
+                                    class="form-control">
+                        </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Estado -->
+                        <div>
+                            <input type="hidden"
+                                   id="estado"
+                                   th:field="*{estado}"
+                                   th:attr="value=${empleado.estado}"
+                                   class="form-control">
+                        </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Nombre -->
+                        <div class="input-group mb-3">
+                            <label for="nombre" class="input-group-text">Nombre</label>
+                            <input type="text"
+                                   id="nombre"
+                                   th:field="*{nombre}"
+                                   placeholder="Ingrese nombre del empleado"
+                                   aria-label="Nombre"
+                                   aria-describedby="Nombre"
+                                   class="form-control">
+                        </div>
+                        <p class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('nombre')}"
+                             th:errors="*{nombre}">
+                        </p>
+                        <!-- #endregion -->
+
+                        <!-- #region Apellido -->
+                        <div class="input-group mb-3">
+                            <label for="apellido" class="input-group-text">Apellido</label>
+                            <input type="text"
+                                   id="apellido"
+                                   th:field="*{apellido}"
+                                   placeholder="Ingrese apellido del empleado"
+                                   aria-label="Apellido"
+                                   aria-describedby="Apellido"
+                                   class="form-control">
+                        </div>
+                        <p class="text-danger mb-3"
+                             th:if="${#fields.hasErrors('apellido')}"
+                             th:errors="*{apellido}">
+                        </p>
+                        <!-- #endregion -->
+
+                        <!-- #region HorarioDisponible -->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Horario</span>
+                            <label for="horarioDisponibleDesde" class="input-group-text">Desde</label>
+                            <input type="time"
+                                   id="horarioDisponibleDesde"
+                                   th:field="*{horarioDisponibleDesde}"
+                                   aria-label="DisponibleDesde"
+                                   aria-labelledby="DisponibleDesde"
+                                   class="form-control">
+
+                            <label for="horarioDisponibleHasta" class="input-group-text">Hasta</label>
+                            <input type="time"
+                                   id="horarioDisponibleHasta"
+                                   th:field="*{horarioDisponibleHasta}"
+                                   aria-label="DisponibleHasta"
+                                   aria-labelledby="DisponibleHasta"
+                                   class="form-control">
+                        </div>
+                        <p class="text-danger mb-3" th:if="${#fields.hasErrors('horarioDisponibleDesde')}"
+                             th:errors="*{horarioDisponibleDesde}">
+                        </p>
+                        <p class="text-danger mb-3" th:if="${#fields.hasErrors('horarioDisponibleHasta')}"
+                             th:errors="*{horarioDisponibleHasta}">
+                        </p>
+                        <!-- #endregion -->
+
+                    </div>
+                    <!-- #endregion -->
+
+                    <!-- #region Opciones -->
+                    <div class="card-footer d-flex gap-3 justify-content-center">
+                        <a class="btn btn-danger text-decoration-none link-light" th:href="@{/gestion_de_datos/listado}">Cancelar</a>
+                        <button type="submit" class="btn btn-success" th:text="${editar} ? 'Modificar' : 'Guardar'"></button>
+                    </div>
+                    <!-- #endregion -->
+                </form>
+                <!-- #endregion -->
+            </div>
+            <!-- #endregion -->
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region Separator -->
+        <hr>
+        <!-- #endregion -->
+
+        <!-- #region Footer -->
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        <!-- #endregion -->
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </body>
+
+</html>
