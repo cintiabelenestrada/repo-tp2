@@ -35,7 +35,7 @@ public class SucursalServiceImpl implements ISucursalService {
     }
 
     @Override
-    public List<Sucursal> findSucursalesByFechaInicioAndFechaFin(String fechaInicio, String fechaFin) {
-        return sucursalRepository.findByFechaInicioBetweenAndFechaFinBetween(fechaInicio, fechaFin);
+    public List<Sucursal> findSucursalesByFechaApertura(String fechaApertura) {
+        return sucursalRepository.findByFechaApertura(fechaApertura);
     }
 }
