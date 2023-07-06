@@ -14,6 +14,8 @@ public interface ISucursalService {
 
     void deleteSucursalByIdentifier(Sucursal sucursal);
 
-    List<Sucursal> findSucursalesByFechaInicioAndFechaFin(String fechaInicio, String fechaFin);
+  //  List<Sucursal> findSucursalesByFechaInicioAndFechaFin(String fechaInicio, String fechaFin);
+
+	List<Sucursal> findSucursalesByFechaApertura(String fechaApertura);
 }
 
