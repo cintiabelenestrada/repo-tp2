@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -12,7 +13,7 @@ public interface ISucursalRepository extends CrudRepository<Sucursal, Long> {
 
     public List<Sucursal> findByEstado(boolean estado);
 
-	public List<Sucursal> findByFechaInicioBetweenAndFechaFinBetween(String fechaInicio, String fechaFin);
+	public List<Sucursal> findByFechaAperturaBetween(LocalDate fechaInicio, LocalDate fechaFin);
 
 }
 /*@Repository

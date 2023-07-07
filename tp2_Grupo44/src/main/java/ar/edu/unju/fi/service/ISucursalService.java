@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ar.edu.unju.fi.entity.Sucursal;
@@ -14,6 +15,6 @@ public interface ISucursalService {
 
     void deleteSucursalByIdentifier(Sucursal sucursal);
 
-    List<Sucursal> findSucursalesByFechaInicioAndFechaFin(String fechaInicio, String fechaFin);
+    List<Sucursal> findSucursalesByFechaInicioAndFechaFin(LocalDate fechaInicio, LocalDate fechaFin);
 }
 
