@@ -1,7 +1,14 @@
 package ar.edu.unju.fi;
 
+//import java.time.LocalDate;
+//import java.util.List;
+
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+//import ar.edu.unju.fi.entity.Sucursal;
+//import ar.edu.unju.fi.service.ISucursalService;
 
 @SpringBootTest
 class TpGrupo44ApplicationTests {
@@ -14,7 +21,8 @@ class TpGrupo44ApplicationTests {
 
 	// Sucursal sucursal;
 	// Provincia provincia;
-
+	@Autowired
+//	private ISucursalService sucursalService;
 	@Test
 	void contextLoads() {
 	}
@@ -45,5 +53,13 @@ class TpGrupo44ApplicationTests {
 	// 	sucursal = branchService.findBranchOfficeByIdentifier(2);
 	// 	branchService.deleteBranchOfficeByIdentifier(sucursal);
 	// }
-
+	/*
+		@Test 
+		void listarsucursalentrefechas(){
+			List<Sucursal> sucursales = sucursalService.findSucursalesByFechaInicioAndFechaFin(LocalDate.of(2014, 4, 1),LocalDate.of(2014, 4, 20));
+			for(Sucursal sucu:sucursales) {
+				System.out.println(sucu.getNombre());
+			}
+		}
+		*/
 }

@@ -1,5 +1,6 @@
-package ar.edu.unju.fi.service;
+package ar.edu.unju.fi.service.imp;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.entity.Sucursal;
 import ar.edu.unju.fi.repository.ISucursalRepository;
+import ar.edu.unju.fi.service.ISucursalService;
 
 @Service
 public class SucursalServiceImpl implements ISucursalService {
@@ -35,7 +37,7 @@ public class SucursalServiceImpl implements ISucursalService {
     }
 
     @Override
-    public List<Sucursal> findSucursalesByFechaInicioAndFechaFin(String fechaInicio, String fechaFin) {
-        return sucursalRepository.findByFechaInicioBetweenAndFechaFinBetween(fechaInicio, fechaFin);
+    public List<Sucursal> findSucursalesByFechaInicioAndFechaFin(LocalDate fechaInicio, LocalDate fechaFin) {
+        return sucursalRepository.findByFechaAperturaBetween(fechaInicio, fechaFin);
     }
 }
